@@ -111,7 +111,7 @@ const MainBtn = ({
 
     if (to) {
       return (
-        <Link to={to} {...commonProps}>
+        <Link href={to} {...commonProps}>
           {content}
           {renderLoader()}
         </Link>

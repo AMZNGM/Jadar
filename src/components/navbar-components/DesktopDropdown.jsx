@@ -56,8 +56,8 @@ export default function DesktopDropdown({
                 >
                   <span className="text-text/25 group-hover:text-main duration-200">{String(itemIndex + 1).padStart(2, '0')}</span>
                   <Link
-                    dir={document.dir === 'rtl' ? 'rtl' : 'ltr'}
-                    href={item.to}
+                    dir={typeof document !== 'undefined' && document.dir === 'rtl' ? 'rtl' : 'ltr'}
+                    href={item.to ?? '#'}
                     className="block text-3xl px-2 w-full text-text/85 hover:text-text duration-200 rtl:text-end ltr:text-start"
                     onClick={() => setActiveMenuIndex(null)}
                   >
