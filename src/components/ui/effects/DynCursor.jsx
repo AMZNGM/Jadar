@@ -61,9 +61,9 @@ export default function DynCursor() {
   }, [])
 
   return (
-    <>
+    <div className="max-sm:hidden">
       <div ref={cursorRef} className="fixed inset-0 size-10 bg-text rounded-full mix-blend-difference z-9999 pointer-events-none" />
       <div ref={dotRef} className="fixed inset-0 size-2 bg-bg rounded-full mix-blend-normal z-9999 pointer-events-none" />
-    </>
+    </div>
   )
 }
