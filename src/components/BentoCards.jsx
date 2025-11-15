@@ -1,0 +1,137 @@
+import { useRef, useState } from "react";
+import { gsap } from "@/utils/gsapConfig";
+import { useGSAP } from "@gsap/react";
+import { BgNoise, MovingBorders } from "@/data/mediaData/svgs";
+import { useTranslation } from "@/translations/useTranslation";
+import SpotlightContainer from "@/components/ui/effects/SpotlightContainer.jsx";
+import FloatingEffect from "@/components/ui/effects/FloatingEffect.jsx";
+import MainBtn from "@/components/ui/buttons/MainBtn.jsx";
+import BgVideo from "@/components/ui/BgVideo.jsx";
+import cardVid1 from "@/assets/videos/video1.webm";
+import cardVid2 from "@/assets/videos/main hero.webm";
+import cardVid3 from "@/assets/videos/video2.webm";
+
+const cardData = [
+  {
+    src: cardVid1,
+    title: "power",
+    description: `card1Desc`,
+    btnText: "aboutJadar",
+    btnLink: "/about",
+  },
+  {
+    src: cardVid2,
+    title: `ourVision`,
+    description: `card2Desc`,
+    btnText: "aboutJadar",
+    btnLink: "/about",
+  },
+  {
+    src: cardVid3,
+    title: "ourPhilosophy",
+    description: `card3Desc`,
+    btnText: "aboutJadar",
+    btnLink: "/about",
+  },
+];
+
+const Card = ({ src, title, description, btnText, btnLink, className }) => {
+  const { t } = useTranslation();
+  const cardRef = useRef(null);
+  const [showFull, setShowFull] = useState(false);
+
+  useGSAP(() => {
+    gsap.fromTo(
+      cardRef.current,
+      { opacity: 0, rotateX: 100, y: 500 },
+      {
+        opacity: 1,
+        y: 0,
+        rotateX: 0,
+        duration: 2,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: cardRef.current,
+          start: "-600% bottom",
+          end: "center 80%",
+          toggleActions: "play none none reverse",
+          // scrub: true,
+        },
+      }
+    );
+  }, [cardRef]);
+
+  const toggleDescription = (e) => {
+    e.stopPropagation();
+    setShowFull(!showFull);
+  };
+
+  return (
+    <div
+      dir="ltr"
+      ref={cardRef}
+      className={`relative w-full h-[65vh] max-md:h-96 border border-text/20 overflow-hidden mb-6 ${className || ""}`}>
+      <SpotlightContainer>
+        <MovingBorders />
+
+        <BgVideo src={src} className="opacity-75" style={{ clipPath: "polygon(38% 1%, 100% 0, 100% 100%, 9% 100%)" }} />
+
+        <div className="flex relative z-10 flex-col justify-between p-3 size-full">
+          <div>
+            <h2 className="mb-4 text-6xl font-extralight uppercase cursor-default max-md:text-4xl text-main">
+              {t(title)}
+            </h2>
+
+            {description && (
+              <div className="relative">
+                <div
+                  className={`text-base max-md:text-sm text-text font-light duration-300 ${
+                    !showFull ? "line-clamp-4" : ""
+                  }`}>
+                  <p dangerouslySetInnerHTML={{ __html: t(description) }} />
+                </div>
+
+                <button
+                  onClick={toggleDescription}
+                  className="mt-1 text-xs tracking-widest duration-300 cursor-pointer text-main hover:underline">
+                  {showFull ? t("showLess") : t("seeMore")}
+                </button>
+              </div>
+            )}
+          </div>
+
+          {btnText && (
+            <MainBtn
+              text={t(btnText)}
+              to={btnLink}
+              look="main"
+              className="w-fit py-1! text-xs! rounded-tl-2xl rounded-br-2xl"
+            />
+          )}
+        </div>
+      </SpotlightContainer>
+    </div>
+  );
+};
+
+const BentoCards = () => {
+  return (
+    <div className="relative w-screen min-h-screen bg-black text-text px-4">
+      <BgNoise />
+
+      <FloatingEffect className="duration-300 hover:scale-95">
+        <Card {...cardData[0]} />
+      </FloatingEffect>
+      <div className="grid grid-cols-2 max-lg:grid-cols-1 md:gap-9">
+        <FloatingEffect className="duration-300 hover:scale-95">
+          <Card {...cardData[1]} />
+        </FloatingEffect>
+        <FloatingEffect className="duration-300 hover:scale-95">
+          <Card {...cardData[2]} />
+        </FloatingEffect>
+      </div>
+    </div>
+  );
+};
+
+export default BentoCards;
