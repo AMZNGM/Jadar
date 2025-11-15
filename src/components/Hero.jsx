@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import Modal from 'react-modal'
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { gsap } from '@/utils/gsapConfig'
 import { useGSAP } from '@gsap/react'
 import { MovingBorders } from '@/data/mediaData/svgs'
@@ -32,6 +32,7 @@ const Hero = ({ videoUrl }) => {
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [currentLogoIndex, setCurrentLogoIndex] = useState(0)
   const [shuffledLogos, setShuffledLogos] = useState([...logos])
+  const [scrollY, setScrollY] = useState(0)
   const selectedCountry = countries[selectedIndex]
   const openVideo = () => setIsVideoOpen(true)
   const closeVideo = () => setIsVideoOpen(false)
@@ -120,6 +121,15 @@ const Hero = ({ videoUrl }) => {
     }
   }, [])
 
+  useEffect(() => {
+    const onScroll = () => {
+      if (typeof window !== 'undefined') setScrollY(window.scrollY || window.pageYOffset || 0)
+    }
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   const scrollToSection = (sectionId) => {
     const section = document.querySelector(sectionId)
     if (section) {
@@ -128,6 +138,7 @@ const Hero = ({ videoUrl }) => {
   }
 
   if (!selectedCountry) return null
+
   return (
     <FloatingEffect intensity={scrollY > 10 ? 2 : 0}>
       <section ref={sectionRef} className="relative w-screen h-screen bg-bg text-text px-4 py-12">
