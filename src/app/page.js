@@ -1,6 +1,6 @@
 import { BgNoise } from '@/data/mediaData/svgs.jsx'
 import Hero from '@/components/Hero.jsx'
-// import WhoWeAre from '@/components/WhoWeAre.jsx'
+import WhoWeAre from '@/components/WhoWeAre.jsx'
 // import BentoCards from '@/components/BentoCards.jsx'
 // import KnowMore from '@/components/KnowMore'
 // import Map from '@/components/Map.jsx'
@@ -19,7 +19,7 @@ export default function Home() {
       <div className="h-150" />
 
       <div className="relative z-20 bg-black">
-        {/* <WhoWeAre /> */}
+        <WhoWeAre />
         <div className="-translate- y-20">
           {/* <BentoCards /> */}
           {/* <KnowMore /> */}
