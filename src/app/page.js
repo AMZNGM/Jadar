@@ -1,9 +1,3 @@
-import Image from "next/image";
-
 export default function Home() {
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-bg text-text text-8xl">
-      NGM
-    </div>
-  );
+  return <main></main>
 }
