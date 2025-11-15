@@ -18,9 +18,16 @@ import NavbarOverlay from '@/components/navbar-components/NavbarOverlay.jsx'
 
 export default function Navbar() {
   const { t } = useTranslation()
-  const { languages, selectedLanguage, handleLanguageChange } = useLanguage()
+  const languageContext = useLanguage()
   const navigationLinks = useNavigationLinks()
   const router = useRouter()
+  const [isClient, setIsClient] = useState(false)
+
+  // Wait for client hydration
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+
   // --- Refs ---
   const navRef = useRef(null)
   const logoRef = useRef(null)
@@ -108,6 +115,8 @@ export default function Navbar() {
     setOpenDropdowns({})
   }
 
+  const { languages, selectedLanguage, handleLanguageChange } = languageContext
+
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY
@@ -152,6 +161,11 @@ export default function Navbar() {
       document.removeEventListener('touchmove', handleTouchMove)
     }
   }, [mobileMenuOpen])
+
+  // Skip rendering until client is ready
+  if (!isClient) {
+    return null
+  }
 
   return (
     <header

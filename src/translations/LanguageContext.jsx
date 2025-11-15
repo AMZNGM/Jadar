@@ -72,27 +72,6 @@ export function LanguageProvider({ children }) {
     setIsMounted(true)
   }, [getLanguageObj])
 
-  // Don't render children until client is ready to prevent hydration mismatch
-  if (!isMounted) {
-    return (
-      <LanguageContext.Provider
-        value={{
-          selectedLanguage: state.selectedLanguage,
-          setSelectedLanguage: (lang) =>
-            dispatch({
-              type: 'CHANGE_LANGUAGE',
-              payload: { language: lang },
-            }),
-          handleLanguageChange,
-          languages: LANGUAGES,
-          isMounted: false,
-        }}
-      >
-        {children}
-      </LanguageContext.Provider>
-    )
-  }
-
   const value = {
     selectedLanguage: state.selectedLanguage,
     setSelectedLanguage: (lang) =>
@@ -102,7 +81,7 @@ export function LanguageProvider({ children }) {
       }),
     handleLanguageChange,
     languages: LANGUAGES,
-    isMounted: true,
+    isMounted,
   }
 
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>
