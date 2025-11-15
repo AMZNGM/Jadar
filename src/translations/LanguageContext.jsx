@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useReducer, useEffect, useCallback, useRef } from 'react'
+import { createContext, useContext, useReducer, useEffect, useCallback, useRef, useState } from 'react'
 import { LANGUAGES } from '@/translations/languages.js'
 
 const LanguageContext = createContext()
@@ -29,6 +29,7 @@ function languageReducer(state, action) {
 
 export function LanguageProvider({ children }) {
   const [state, dispatch] = useReducer(languageReducer, initialState)
+  const [isMounted, setIsMounted] = useState(false)
   const initRef = useRef(false)
 
   const getLanguageObj = useCallback((name) => LANGUAGES.find((lang) => lang.name === name) || LANGUAGES[0], [])
@@ -68,7 +69,29 @@ export function LanguageProvider({ children }) {
       type: 'INIT_LANGUAGE',
       payload: { language: savedLanguage },
     })
+    setIsMounted(true)
   }, [getLanguageObj])
+
+  // Don't render children until client is ready to prevent hydration mismatch
+  if (!isMounted) {
+    return (
+      <LanguageContext.Provider
+        value={{
+          selectedLanguage: state.selectedLanguage,
+          setSelectedLanguage: (lang) =>
+            dispatch({
+              type: 'CHANGE_LANGUAGE',
+              payload: { language: lang },
+            }),
+          handleLanguageChange,
+          languages: LANGUAGES,
+          isMounted: false,
+        }}
+      >
+        {children}
+      </LanguageContext.Provider>
+    )
+  }
 
   const value = {
     selectedLanguage: state.selectedLanguage,
@@ -79,6 +102,7 @@ export function LanguageProvider({ children }) {
       }),
     handleLanguageChange,
     languages: LANGUAGES,
+    isMounted: true,
   }
 
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>
