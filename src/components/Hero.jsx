@@ -97,6 +97,7 @@ const Hero = ({ videoUrl }) => {
     gsap.to(contentRef.current, {
       yPercent: window.innerWidth < 768 ? '50' : '',
       xPercent: window.innerWidth > 768 ? (document.dir === `ltr` ? '300' : '-300') : '',
+      opacity: 0,
       scrollTrigger: {
         trigger: sectionRef.current,
         start: 'top top',
