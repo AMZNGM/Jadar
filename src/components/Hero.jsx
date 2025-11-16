@@ -28,7 +28,7 @@ export default function Hero({ videoUrl }) {
     }
     return img
   }
-  const mobileImgsrc = getMobileImgSrc(ArtboardImgs[12])
+  const mobileImgsrc = getMobileImgSrc(ArtboardImgs[0])
   const { t } = useTranslation()
   const { selectedLanguage } = useLanguage()
   const countries = getCountriesData(t)

@@ -3,10 +3,12 @@
 import { useRef } from 'react'
 import { gsap } from '@/utils/gsapConfig'
 import { useGSAP } from '@gsap/react'
+import { ArtboardImgs } from '@/data/mediaData/artBoardImgs'
 import BgVideo from '@/components/ui/BgVideo.jsx'
 
 const PartnersBgVid = () => {
   const bgVid = '/videos/bgVideo.mp4'
+  const mobileImgsrc = ArtboardImgs[14]
   const sectionRef = useRef()
   const bgVidRef = useRef()
 
@@ -38,8 +40,10 @@ const PartnersBgVid = () => {
   }, [sectionRef, bgVidRef])
 
   return (
-    <section ref={sectionRef} className="relative w-screen h-screen bg-bg">
-      <BgVideo ref={bgVidRef} src={bgVid} forceVideo={true} className="will-change-transform will-change-opacity origin-center" />
+    <section ref={sectionRef} className="relative w-screen h-screen bg-black">
+      <div ref={bgVidRef} className="relative size-full will-change-transform will-change-opacity origin-center">
+        <BgVideo src={bgVid} mobileImgsrc={mobileImgsrc} className="max-sm:opacity-50" />
+      </div>
     </section>
   )
 }
