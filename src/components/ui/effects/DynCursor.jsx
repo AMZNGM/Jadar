@@ -1,10 +1,10 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, memo } from 'react'
 import { gsap } from '@/utils/gsapConfig'
 import { useGSAP } from '@gsap/react'
 
-export default function DynCursor() {
+export default memo(function DynCursor() {
   const cursorRef = useRef(null)
   const dotRef = useRef(null)
 
@@ -66,4 +66,4 @@ export default function DynCursor() {
       <div ref={dotRef} className="fixed inset-0 size-2 bg-bg rounded-full mix-blend-normal z-9999 pointer-events-none" />
     </div>
   )
-}
+})

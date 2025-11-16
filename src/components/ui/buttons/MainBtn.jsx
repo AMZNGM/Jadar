@@ -1,8 +1,9 @@
 import Link from 'next/link'
+import { memo } from 'react'
 import TextFlipper from '@/components/ui/text/TextFlipper.jsx'
 import ClickEffect from '@/components/ui/effects/ClickEffect.jsx'
 
-const MainBtn = ({
+export default memo(function MainBtn({
   children,
   text = 'MainBtn',
   icon: IconComponent,
@@ -22,7 +23,7 @@ const MainBtn = ({
   loading = false,
 
   ...rest
-}) => {
+}) {
   const getlookStyles = () => {
     const baseStyles = 'flex gap-2 justify-center items-center font-light text-center uppercase border duration-300 outline-none'
 
@@ -136,6 +137,4 @@ const MainBtn = ({
   }
 
   return <ClickEffect>{renderButton()}</ClickEffect>
-}
-
-export default MainBtn
+})

@@ -1,8 +1,8 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { memo, useEffect, useRef } from 'react'
 
-const ClickEffect = ({ children, className = '', ...props }) => {
+export default memo(function ClickEffect({ children, className = '', ...props }) {
   const elementRef = useRef(null)
 
   useEffect(() => {
@@ -65,6 +65,4 @@ const ClickEffect = ({ children, className = '', ...props }) => {
       {children}
     </div>
   )
-}
-
-export default ClickEffect
+})

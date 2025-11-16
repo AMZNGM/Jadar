@@ -1,8 +1,8 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, memo } from 'react'
 
-export default function FloatingEffect({
+export default memo(function FloatingEffect({
   children,
   intensity = 1,
   perspective = 1500,
@@ -109,4 +109,4 @@ export default function FloatingEffect({
       </div>
     </div>
   )
-}
+})

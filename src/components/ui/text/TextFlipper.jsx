@@ -1,13 +1,13 @@
 'use client'
 
-import { useRef } from 'react'
+import { memo, useRef } from 'react'
 import { gsap } from '@/utils/gsapConfig'
 import { useGSAP } from '@gsap/react'
 
 const DURATION = 0.25
 const STAGGER = 0.025
 
-const TextFlipper = ({ className, textClassName, children, tracking = 'w-1', tag = 'h4' }) => {
+export default memo(function TextFlipper({ className, textClassName, children, tracking = 'w-1', tag = 'h4' }) {
   const containerRef = useRef(null)
   const topSpansRef = useRef([])
   const bottomSpansRef = useRef([])
@@ -138,6 +138,4 @@ const TextFlipper = ({ className, textClassName, children, tracking = 'w-1', tag
       </div>
     </Tag>
   )
-}
-
-export default TextFlipper
+})
