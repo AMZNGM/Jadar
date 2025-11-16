@@ -12,11 +12,11 @@ import BentoCards from '@/components/BentoCards.jsx'
 export default function Home() {
   return (
     <main className="relative">
-      <div className="sticky top-0 z-10 bg-bg">
+      {/* <div className="sticky top-0 z-10 bg-bg">
         <BgNoise />
         <Hero videoUrl="https://www.youtube.com/embed/jw58xh03aB8?si=bR-9cJ48s8iebkgE" />
       </div>
-      <div className="h-150" />
+      <div className="h-150" /> */}
 
       <div className="relative z-20 bg-black">
         <WhoWeAre />

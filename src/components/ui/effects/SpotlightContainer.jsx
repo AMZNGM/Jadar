@@ -55,7 +55,7 @@ const SpotlightContainer = ({ children, className = '', spotlightColor = '#d73b1
       onTouchEnd={handleMouseLeave}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`relative overflow-hidden size-full ${className}`}
+      className={`relative overflow-hidden size-full ${className} max-md:hidden`}
     >
       <div
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 ease-in-out"
