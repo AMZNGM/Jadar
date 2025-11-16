@@ -230,6 +230,7 @@ const Hero = ({ videoUrl }) => {
                 <Image
                   src={selectedCountry.img}
                   alt={selectedCountry.countryName}
+                  loading="lazy"
                   className="size-full object-cover hover:scale-95 duration-500"
                 />
               ) : (
@@ -248,6 +249,7 @@ const Hero = ({ videoUrl }) => {
               <Image
                 src={shuffledLogos[currentLogoIndex].img}
                 alt={shuffledLogos[currentLogoIndex].project}
+                loading="lazy"
                 className="size-full object-contain rounded-lg hover:scale-95 transition-all duration-500"
               />
             </div>

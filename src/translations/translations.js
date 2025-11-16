@@ -176,24 +176,18 @@ export const TRANSLATIONS = {
           creating environments that foster productivity, innovation, and lasting impact.
       `,
     card3Desc: `
-          We believe in empowering spaces through precision, technology, and care. Our philosophy is to deliver high-end,
-          worry-free property services that promote:
-          <ul class="pl-6 list-disc">
-            <li>sustainability</li>
-            <li>efficiency</li>
-            <li>well-being</li>
-          </ul>
+          We believe in empowering spaces through precision, technology, and care. Our philosophy is to deliver high-end, worry-free property services that promote:
+          • sustainability
+          • efficiency
+          • well-being
+
           Our goal is to create spaces that work for you — spaces that are:
-          <ul class="pl-6 list-disc">
-            <li>cleaner</li>
-            <li>smarter</li>
-            <li>greener</li>
-            <li>more inspiring</li>
-          </ul>
-          <br />
-          <br />
-          Through our personalized sustainability and energy optimization frameworks, we help reduce environmental impact
-          and improve operational excellence. We are not just service providers; we are partners in performance.
+          • cleaner
+          • smarter
+          • greener
+          • more inspiring
+
+          Through our personalized sustainability and energy optimization frameworks, we help reduce environmental impact and improve operational excellence. We are not just service providers; we are partners in performance.
       `,
     ourPhilosophy: `Our philosophy`,
     showLess: 'Show less',
@@ -752,20 +746,16 @@ export const TRANSLATIONS = {
       `,
     card3Desc: `
           نؤمن بتمكين المساحات عبر الدقة والتكنولوجيا والرعاية. فلسفتنا هي تقديم خدمات عقارية راقية وخالية من المتاعب تعزز:
-          <ul class="pl-6 list-disc">
-            <li>الاستدامة</li>
-            <li>الكفاءة</li>
-            <li>الرفاهية</li>
-          </ul>
+          • الاستدامة
+          • الكفاءة
+          • الرفاهية
+
           هدفنا هو خلق مساحات تعمل من أجلك - مساحات تكون:
-          <ul class="pl-6 list-disc">
-            <li>أنظف</li>
-            <li>أذكى</li>
-            <li>أكثر اخضرارًا</li>
-            <li>أكثر إلهامًا</li>
-          </ul>
-          <br />
-          <br />
+          • أنظف
+          • أذكى
+          • أكثر اخضرارًا
+          • أكثر إلهامًا
+
           من خلال أطر الاستدامة المخصصة وتحسين الطاقة، نساعد في تقليل التأثير البيئي وتحسين التميز التشغيلي. نحن لسنا مجرد مقدمي خدمات؛ نحن شركاء في الأداء.
       `,
     ourPhilosophy: `فلسفتنا`,

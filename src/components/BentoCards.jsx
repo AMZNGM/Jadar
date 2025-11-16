@@ -1,44 +1,35 @@
 'use client'
 
+import Image from 'next/image'
 import { useRef, useState } from 'react'
 import { gsap } from '@/utils/gsapConfig'
 import { useGSAP } from '@gsap/react'
 import { BgNoise, MovingBorders } from '@/data/mediaData/svgs'
 import { useTranslation } from '@/translations/useTranslation'
+import { ArtboardImgs } from '@/data/mediaData/artBoardImgs'
 import SpotlightContainer from '@/components/ui/effects/SpotlightContainer.jsx'
 import FloatingEffect from '@/components/ui/effects/FloatingEffect.jsx'
 import MainBtn from '@/components/ui/buttons/MainBtn.jsx'
-import BgVideo from '@/components/ui/BgVideo.jsx'
-
-const cardVid1 = '/videos/video1.mp4'
-const cardVid2 = '/videos/main%20hero.mp4'
-const cardVid3 = '/videos/video2.mp4'
 
 const cardData = [
   {
-    src: cardVid1,
+    img: ArtboardImgs[1],
     title: 'power',
     description: `card1Desc`,
-    btnText: 'aboutJadar',
-    btnLink: '/about',
   },
   {
-    src: cardVid2,
+    img: ArtboardImgs[4],
     title: `ourVision`,
     description: `card2Desc`,
-    btnText: 'aboutJadar',
-    btnLink: '/about',
   },
   {
-    src: cardVid3,
+    img: ArtboardImgs[5],
     title: 'ourPhilosophy',
     description: `card3Desc`,
-    btnText: 'aboutJadar',
-    btnLink: '/about',
   },
 ]
 
-const Card = ({ src, title, description, btnText, btnLink, className }) => {
+const Card = ({ img, title, description, className }) => {
   const { t } = useTranslation()
   const cardRef = useRef(null)
   const [showFull, setShowFull] = useState(false)
@@ -58,7 +49,6 @@ const Card = ({ src, title, description, btnText, btnLink, className }) => {
           start: '-600% bottom',
           end: 'center 80%',
           toggleActions: 'play none none reverse',
-          // scrub: true,
         },
       }
     )
@@ -78,7 +68,9 @@ const Card = ({ src, title, description, btnText, btnLink, className }) => {
       <SpotlightContainer>
         <MovingBorders />
 
-        <BgVideo src={src} className="opacity-75" style={{ clipPath: 'polygon(38% 1%, 100% 0, 100% 100%, 9% 100%)' }} />
+        <div style={{ clipPath: 'polygon(38% 1%, 100% 0, 100% 100%, 9% 100%)' }} className="absolute inset-0 overflow-hidden">
+          <Image src={img} alt={t(title)} loading="eager" className="size-full object-cover opacity-75" />
+        </div>
 
         <div className="flex relative z-10 flex-col justify-between p-3 size-full">
           <div>
@@ -100,7 +92,9 @@ const Card = ({ src, title, description, btnText, btnLink, className }) => {
             )}
           </div>
 
-          {btnText && <MainBtn text={t(btnText)} to={btnLink} look="main" className="w-fit py-1! text-xs! rounded-tl-2xl rounded-br-2xl" />}
+          <div className="relative w-fit">
+            <MainBtn text={t('aboutJadar')} to={'/about'} look="main" className="w-fit py-1! text-xs! rounded-tl-2xl rounded-br-2xl" />
+          </div>
         </div>
       </SpotlightContainer>
     </div>

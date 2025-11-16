@@ -21,7 +21,7 @@ export default function Home() {
       <div className="relative z-20 bg-black">
         <WhoWeAre />
         <div className="-translate- y-20">
-          {/* <BentoCards /> */}
+          <BentoCards />
           {/* <KnowMore /> */}
           {/* <Map /> */}
         </div>
