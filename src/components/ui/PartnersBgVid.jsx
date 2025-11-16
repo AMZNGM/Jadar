@@ -8,7 +8,7 @@ import BgVideo from '@/components/ui/BgVideo.jsx'
 
 const PartnersBgVid = () => {
   const bgVid = '/videos/bgVideo.mp4'
-  const mobileImgsrc = ArtboardImgs[14]
+  const mobileImgsrc = ArtboardImgs[16]
   const sectionRef = useRef()
   const bgVidRef = useRef()
 

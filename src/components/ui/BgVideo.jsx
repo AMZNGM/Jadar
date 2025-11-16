@@ -26,7 +26,6 @@ const BgVideo = forwardRef(({ src, mobileImgsrc, className = '', forceVideo = fa
         muted
         playsInline
         preload="none"
-        poster={mobileImgsrc}
       />
     </>
   )
