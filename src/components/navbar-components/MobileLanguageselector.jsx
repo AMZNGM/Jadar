@@ -36,7 +36,7 @@ export default function MobileLanguageSelector({
   }, [languageSelectorOpen])
 
   return (
-    <div className="w-full absolute bottom-0 left-0 bg-bg/20 border-t border-text/15 backdrop-blur-sm">
+    <div className="w-full absolute bottom-0 max-sm:bottom-16 left-0 bg-bg/20 border-t border-text/15 backdrop-blur-sm">
       <HoverEffect
         onClick={() => setLanguageSelectorOpen(!languageSelectorOpen)}
         className="w-full flex justify-between items-center hover:bg-text/5 cursor-pointer select-none duration-300 py-8 px-6"
