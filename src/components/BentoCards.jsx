@@ -35,6 +35,11 @@ const Card = ({ img, title, description, className }) => {
   const [showFull, setShowFull] = useState(false)
 
   useGSAP(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      gsap.set(cardRef.current, { opacity: 1, y: 0, rotateX: 0 })
+      return
+    }
+
     gsap.fromTo(
       cardRef.current,
       { opacity: 0, rotateX: 100, y: 500 },
@@ -63,13 +68,13 @@ const Card = ({ img, title, description, className }) => {
     <div
       dir="ltr"
       ref={cardRef}
-      className={`relative w-full h-[65vh] max-md:h-96 border border-text/20 overflow-hidden mb-6 ${className || ''}`}
+      className={`relative w-full h-[65vh] max-md:h-96 border border-text/20 overflow-hidden will-change-transform mb-6 ${className || ''}`}
     >
       <SpotlightContainer>
         <MovingBorders />
 
-        <div style={{ clipPath: 'polygon(38% 1%, 100% 0, 100% 100%, 9% 100%)' }} className="absolute inset-0 overflow-hidden">
-          <Image src={img} alt={t(title)} loading="eager" className="size-full object-cover opacity-75" />
+        <div className="absolute inset-0 overflow-hidden card-clip">
+          <Image src={img} alt={t(title)} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
         </div>
 
         <div className="flex relative z-10 flex-col justify-between p-3 size-full">
@@ -97,28 +102,32 @@ const Card = ({ img, title, description, className }) => {
           </div>
         </div>
       </SpotlightContainer>
+
+      <style>{`
+        .card-clip {
+          clip-path: polygon(38% 1%, 100% 0, 100% 100%, 9% 100%);
+        }
+      `}</style>
     </div>
   )
 }
 
-const BentoCards = () => {
+export default function BentoCards() {
   return (
     <div className="relative w-screen min-h-screen bg-black text-text px-4">
       <BgNoise />
 
       <FloatingEffect className="duration-300 hover:scale-95">
-        <Card {...cardData[0]} />
+        <Card {...cardData[0]} index={0} />
       </FloatingEffect>
       <div className="grid grid-cols-2 max-lg:grid-cols-1 md:gap-9">
         <FloatingEffect className="duration-300 hover:scale-95">
-          <Card {...cardData[1]} />
+          <Card {...cardData[1]} index={1} />
         </FloatingEffect>
         <FloatingEffect className="duration-300 hover:scale-95">
-          <Card {...cardData[2]} />
+          <Card {...cardData[2]} index={2} />
         </FloatingEffect>
       </div>
     </div>
   )
 }
-
-export default BentoCards

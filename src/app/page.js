@@ -2,7 +2,6 @@ import { BgNoise } from '@/data/mediaData/svgs.jsx'
 import Hero from '@/components/Hero.jsx'
 import WhoWeAre from '@/components/WhoWeAre.jsx'
 import BentoCards from '@/components/BentoCards.jsx'
-// import KnowMore from '@/components/KnowMore'
 // import Map from '@/components/Map.jsx'
 import PartnersBgVid from '@/components/ui/PartnersBgVid'
 import EgyptJourneyIntro from '@/components/EgyptJourneyIntro'
@@ -22,15 +21,14 @@ export default function Home() {
         <WhoWeAre />
         <div className="-translate- y-20">
           {/* <BentoCards /> */}
-          {/* <KnowMore /> */}
           {/* <Map /> */}
         </div>
       </div>
 
       <div className="relative z-40">
-        {/* <div className="absolute inset-0">
+        <div className="absolute inset-0">
           <PartnersBgVid />
-        </div> */}
+        </div>
         {/* <EgyptJourneyIntro /> */}
         {/* <OurJourney /> */}
         {/* <ProjectsGallery /> */}

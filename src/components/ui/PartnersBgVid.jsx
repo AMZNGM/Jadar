@@ -39,7 +39,7 @@ const PartnersBgVid = () => {
 
   return (
     <section ref={sectionRef} className="relative w-screen h-screen bg-bg">
-      <BgVideo ref={bgVidRef} src={bgVid} className="will-change-transform will-change-opacity origin-center" />
+      <BgVideo ref={bgVidRef} src={bgVid} forceVideo={true} className="will-change-transform will-change-opacity origin-center" />
     </section>
   )
 }

@@ -21,7 +21,14 @@ import MainBtn from '@/components/ui/buttons/MainBtn.jsx'
 
 export default function Hero({ videoUrl }) {
   const vid = '/videos/homeHero_faststart.mp4'
-  const mobileImgsrc = ArtboardImgs[12]
+  const getMobileImgSrc = (img) => {
+    if (!img) return ''
+    if (typeof img === 'object') {
+      return Object.values(img)[0]
+    }
+    return img
+  }
+  const mobileImgsrc = getMobileImgSrc(ArtboardImgs[12])
   const { t } = useTranslation()
   const { selectedLanguage } = useLanguage()
   const countries = getCountriesData(t)
