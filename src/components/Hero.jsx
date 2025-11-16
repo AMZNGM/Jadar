@@ -31,7 +31,7 @@ export default function Hero({ videoUrl }) {
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [currentLogoIndex, setCurrentLogoIndex] = useState(0)
   const [shuffledLogos, setShuffledLogos] = useState([...logos])
-  const [showVideo, setShowVideo] = useState(false)
+  const [videoSrc, setVideoSrc] = useState(null)
   const selectedCountry = countries[selectedIndex]
   const openVideo = () => setIsVideoOpen(true)
   const closeVideo = () => setIsVideoOpen(false)
@@ -133,17 +133,12 @@ export default function Hero({ videoUrl }) {
   }, [isVideoOpen])
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setShowVideo(true)
-        }
-      },
-      { threshold: 0.2 }
-    )
-
-    if (sectionRef.current) observer.observe(sectionRef.current)
-
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        setVideoSrc(vid)
+      }
+    })
+    observer.observe(sectionRef.current)
     return () => observer.disconnect()
   }, [])
 
@@ -158,7 +153,7 @@ export default function Hero({ videoUrl }) {
 
   return (
     <section ref={sectionRef} className="relative w-screen h-screen bg-bg text-text px-4 py-12">
-      {showVideo && <BgVideo src={vid} />}
+      {videoSrc && <BgVideo src={videoSrc} />}
 
       <DynCursor />
 
