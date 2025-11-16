@@ -38,7 +38,7 @@ const WhoWeAre = () => {
       scrollTrigger: {
         trigger: sectionRef.current,
         start: '15% top',
-        end: '+=1000',
+        // end: '+=700',
         scrub: 0.5,
         pin: true,
         anticipatePin: 1,
@@ -78,7 +78,7 @@ const WhoWeAre = () => {
           </div>
 
           <div ref={imgRef} className="absolute inset-0 size-full overflow-hidden z-10 will-change-transform">
-            <Image src={ArtboardImgs[3]} alt="Background Image" className="size-full object-cover" />
+            <Image src={ArtboardImgs[3]} alt="Background Image" fill className="object-cover" />
           </div>
 
           <div
