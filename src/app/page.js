@@ -29,7 +29,7 @@ export default function Home() {
         <div className="absolute inset-0">
           <PartnersBgVid />
         </div>
-        {/* <EgyptJourneyIntro /> */}
+        <EgyptJourneyIntro />
         {/* <OurJourney /> */}
         {/* <ProjectsGallery /> */}
       </div>

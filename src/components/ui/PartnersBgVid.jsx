@@ -8,7 +8,7 @@ import BgVideo from '@/components/ui/BgVideo.jsx'
 
 const PartnersBgVid = () => {
   const bgVid = '/videos/bgVideo.mp4'
-  const mobileImgsrc = ArtboardImgs[16]
+  const mobileImgsrc = ArtboardImgs[14]
   const sectionRef = useRef()
   const bgVidRef = useRef()
 
@@ -40,9 +40,9 @@ const PartnersBgVid = () => {
   }, [sectionRef, bgVidRef])
 
   return (
-    <section ref={sectionRef} className="relative w-screen h-screen bg-black">
+    <section ref={sectionRef} className="relative w-screen h-screen bg-bg">
       <div ref={bgVidRef} className="relative size-full will-change-transform will-change-opacity origin-center">
-        <BgVideo src={bgVid} mobileImgsrc={mobileImgsrc} className="max-sm:opacity-50" />
+        <BgVideo src={bgVid} mobileImgsrc={mobileImgsrc} />
       </div>
     </section>
   )
