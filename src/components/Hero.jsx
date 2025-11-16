@@ -20,7 +20,7 @@ import ShinyText from '@/components/ui/text/ShinyText.jsx'
 import MainBtn from '@/components/ui/buttons/MainBtn.jsx'
 
 const Hero = ({ videoUrl }) => {
-  const vid = '/videos/main hero.mp4'
+  const vid = '/videos/homeHero_faststart.mp4'
   const { t } = useTranslation()
   const { selectedLanguage } = useLanguage()
   const countries = getCountriesData(t)
