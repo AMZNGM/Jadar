@@ -10,6 +10,7 @@ import { useTranslation } from '@/translations/useTranslation'
 import { useLanguage } from '@/translations/LanguageContext'
 import { getCountriesData } from '@/data/countriesData'
 import { logos } from '@/data/mediaData/logos'
+import { ArtboardImgs } from '@/data/mediaData/artBoardImgs'
 import BgVideo from '@/components/ui/BgVideo.jsx'
 import CloseBtn from '@/components/ui/buttons/CloseBtn.jsx'
 import DynCursor from '@/components/ui/effects/DynCursor.jsx'
@@ -20,6 +21,7 @@ import MainBtn from '@/components/ui/buttons/MainBtn.jsx'
 
 export default function Hero({ videoUrl }) {
   const vid = '/videos/homeHero_faststart.mp4'
+  const mobileImgsrc = ArtboardImgs[12]
   const { t } = useTranslation()
   const { selectedLanguage } = useLanguage()
   const countries = getCountriesData(t)
@@ -153,7 +155,7 @@ export default function Hero({ videoUrl }) {
 
   return (
     <section ref={sectionRef} className="relative w-screen h-screen bg-bg text-text px-4 py-12">
-      {videoSrc && <BgVideo src={videoSrc} />}
+      {videoSrc && <BgVideo src={videoSrc} mobileImgsrc={mobileImgsrc} />}
 
       <DynCursor />
 
@@ -185,7 +187,7 @@ export default function Hero({ videoUrl }) {
 
       {isVideoOpen && (
         <div onClick={closeVideo} className="fixed inset-0 flex justify-center items-center bg-bg/75 backdrop-blur-sm duration-200 z-50">
-          <div onClick={(e) => e.stopPropagation()} className="relative w-[90%] h-[60%] max-w-[1000px]">
+          <div onClick={(e) => e.stopPropagation()} className="relative w-[90%] h-[60%] max-md:h-[25%] max-w-[1000px]">
             <CloseBtn onClick={closeVideo} className="-translate-y-16 right-0!" />
             <iframe
               src={videoUrl}
