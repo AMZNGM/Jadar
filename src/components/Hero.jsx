@@ -148,7 +148,7 @@ const Hero = ({ videoUrl }) => {
         <DynCursor />
 
         <div className="relative flex max-lg:justify-center items-end size-full">
-          <div ref={contentRef} className="flex flex-col justify-end max-lg:items-center size-full">
+          <div ref={contentRef} className="flex flex-col justify-end max-lg:items-center size-full max-md:mb-12">
             <div className="slideUp max-lg:text-center font-semibold tracking-[0.7rem] uppercase overflow-hidden">
               <div className="flex max-lg:flex-col items-center text-6xl">
                 <ShinyText text={t('new')} />
@@ -157,7 +157,7 @@ const Hero = ({ videoUrl }) => {
               <ShinyText text={t('lifecyclePropertySolutionsProviders')} className="text-text/85 tracking-[0.15rem]" />
             </div>
 
-            <ClickEffect className="flex justify-center items-center gap-4 size-fit mt-5">
+            <ClickEffect className="flex justify-center items-center gap-4 size-fit mt-6">
               <MainBtn onClick={openVideo} look="outline" className="slideUp text-text border-text/75 border-y-0 hover:border-transparent">
                 <Globe2Icon strokeWidth={1.5} className="size-5 animate-spin" />
                 <TextFlipper className={'text-text font-medium text-lg'}>{t('watchFullVideo')}</TextFlipper>
