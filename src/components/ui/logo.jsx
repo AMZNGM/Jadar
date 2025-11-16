@@ -1,7 +1,7 @@
 'use client'
 
-import Link from 'next/link'
 import Image from 'next/image'
+import Link from 'next/link'
 import { logos } from '@/data/mediaData/logos'
 
 export default function Logo({ className, to = '/', logoName = 'MainLogo' }) {
@@ -31,12 +31,11 @@ export default function Logo({ className, to = '/', logoName = 'MainLogo' }) {
   return (
     <Link {...linkProps} className={`relative group ${className || ''}`}>
       <Image
-        width={140}
+        width={120}
         height={40}
         className={`size-auto cursor-pointer hover:scale-105 duration-300 ${className || ''}`}
         src={logoImg}
         alt={`${selectedLogo?.project} logo`}
-        priority
       />
     </Link>
   )

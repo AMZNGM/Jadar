@@ -4,8 +4,8 @@ import WhoWeAre from '@/components/WhoWeAre.jsx'
 import BentoCards from '@/components/BentoCards.jsx'
 // import KnowMore from '@/components/KnowMore'
 import Map from '@/components/Map.jsx'
-// import PartnersBgVid from '@/components/ui/PartnersBgVid'
-// import EgyptJourneyIntro from '@/components/EgyptJourneyIntro'
+import PartnersBgVid from '@/components/ui/PartnersBgVid'
+import EgyptJourneyIntro from '@/components/EgyptJourneyIntro'
 // import OurJourney from '@/components/OurJourney'
 // import ProjectsGallery from '@/components/ProjectsGallery.jsx'
 
@@ -23,13 +23,15 @@ export default function Home() {
         <div className="-translate- y-20">
           <BentoCards />
           {/* <KnowMore /> */}
-          <Map />
+          {/* <Map /> */}
         </div>
       </div>
 
       <div className="relative z-40">
-        <div className="absolute inset-0">{/* <PartnersBgVid /> */}</div>
-        {/* <EgyptJourneyIntro /> */}
+        <div className="absolute inset-0">
+          <PartnersBgVid />
+        </div>
+        <EgyptJourneyIntro />
         {/* <OurJourney /> */}
         {/* <ProjectsGallery /> */}
       </div>
