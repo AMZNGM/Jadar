@@ -5,7 +5,7 @@ import BentoCards from '@/components/BentoCards.jsx'
 // import Map from '@/components/Map.jsx'
 import PartnersBgVid from '@/components/ui/PartnersBgVid'
 import EgyptJourneyIntro from '@/components/EgyptJourneyIntro'
-// import OurJourney from '@/components/OurJourney'
+import OurJourney from '@/components/OurJourney'
 // import ProjectsGallery from '@/components/ProjectsGallery.jsx'
 
 export default function Home() {
@@ -30,7 +30,7 @@ export default function Home() {
           <PartnersBgVid />
         </div>
         <EgyptJourneyIntro />
-        {/* <OurJourney /> */}
+        <OurJourney />
         {/* <ProjectsGallery /> */}
       </div>
     </main>

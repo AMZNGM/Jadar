@@ -67,7 +67,7 @@ export default function EgyptJourneyIntro() {
       <Image
         ref={bgImgRef}
         src={ArtboardImgs[4]}
-        loading="lazy"
+        loading="eager"
         alt="background image"
         className="w-screen h-screen object-cover absolute inset-0 pointer-events-none"
       />
