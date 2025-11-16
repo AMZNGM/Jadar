@@ -15,7 +15,7 @@ import BgVideo from '@/components/ui/BgVideo.jsx'
 
 const OurJourney = () => {
   const bgVid = '/videos/bgVideo.mp4'
-  const mobileImgsrc = ArtboardImgs[8]
+  const mobileImgsrc = '/images/bgVidCover.webp'
   const { t } = useTranslation()
   const partnerData = partnersData(t)
   const sectionRef = useRef(null)
@@ -129,7 +129,7 @@ const OurJourney = () => {
             </div>
 
             {/* right side */}
-            <div ref={rightSideRef} className="relative size-full grid grid-cols-2 justify-center items-center bg-text max-md:bg-text/50">
+            <div ref={rightSideRef} className="relative size-full grid grid-cols-2 justify-center items-center bg-text">
               <BgNoise />
               {partnerData.map((partner, index) => (
                 <div
