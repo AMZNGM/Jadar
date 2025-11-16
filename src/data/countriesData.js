@@ -7,7 +7,7 @@ export const getCountriesData = (t) => [
     countryCode: 'EGY',
     value: 30,
     coordinates: [31.2357, 30.0444],
-    img: ArtboardImgs[0],
+    img: ArtboardImgs[11],
   },
   {
     countryName: t('kuwait'),
