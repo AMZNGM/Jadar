@@ -19,7 +19,7 @@ export default function Home() {
       <div className="h-150" />
 
       <div className="relative z-20 bg-black">
-        {/* <WhoWeAre /> */}
+        <WhoWeAre />
         <div className="-translate- y-20">
           {/* <BentoCards /> */}
           {/* <KnowMore /> */}
