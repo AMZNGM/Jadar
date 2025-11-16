@@ -1,7 +1,6 @@
 'use client'
 
 import Image from 'next/image'
-import Modal from 'react-modal'
 import { useRef, useState, useEffect } from 'react'
 import { gsap } from '@/utils/gsapConfig'
 import { useGSAP } from '@gsap/react'
@@ -18,8 +17,9 @@ import ClickEffect from '@/components/ui/effects/ClickEffect.jsx'
 import TextFlipper from '@/components/ui/text/TextFlipper.jsx'
 import ShinyText from '@/components/ui/text/ShinyText.jsx'
 import MainBtn from '@/components/ui/buttons/MainBtn.jsx'
+import CloseBtn from './ui/buttons/CloseBtn'
 
-const Hero = ({ videoUrl }) => {
+export default function Hero({ videoUrl }) {
   const vid = '/videos/homeHero_faststart.mp4'
   const { t } = useTranslation()
   const { selectedLanguage } = useLanguage()
@@ -131,6 +131,17 @@ const Hero = ({ videoUrl }) => {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  useEffect(() => {
+    if (isVideoOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isVideoOpen])
+
   const scrollToSection = (sectionId) => {
     const section = document.querySelector(sectionId)
     if (section) {
@@ -173,33 +184,21 @@ const Hero = ({ videoUrl }) => {
           </div>
         </div>
 
-        <Modal
-          isOpen={isVideoOpen}
-          onRequestClose={closeVideo}
-          contentLabel="Jadar Project Video"
-          className="fixed top-1/2 left-1/2 -translate-1/2 w-[90%] max-w-[1000px] outline-none p-0 m-0"
-          overlayClassName="fixed inset-0 flex justify-center items-center bg-bg/75 backdrop-blur-md duration-200 z-50"
-        >
-          <div className="relative size-full pb-[56.25%] max-w-4xl mx-auto">
-            <button
-              onClick={closeVideo}
-              aria-label="Close"
-              className="group absolute right-0 -top-12 cursor-pointer text-text hover:bg-main z-10"
-            >
-              <ClickEffect className="size-full p-2">
-                <XIcon className={'duration-300 group-hover:rotate-90 group-active:scale-90'} />
-              </ClickEffect>
-            </button>
-            <iframe
-              src={videoUrl}
-              allowFullScreen
-              frameBorder="0"
-              title="YouTube video player"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              className="absolute inset-0 size-full"
-            />
+        {isVideoOpen && (
+          <div onClick={closeVideo} className="fixed inset-0 flex justify-center items-center bg-bg/75 backdrop-blur-sm duration-200 z-50">
+            <div onClick={(e) => e.stopPropagation()} className="relative w-[90%] h-[60%] max-w-[1000px]">
+              <CloseBtn onClick={closeVideo} className="-translate-y-16 right-0!" />
+              <iframe
+                src={videoUrl}
+                allowFullScreen
+                frameBorder="0"
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                className="absolute inset-0 size-full"
+              />
+            </div>
           </div>
-        </Modal>
+        )}
 
         <div
           ref={cardsRef}
@@ -277,5 +276,3 @@ const Hero = ({ videoUrl }) => {
     </FloatingEffect>
   )
 }
-
-export default Hero
