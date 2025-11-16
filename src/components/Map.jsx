@@ -96,7 +96,7 @@ const Map = () => {
         <FloatingEffect>
           <Image
             src={ArtboardImgs[16]}
-            loading="lazy"
+            loading="eager"
             alt="Background Image"
             className="size-full object-cover absolute inset-0 opacity-50 -translate-y-20 translate-x-10 pointer-events-none -z-10 max-md:hidden"
           />
@@ -256,7 +256,7 @@ const Map = () => {
             <MovingBorders />
 
             {selectedCountry.img ? (
-              <Image src={selectedCountry.img} alt={selectedCountry.countryName} loading="lazy" className="size-full object-cover" />
+              <Image src={selectedCountry.img} alt={selectedCountry.countryName} loading="eager" className="size-full object-cover" />
             ) : (
               <span className="text-base text-text/75">{t(`noImageAvailable`)}</span>
             )}
