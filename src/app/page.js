@@ -1,5 +1,5 @@
 import { BgNoise } from '@/data/mediaData/svgs.jsx'
-import Hero from '@/components/Hero.jsx'
+import Hero from '@/components/hero-components/Hero.jsx'
 import WhoWeAre from '@/components/WhoWeAre.jsx'
 import BentoCards from '@/components/BentoCards.jsx'
 // import Map from '@/components/Map.jsx'
