@@ -2,6 +2,8 @@
 
 import { useEffect } from 'react'
 import { usePathname } from 'next/navigation'
+import { AlertProvider } from '@/components/app-components/alert/AlertContext.jsx'
+import { LanguageProvider } from '@/translations/LanguageContext'
 import Lenis from 'lenis'
 import Navbar from '@/components/navbar-components/Navbar.jsx'
 
@@ -49,11 +51,14 @@ const AppWrapper = ({ children }) => {
   const shouldShowNavbar = isValidRoute && !['/getInTouch', '/projects'].includes(pathname)
 
   return (
-    <div className="relative">
-      {shouldShowNavbar && <Navbar />}
-
-      <main className="relative z-10">{children}</main>
-    </div>
+    <LanguageProvider>
+      <AlertProvider>
+        <div className="relative">
+          {shouldShowNavbar && <Navbar />}
+          <main className="relative z-10">{children}</main>
+        </div>
+      </AlertProvider>
+    </LanguageProvider>
   )
 }
 

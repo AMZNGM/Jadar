@@ -1,15 +1,16 @@
 'use client'
 
+import { Suspense } from 'react'
 import { useTranslation } from '@/translations/useTranslation'
 import { BgNoise } from '@/data/mediaData/svgs'
 import SectionHero from '@/components/hero-components/SectionHero.jsx'
 import { ArtboardImgs } from '@/data/mediaData/artBoardImgs'
 import Breadcrumb from '@/components/ui/Breadcrumb.jsx'
 import TeamMembers from '@/components/team-members-components/TeamMembers.jsx'
-// import Newsletter from '@/components/Newsletter.jsx'
+import Newsletter from '@/components/Newsletter.jsx'
 // import FeaturedNews from '@/components/FeaturedNews.jsx'
 
-export default function LeadershipPage() {
+export default function Leadership() {
   const { t } = useTranslation()
   const bgVid = '/videos/homeHero.mp4'
   const mobileImgsrc = ArtboardImgs[12]
@@ -36,7 +37,9 @@ export default function LeadershipPage() {
 
       <div className="relative z-20">
         <TeamMembers />
-        {/* <Newsletter /> */}
+        <Suspense fallback={<div>Loading...</div>}>
+          <Newsletter />
+        </Suspense>
         {/* <FeaturedNews /> */}
       </div>
     </main>

@@ -1,5 +1,4 @@
 import './globals.css'
-import { LanguageProvider } from '@/translations/LanguageContext'
 import AppWrapper from '@/components/app-components/AppWrapper'
 
 export const metadata = {
@@ -11,9 +10,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`relative w-screen min-h-screen overflow-x-hidden bg-bg text-text scroll-smooth antialiased`}>
-        <LanguageProvider>
-          <AppWrapper>{children}</AppWrapper>
-        </LanguageProvider>
+        <AppWrapper>{children}</AppWrapper>
       </body>
     </html>
   )
