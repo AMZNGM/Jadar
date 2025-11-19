@@ -24,16 +24,17 @@ export const useTeamMembersAnimation = ({
   const svgRef = useRef(null)
   const polylineRef = useRef(null)
   const markerRef = useRef(null)
+
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
 
   // Highlight active name on scroll
   useGSAP(() => {
-    const names = namesRef.current.filter(Boolean)
-    if (!names.length) return
+    const els = namesRef.current.filter(Boolean)
+    if (!els.length) return
 
-    const triggers = names.map((activeName, i) =>
+    const triggers = els.map((el, i) =>
       ScrollTrigger.create({
-        trigger: activeName,
+        trigger: el,
         start: 'top center',
         end: 'bottom center',
         onEnter: () => setActiveIndex(i),
@@ -72,13 +73,16 @@ export const useTeamMembersAnimation = ({
             invalidateOnRefresh: true,
           },
         })
+
+        return () => animation.scrollTrigger?.kill()
       },
     })
   }, [activeIndex, filteredMembers])
 
   // Bottom Bar Opening Animation
   useGSAP(() => {
-    if (!bottombarRef.current || !overlayRef.current || !bottombarOpen) return
+    if (!bottombarOpen) return
+    if (!bottombarRef.current || !overlayRef.current) return
 
     gsap.set(bottombarRef.current, { y: '100%' })
     gsap.to(bottombarRef.current, { y: '0%', duration: 0.55, ease: 'power3.out', delay: 0.05 })
@@ -91,57 +95,68 @@ export const useTeamMembersAnimation = ({
   useGSAP(() => {
     if (!bottombarOpen || !selectedMember) return
 
-    if (detailImgRef.current) {
-      gsap.fromTo(detailImgRef.current, { scale: 0.85, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: 'back.out(1.7)' })
-    }
-
-    gsap.fromTo([nameRef.current, roleRef.current], { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, stagger: 0.08 })
-
-    gsap.fromTo(bioRef.current, { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5 })
-
-    gsap.fromTo(
-      contactRefs.current,
-      { y: 20, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.5,
-        stagger: 0.06,
-        ease: 'power2.out',
+    const ctx = gsap.context(() => {
+      if (detailImgRef.current) {
+        gsap.fromTo(detailImgRef.current, { scale: 0.85, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: 'back.out(1.7)' })
       }
-    )
+
+      gsap.fromTo([nameRef.current, roleRef.current], { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, stagger: 0.08 })
+
+      gsap.fromTo(bioRef.current, { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5 })
+
+      gsap.fromTo(
+        contactRefs.current,
+        { y: 20, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.5,
+          stagger: 0.06,
+          ease: 'power2.out',
+        }
+      )
+    })
+
+    return () => ctx.revert()
   }, [bottombarOpen, selectedMember])
 
   // Scroll Reveal (Mobile Friendly)
   useGSAP(() => {
     requestAnimationFrame(() => {
-      const names = namesRef.current.filter(Boolean)
-      if (!names.length) return
+      const els = namesRef.current.filter(Boolean)
+      if (!els.length) return
 
-      names.forEach((name, i) => {
-        gsap.set(name, {
-          y: 70,
-          x: isMobile ? 0 : i % 2 === 0 ? -180 : 180,
-          opacity: 0,
-          scale: isMobile ? 1 : 0.9,
-          filter: isMobile ? 'none' : 'blur(6px)',
-        })
+      ScrollTrigger.getAll().forEach((t) => t.kill())
 
-        gsap.to(name, {
-          y: 0,
-          x: 0,
-          opacity: 1,
-          scale: 1,
-          filter: 'none',
-          duration: 0.9,
-          delay: i * 0.02,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: name,
-            start: 'top 90%',
-          },
+      const ctx = gsap.context(() => {
+        els.forEach((el, i) => {
+          gsap.set(el, {
+            y: 70,
+            x: isMobile ? 0 : i % 2 === 0 ? -180 : 180,
+            opacity: 0,
+            scale: isMobile ? 1 : 0.9,
+            filter: isMobile ? 'none' : 'blur(6px)',
+          })
+
+          gsap.to(el, {
+            y: 0,
+            x: 0,
+            opacity: 1,
+            scale: 1,
+            filter: 'none',
+            duration: 0.9,
+            delay: i * 0.02,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 90%',
+            },
+          })
         })
       })
+
+      ScrollTrigger.refresh()
+      return () => ctx.revert()
     })
   }, [filteredMembers])
 
