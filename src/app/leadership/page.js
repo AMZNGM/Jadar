@@ -3,9 +3,9 @@
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 import { useTranslation } from '@/translations/useTranslation'
+import { ArtboardImgs } from '@/data/mediaData/artBoardImgs'
 import { BgNoise } from '@/data/mediaData/svgs'
 import SectionHero from '@/components/hero-components/SectionHero.jsx'
-import { ArtboardImgs } from '@/data/mediaData/artBoardImgs'
 import Breadcrumb from '@/components/ui/Breadcrumb.jsx'
 import TeamMembers from '@/components/team-members-components/TeamMembers.jsx'
 import Newsletter from '@/components/Newsletter.jsx'
@@ -38,10 +38,10 @@ export default function Leadership() {
 
       <div className="relative z-20">
         <TeamMembers />
-        {/* <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<div>Loading...</div>}>
           <Newsletter />
+          <FeaturedNews />
         </Suspense>
-        <FeaturedNews /> */}
       </div>
     </main>
   )
