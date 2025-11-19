@@ -5,7 +5,7 @@ import { BgNoise } from '@/data/mediaData/svgs'
 import SectionHero from '@/components/hero-components/SectionHero.jsx'
 import { ArtboardImgs } from '@/data/mediaData/artBoardImgs'
 import Breadcrumb from '@/components/ui/Breadcrumb.jsx'
-import TeamMembers from '@/components/TeamMembers.jsx'
+import TeamMembers from '@/components/team-members-components/TeamMembers.jsx'
 // import Newsletter from '@/components/Newsletter.jsx'
 // import FeaturedNews from '@/components/FeaturedNews.jsx'
 

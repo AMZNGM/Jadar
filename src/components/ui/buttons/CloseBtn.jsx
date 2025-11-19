@@ -1,7 +1,7 @@
-import ClickEffect from '@/components/ui/effects/ClickEffect.jsx'
 import { useLanguage } from '@/translations/LanguageContext'
+import ClickEffect from '@/components/ui/effects/ClickEffect.jsx'
 
-const CloseBtn = ({ onClick, className = '', size = 'md', type = 'main', ariaLabel = 'Close', ...props }) => {
+export default function CloseBtn({ onClick, className = '', size = 'md', type = 'main', ariaLabel = 'Close', ...props }) {
   const { selectedLanguage } = useLanguage()
   const sizeClasses = {
     sm: 'w-4 h-4',
@@ -42,5 +42,3 @@ const CloseBtn = ({ onClick, className = '', size = 'md', type = 'main', ariaLab
     </div>
   )
 }
-
-export default CloseBtn

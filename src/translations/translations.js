@@ -21,6 +21,7 @@ export const TRANSLATIONS = {
     knowMoreAboutJadar: `Know more about JADAR...`,
     knowMoreAboutJadarDesc: `Whether it's a luxury residence, a commercial destination, or a mixed-use development, Jadar stands for uncompromising service and visionary execution.`,
     back: `Back`,
+    SearchByNameOrRole: `Search by name or role...`,
 
     // News & Media
     news: 'News',
@@ -593,6 +594,7 @@ export const TRANSLATIONS = {
     knowMoreAboutJadar: `اعرف المزيد عن جدار...`,
     knowMoreAboutJadarDesc: `سواء كان مشروع سكني فاخر، وجهة تجارية، أو تطوير متعدد الاستخدامات، ترمز جدار للخدمة المتقنة والتنفيذ الرؤيوي.`,
     back: `عودة`,
+    SearchByNameOrRole: `...بحث بالاسم أو الدور`,
 
     // News & Media
     news: 'الأخبار',
