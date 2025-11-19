@@ -49,7 +49,7 @@ export default function MemberDetail({
 
       <div
         ref={bottombarRef}
-        className="absolute bottom-0 left-0 w-full h-160 bg-bg/90 border-t border-text/10 shadow-2xl backdrop-blur-xl overflow-y-auto"
+        className="absolute bottom-0 left-0 w-full h-140 bg-bg/90 border-t border-text/10 shadow-2xl backdrop-blur-xl overflow-y-auto"
       >
         <BgNoise />
         <CloseBtn onClick={onClose} />

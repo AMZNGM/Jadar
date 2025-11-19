@@ -29,7 +29,6 @@ export default function Leadership() {
       </div>
 
       <Breadcrumb
-        className="max-sm:z-20"
         pages={[
           { label: t(`home`), path: '/', isActive: false },
           { label: t(`aboutJadar`), path: '/about', isActive: false },
@@ -37,7 +36,7 @@ export default function Leadership() {
         ]}
       />
 
-      <div className="relative z-30">
+      <div className="relative z-20">
         <TeamMembers />
         {/* <Suspense fallback={<div>Loading...</div>}>
           <Newsletter />
