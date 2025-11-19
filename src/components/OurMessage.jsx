@@ -82,12 +82,7 @@ export default function OurMessage() {
                 }
               `}
             >
-              <Image
-                src={src}
-                alt="image"
-                className="object-cover size-full"
-                sizes="(max-width: 640px) 70vw, (max-width: 768px) 50vw, 25vw"
-              />
+              <Image src={src} alt="image" fill className="object-cover" sizes="(max-width: 640px) 70vw, (max-width: 768px) 50vw, 25vw" />
 
               {index === 0 && (
                 <div className="absolute inset-0 translate-1/2">

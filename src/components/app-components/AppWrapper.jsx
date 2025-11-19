@@ -6,8 +6,9 @@ import { AlertProvider } from '@/components/app-components/alert/AlertContext.js
 import { LanguageProvider } from '@/translations/LanguageContext'
 import Lenis from 'lenis'
 import Navbar from '@/components/navbar-components/Navbar.jsx'
+import GlobalParallax from '@/components/app-components/GlobalParallax'
 
-const AppWrapper = ({ children }) => {
+export default function AppWrapper({ children }) {
   useEffect(() => {
     const lenis = new Lenis()
     function raf(time) {
@@ -53,6 +54,7 @@ const AppWrapper = ({ children }) => {
   return (
     <LanguageProvider>
       <AlertProvider>
+        <GlobalParallax />
         <div className="relative">
           {shouldShowNavbar && <Navbar />}
           <main className="relative z-10">{children}</main>
@@ -61,5 +63,3 @@ const AppWrapper = ({ children }) => {
     </LanguageProvider>
   )
 }
-
-export default AppWrapper
