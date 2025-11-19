@@ -25,29 +25,27 @@ export const useTeamMembersAnimation = ({
   const polylineRef = useRef(null)
   const markerRef = useRef(null)
 
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
+
   // Highlight active name on scroll
   useGSAP(() => {
-    ScrollTrigger.matchMedia({
-      '(min-width: 768px)': () => {
-        const els = namesRef.current.filter(Boolean)
-        if (!els.length) return
+    const els = namesRef.current.filter(Boolean)
+    if (!els.length) return
 
-        const triggers = els.map((el, i) =>
-          ScrollTrigger.create({
-            trigger: el,
-            start: 'top center',
-            end: 'bottom center',
-            onEnter: () => setActiveIndex(i),
-            onEnterBack: () => setActiveIndex(i),
-          })
-        )
+    const triggers = els.map((el, i) =>
+      ScrollTrigger.create({
+        trigger: el,
+        start: 'top center',
+        end: 'bottom center',
+        onEnter: () => setActiveIndex(i),
+        onEnterBack: () => setActiveIndex(i),
+      })
+    )
 
-        return () => triggers.forEach((t) => t.kill())
-      },
-    })
+    return () => triggers.forEach((t) => t.kill())
   }, [filteredMembers, setActiveIndex])
 
-  // Animate sticky image
+  // Sticky Image Animation (Desktop Only)
   useGSAP(() => {
     ScrollTrigger.matchMedia({
       '(min-width: 768px)': () => {
@@ -71,7 +69,7 @@ export const useTeamMembersAnimation = ({
             trigger: quadtree,
             start: 'top bottom',
             end: 'top 20%',
-            scrub: 0.5,
+            scrub: 0.6,
             invalidateOnRefresh: true,
           },
         })
@@ -81,125 +79,109 @@ export const useTeamMembersAnimation = ({
     })
   }, [activeIndex, filteredMembers])
 
-  // Bottom bar animations
+  // Bottom Bar Opening Animation
   useGSAP(() => {
-    if (bottombarOpen && bottombarRef.current && overlayRef.current) {
-      gsap.set(bottombarRef.current, { y: '100%' })
-      gsap.to(bottombarRef.current, { y: '0%', duration: 0.55, ease: 'power3.out', delay: 0.05 })
-      gsap.set(overlayRef.current, { opacity: 0, pointerEvents: 'none' })
-      gsap.to(overlayRef.current, { opacity: 1, pointerEvents: 'auto', duration: 0.35, ease: 'power2.out' })
-    }
+    if (!bottombarOpen) return
+    if (!bottombarRef.current || !overlayRef.current) return
+
+    gsap.set(bottombarRef.current, { y: '100%' })
+    gsap.to(bottombarRef.current, { y: '0%', duration: 0.55, ease: 'power3.out', delay: 0.05 })
+
+    gsap.set(overlayRef.current, { opacity: 0, pointerEvents: 'none' })
+    gsap.to(overlayRef.current, { opacity: 1, pointerEvents: 'auto', duration: 0.35 })
   }, [bottombarOpen])
 
-  // Bottom bar content animation
+  // Bottom Bar Content Reveal Animation
   useGSAP(() => {
-    if (bottombarOpen && selectedMember) {
-      const ctx = gsap.context(() => {
-        if (detailImgRef.current) {
-          gsap.fromTo(
-            detailImgRef.current,
-            { scale: 0.82, opacity: 0 },
-            { scale: 1, opacity: 1, duration: 0.6, delay: 0.18, ease: 'back.out(1.7)' }
-          )
-        }
+    if (!bottombarOpen || !selectedMember) return
 
-        gsap.fromTo(
-          [nameRef.current, roleRef.current],
-          { y: 20, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.55, delay: 0.25, stagger: 0.08 }
-        )
-        gsap.fromTo(bioRef.current, { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, delay: 0.35 })
-        gsap.fromTo(
-          contactRefs.current,
-          { y: 24, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.6, delay: 0.4, stagger: 0.06, ease: 'power2.out' }
-        )
-      })
-      return () => ctx.revert()
-    }
+    const ctx = gsap.context(() => {
+      if (detailImgRef.current) {
+        gsap.fromTo(detailImgRef.current, { scale: 0.85, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: 'back.out(1.7)' })
+      }
+
+      gsap.fromTo([nameRef.current, roleRef.current], { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, stagger: 0.08 })
+
+      gsap.fromTo(bioRef.current, { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5 })
+
+      gsap.fromTo(
+        contactRefs.current,
+        { y: 20, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.5,
+          stagger: 0.06,
+          ease: 'power2.out',
+        }
+      )
+    })
+
+    return () => ctx.revert()
   }, [bottombarOpen, selectedMember])
 
-  // Scroll-reveal animation
+  // Scroll Reveal (Mobile Friendly)
   useGSAP(() => {
-    ScrollTrigger.matchMedia({
-      '(min-width: 768px)': () => {
-        requestAnimationFrame(() => {
-          const els = namesRef.current.filter(Boolean)
-          const stickyImg = stickyImgRef.current
-          if (!els.length && !stickyImg) return
+    requestAnimationFrame(() => {
+      const els = namesRef.current.filter(Boolean)
+      if (!els.length) return
 
-          els.forEach((el) => {
-            gsap.killTweensOf(el)
-            ScrollTrigger.getById(el)?.kill?.()
+      ScrollTrigger.getAll().forEach((t) => t.kill())
+
+      const ctx = gsap.context(() => {
+        els.forEach((el, i) => {
+          gsap.set(el, {
+            y: 70,
+            x: isMobile ? 0 : i % 2 === 0 ? -180 : 180,
+            opacity: 0,
+            scale: isMobile ? 1 : 0.9,
+            filter: isMobile ? 'none' : 'blur(6px)',
           })
 
-          const ctx = gsap.context(() => {
-            els.forEach((el, i) => {
-              gsap.set(el, {
-                y: 90,
-                x: i % 2 === 0 ? -220 : 220,
-                opacity: 0,
-                scale: 0.85,
-                filter: 'blur(8px)',
-              })
-
-              gsap.to(el, {
-                y: 0,
-                x: 0,
-                opacity: 1,
-                scale: 1,
-                filter: 'none',
-                duration: 1.05,
-                delay: i * 0.005,
-                ease: 'elastic.out(1, 0.7)',
-                scrollTrigger: {
-                  trigger: el,
-                  start: 'top 90%',
-                  toggleActions: 'play none none none',
-                },
-              })
-            })
+          gsap.to(el, {
+            y: 0,
+            x: 0,
+            opacity: 1,
+            scale: 1,
+            filter: 'none',
+            duration: 0.9,
+            delay: i * 0.02,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 90%',
+            },
           })
-
-          ScrollTrigger.refresh()
-          return () => gsap.context(() => ctx.revert())
         })
-      },
+      })
+
+      ScrollTrigger.refresh()
+      return () => ctx.revert()
     })
   }, [filteredMembers])
 
-  // Arrow animation
+  // Arrow Animation (Scrub disabled on mobile)
   useGSAP(() => {
-    ScrollTrigger.matchMedia({
-      '(min-width: 768px)': () => {
-        const svg = svgRef.current
-        const polyline = polylineRef.current
-        const marker = markerRef.current
+    const svg = svgRef.current
+    const polyline = polylineRef.current
+    const marker = markerRef.current
+    if (!svg || !polyline) return
 
-        if (!svg || !polyline) return
+    gsap.set(polyline, { strokeDasharray: '15 18', strokeDashoffset: 1000 })
+    gsap.set(marker, { scale: 0, transformOrigin: 'center' })
 
-        gsap.set(polyline, { strokeDasharray: '15 18', strokeDashoffset: 1000 })
-        gsap.set(marker, { scale: 0, transformOrigin: 'center' })
-
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: svg,
-            start: 'top 80%',
-            end: 'top -100%',
-            scrub: 1.5,
-            toggleActions: 'play reverse play reverse',
-          },
-        })
-
-        tl.to(polyline, {
-          strokeDashoffset: 0,
-          duration: 2,
-          ease: 'power2.inOut',
-        }).to(marker, { scale: 1, duration: 0.5, ease: 'back.out(1.7)' }, '-=0.5')
-
-        return () => tl.scrollTrigger?.kill()
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: svg,
+        start: 'top 80%',
+        end: 'top -100%',
+        scrub: isMobile ? false : 1.2,
       },
     })
+
+    tl.to(polyline, { strokeDashoffset: 0, duration: 2 }).to(marker, { scale: 1, duration: 0.5, ease: 'back.out(1.7)' }, '-=0.6')
+
+    return () => tl.scrollTrigger?.kill()
   }, [])
 
   return {

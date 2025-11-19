@@ -39,10 +39,10 @@ export default function Leadership() {
 
       <div className="relative z-30">
         <TeamMembers />
-        <Suspense fallback={<div>Loading...</div>}>
+        {/* <Suspense fallback={<div>Loading...</div>}>
           <Newsletter />
         </Suspense>
-        <FeaturedNews />
+        <FeaturedNews /> */}
       </div>
     </main>
   )
