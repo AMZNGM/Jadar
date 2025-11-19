@@ -14,7 +14,7 @@ export default function HeroContent({ slideUpRef, title, onOpenVideo }) {
         <ShinyText
           text={title}
           speed={5}
-          className="text-text text-7xl max-md:text-3xl font-light tracking-[0.7rem] text-center uppercase mb-16 duration-500"
+          className="text-text text-7xl max-md:text-3xl font-light tracking-[0.7rem] text-center uppercase mb-16 duration-500 wrap-anywhere"
         />
         <ClickEffect
           onClick={onOpenVideo}
