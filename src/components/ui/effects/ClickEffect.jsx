@@ -1,11 +1,18 @@
 'use client'
 
-import { memo, useEffect, useRef } from 'react'
+import { memo, useEffect, useRef, useState } from 'react'
 
 export default memo(function ClickEffect({ children, className = '', ...props }) {
   const elementRef = useRef(null)
+  const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
+    setIsClient(true)
+  }, [])
+
+  useEffect(() => {
+    if (!isClient) return
+
     const element = elementRef.current
     if (!element) return
 
@@ -30,7 +37,7 @@ export default memo(function ClickEffect({ children, className = '', ...props })
         z-index: 1000;
       `
 
-      // Add keyframes for ripple animation
+      // Add keyframes for ripple animation only once
       if (!document.querySelector('#ripple-keyframes')) {
         const style = document.createElement('style')
         style.id = 'ripple-keyframes'
@@ -49,7 +56,9 @@ export default memo(function ClickEffect({ children, className = '', ...props })
 
       // Remove ripple after animation
       setTimeout(() => {
-        ripple.remove()
+        if (ripple.parentNode) {
+          ripple.remove()
+        }
       }, 600)
     }
 
@@ -58,7 +67,7 @@ export default memo(function ClickEffect({ children, className = '', ...props })
     return () => {
       element.removeEventListener('click', createRipple)
     }
-  }, [])
+  }, [isClient])
 
   return (
     <div ref={elementRef} className={`relative overflow-hidden ${className}`} {...props}>

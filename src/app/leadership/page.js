@@ -1,5 +1,6 @@
 'use client'
 
+import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 import { useTranslation } from '@/translations/useTranslation'
 import { BgNoise } from '@/data/mediaData/svgs'
@@ -8,7 +9,7 @@ import { ArtboardImgs } from '@/data/mediaData/artBoardImgs'
 import Breadcrumb from '@/components/ui/Breadcrumb.jsx'
 import TeamMembers from '@/components/team-members-components/TeamMembers.jsx'
 import Newsletter from '@/components/Newsletter.jsx'
-// import FeaturedNews from '@/components/FeaturedNews.jsx'
+const FeaturedNews = dynamic(() => import('@/components/FeaturedNews'), { ssr: false })
 
 export default function Leadership() {
   const { t } = useTranslation()
@@ -40,7 +41,7 @@ export default function Leadership() {
         <Suspense fallback={<div>Loading...</div>}>
           <Newsletter />
         </Suspense>
-        {/* <FeaturedNews /> */}
+        <FeaturedNews />
       </div>
     </main>
   )

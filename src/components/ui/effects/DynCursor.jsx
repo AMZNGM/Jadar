@@ -1,14 +1,21 @@
 'use client'
 
-import { useRef, memo } from 'react'
+import { useRef, memo, useState, useEffect } from 'react'
 import { gsap } from '@/utils/gsapConfig'
 import { useGSAP } from '@gsap/react'
 
 export default memo(function DynCursor() {
   const cursorRef = useRef(null)
   const dotRef = useRef(null)
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
 
   useGSAP(() => {
+    if (!isClient) return
+
     const moveCursor = (e) => {
       if (cursorRef.current && dotRef.current) {
         gsap.to(cursorRef.current, {
@@ -58,7 +65,7 @@ export default memo(function DynCursor() {
         el.removeEventListener('mouseleave', handleLeave)
       })
     }
-  }, [])
+  }, [isClient])
 
   return (
     <div className="max-sm:hidden">
