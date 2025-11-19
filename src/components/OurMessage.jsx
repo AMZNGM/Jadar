@@ -37,7 +37,7 @@ export default function OurMessage() {
   }, [sectionRef])
 
   return (
-    <div dir="ltr" ref={sectionRef} className="relative w-screen md:h-[300vh] bg-bg text-bg">
+    <div dir="ltr" ref={sectionRef} className="relative w-screen md:h-[300vh] bg-bg max-md:bg-black text-bg">
       <Noise className={'opacity-50'} />
 
       <div className="flex flex-col justify-center items-center text-center font-light pt-32 px-4 md:hidden">

@@ -1,7 +1,5 @@
 'use client'
 
-import dynamic from 'next/dynamic'
-import { Suspense } from 'react'
 import { useTranslation } from '@/translations/useTranslation'
 import { ArtboardImgs } from '@/data/mediaData/artBoardImgs'
 import { BgNoise } from '@/data/mediaData/svgs'

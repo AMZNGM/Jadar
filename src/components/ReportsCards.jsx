@@ -56,7 +56,7 @@ export default function ReportsCards() {
             <FloatingEffect>
               <div
                 style={{ '--after-Opacity': 0 }}
-                className="w-full h-[60vh] sm:h-[55vh] md:h-[50vh] lg:h-[45vh] overflow-hidden duration-500 will-change-transform border border-main/50"
+                className="relative w-full h-[60vh] sm:h-[55vh] md:h-[50vh] lg:h-[45vh] overflow-hidden duration-500 will-change-transform border border-main/50"
               >
                 <MovingBorders />
                 <div className="absolute inset-0 z-20 pointer-events-none bg-black/50" style={{ opacity: 'var(--after-Opacity)' }} />
