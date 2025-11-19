@@ -22,7 +22,7 @@ const Breadcrumb = ({ pages = [], showHomeIcon = true, position = 'sticky', clas
   }
 
   return (
-    <div className={`z-30 mb-2 ${positionClasses[position]} ${className}`}>
+    <div className={`z-30 mb-2 ${positionClasses[position]} ${className} max-sm:hidden`}>
       <nav aria-label="breadcrumb" data-slot="breadcrumb" className="flex">
         <ol
           data-slot="breadcrumb-list"

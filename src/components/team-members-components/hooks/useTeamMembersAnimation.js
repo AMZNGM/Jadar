@@ -27,54 +27,58 @@ export const useTeamMembersAnimation = ({
 
   // Highlight active name on scroll
   useGSAP(() => {
-    const els = namesRef.current.filter(Boolean)
-    if (!els.length) return
+    ScrollTrigger.matchMedia({
+      '(min-width: 768px)': () => {
+        const els = namesRef.current.filter(Boolean)
+        if (!els.length) return
 
-    const triggers = els.map((el, i) =>
-      ScrollTrigger.create({
-        trigger: el,
-        start: 'top center',
-        end: 'bottom center',
-        onEnter: () => setActiveIndex(i),
-        onEnterBack: () => setActiveIndex(i),
-      })
-    )
+        const triggers = els.map((el, i) =>
+          ScrollTrigger.create({
+            trigger: el,
+            start: 'top center',
+            end: 'bottom center',
+            onEnter: () => setActiveIndex(i),
+            onEnterBack: () => setActiveIndex(i),
+          })
+        )
 
-    return () => triggers.forEach((t) => t.kill())
+        return () => triggers.forEach((t) => t.kill())
+      },
+    })
   }, [filteredMembers, setActiveIndex])
 
   // Animate sticky image
   useGSAP(() => {
-    if (typeof window === 'undefined') return
+    ScrollTrigger.matchMedia({
+      '(min-width: 768px)': () => {
+        const img = stickyImgRef.current
+        const imgContainer = stickyImgContainerRef.current
+        const quadtree = quadtreeRef.current
+        if (!img || !imgContainer || !quadtree) return
 
-    const img = stickyImgRef.current
-    const imgContainer = stickyImgContainerRef.current
-    const quadtree = quadtreeRef.current
+        gsap.killTweensOf([img, imgContainer])
+        gsap.set(imgContainer, { clearProps: 'transform' })
 
-    if (!img || !imgContainer || !quadtree) return
+        gsap.fromTo(img, { scale: 1.5 }, { scale: 1, duration: 1, ease: 'power2.out' })
 
-    gsap.killTweensOf([img, imgContainer])
-    gsap.set(imgContainer, { clearProps: 'transform' })
+        const animation = gsap.to(imgContainer, {
+          x: () => -(window.innerWidth / 2 + imgContainer.offsetWidth / 2),
+          y: () => window.innerHeight / 2 - imgContainer.offsetHeight / 2,
+          scale: 0.6,
+          duration: 1,
+          ease: 'power2.inOut',
+          scrollTrigger: {
+            trigger: quadtree,
+            start: 'top bottom',
+            end: 'top 20%',
+            scrub: 0.5,
+            invalidateOnRefresh: true,
+          },
+        })
 
-    gsap.fromTo(img, { scale: 1.5 }, { scale: 1, duration: 1, ease: 'power2.out' })
-
-    const animation = gsap.to(imgContainer, {
-      x: () => -(window.innerWidth / 2 + imgContainer.offsetWidth / 2),
-      y: () => window.innerHeight / 2 - imgContainer.offsetHeight / 2,
-      scale: 0.6,
-      duration: 1,
-      ease: 'power2.inOut',
-      scrollTrigger: {
-        trigger: quadtree,
-        start: 'top bottom',
-        end: 'top 20%',
-        scrub: 0.5,
-        toggleActions: 'play reverse play reverse',
-        invalidateOnRefresh: true,
+        return () => animation.scrollTrigger?.kill()
       },
     })
-
-    return () => animation.scrollTrigger?.kill()
   }, [activeIndex, filteredMembers])
 
   // Bottom bar animations
@@ -117,77 +121,85 @@ export const useTeamMembersAnimation = ({
 
   // Scroll-reveal animation
   useGSAP(() => {
-    requestAnimationFrame(() => {
-      const els = namesRef.current.filter(Boolean)
-      const stickyImg = stickyImgRef.current
-      if (!els.length && !stickyImg) return
+    ScrollTrigger.matchMedia({
+      '(min-width: 768px)': () => {
+        requestAnimationFrame(() => {
+          const els = namesRef.current.filter(Boolean)
+          const stickyImg = stickyImgRef.current
+          if (!els.length && !stickyImg) return
 
-      els.forEach((el) => {
-        gsap.killTweensOf(el)
-        ScrollTrigger.getById(el)?.kill?.()
-      })
-
-      const ctx = gsap.context(() => {
-        els.forEach((el, i) => {
-          gsap.set(el, {
-            y: 90,
-            x: i % 2 === 0 ? -220 : 220,
-            opacity: 0,
-            scale: 0.85,
-            filter: 'blur(8px)',
+          els.forEach((el) => {
+            gsap.killTweensOf(el)
+            ScrollTrigger.getById(el)?.kill?.()
           })
 
-          gsap.to(el, {
-            y: 0,
-            x: 0,
-            opacity: 1,
-            scale: 1,
-            filter: 'none',
-            duration: 1.05,
-            delay: i * 0.005,
-            ease: 'elastic.out(1, 0.7)',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 90%',
-              toggleActions: 'play none none none',
-            },
+          const ctx = gsap.context(() => {
+            els.forEach((el, i) => {
+              gsap.set(el, {
+                y: 90,
+                x: i % 2 === 0 ? -220 : 220,
+                opacity: 0,
+                scale: 0.85,
+                filter: 'blur(8px)',
+              })
+
+              gsap.to(el, {
+                y: 0,
+                x: 0,
+                opacity: 1,
+                scale: 1,
+                filter: 'none',
+                duration: 1.05,
+                delay: i * 0.005,
+                ease: 'elastic.out(1, 0.7)',
+                scrollTrigger: {
+                  trigger: el,
+                  start: 'top 90%',
+                  toggleActions: 'play none none none',
+                },
+              })
+            })
           })
+
+          ScrollTrigger.refresh()
+          return () => gsap.context(() => ctx.revert())
         })
-      })
-
-      ScrollTrigger.refresh()
-      return () => ctx.revert()
+      },
     })
   }, [filteredMembers])
 
   // Arrow animation
   useGSAP(() => {
-    const svg = svgRef.current
-    const polyline = polylineRef.current
-    const marker = markerRef.current
+    ScrollTrigger.matchMedia({
+      '(min-width: 768px)': () => {
+        const svg = svgRef.current
+        const polyline = polylineRef.current
+        const marker = markerRef.current
 
-    if (!svg || !polyline) return
+        if (!svg || !polyline) return
 
-    gsap.set(polyline, { strokeDasharray: '15 18', strokeDashoffset: 1000 })
-    gsap.set(marker, { scale: 0, transformOrigin: 'center' })
+        gsap.set(polyline, { strokeDasharray: '15 18', strokeDashoffset: 1000 })
+        gsap.set(marker, { scale: 0, transformOrigin: 'center' })
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: svg,
-        start: 'top 80%',
-        end: 'top -100%',
-        scrub: 1.5,
-        toggleActions: 'play reverse play reverse',
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: svg,
+            start: 'top 80%',
+            end: 'top -100%',
+            scrub: 1.5,
+            toggleActions: 'play reverse play reverse',
+          },
+        })
+
+        tl.to(polyline, {
+          strokeDashoffset: 0,
+          duration: 2,
+          ease: 'power2.inOut',
+        }).to(marker, { scale: 1, duration: 0.5, ease: 'back.out(1.7)' }, '-=0.5')
+
+        return () => tl.scrollTrigger?.kill()
       },
     })
-
-    tl.to(polyline, {
-      strokeDashoffset: 0,
-      duration: 2,
-      ease: 'power2.inOut',
-    }).to(marker, { scale: 1, duration: 0.5, ease: 'back.out(1.7)' }, '-=0.5')
-
-    return () => tl.scrollTrigger?.kill()
   }, [])
 
   return {
