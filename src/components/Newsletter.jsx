@@ -62,7 +62,7 @@ export default memo(function Newsletter() {
         },
         opacity: 0,
         x: typeof window !== 'undefined' && window.innerWidth > 768 ? offset : 0,
-        y: typeof window !== 'undefined' && window.innerWidth < 768 ? offset : 0,
+        y: typeof window !== 'undefined' && window.innerWidth < 768 ? 120 : 0,
         duration: typeof window !== 'undefined' && window.innerWidth < 768 ? 2 : 1,
         delay: 0.3,
         ease: 'power3.out',

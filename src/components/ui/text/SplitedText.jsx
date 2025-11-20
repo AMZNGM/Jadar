@@ -16,8 +16,6 @@ export default function SplitedText({
   duration = 0.6,
   ease = 'power3.out',
   splitType = 'chars,words',
-  from = { opacity: 0, y: 40 },
-  to = { opacity: 1, y: 0 },
   tag = 'p',
 }) {
   const ref = useRef(null)
@@ -36,11 +34,11 @@ export default function SplitedText({
     if (isMobile) {
       gsap.fromTo(
         ref.current,
-        { opacity: 0, y: 20 },
+        { opacity: 0, y: 140 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.6,
+          duration: 1.5,
           ease: 'power2.out',
           scrollTrigger: {
             trigger: ref.current,
