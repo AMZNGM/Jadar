@@ -8,13 +8,22 @@ export default memo(function DynCursor() {
   const cursorRef = useRef(null)
   const dotRef = useRef(null)
   const [isClient, setIsClient] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+
     setIsClient(true)
+    checkMobile()
+
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
   useGSAP(() => {
-    if (!isClient) return
+    if (!isClient || isMobile) return
 
     const moveCursor = (e) => {
       if (cursorRef.current && dotRef.current) {
@@ -37,35 +46,29 @@ export default memo(function DynCursor() {
     const handleHover = () => {
       if (cursorRef.current && dotRef.current) {
         gsap.to(cursorRef.current, { scale: 2.2, duration: 0.3, ease: 'back.out(1.7)' })
-        gsap.to(dotRef.current, { scale: 0, duration: 0.2 })
       }
     }
-
-    const handleLeave = () => {
-      if (cursorRef.current && dotRef.current) {
-        gsap.to(cursorRef.current, { scale: 1, duration: 0.3, ease: 'power2.out' })
-        gsap.to(dotRef.current, { scale: 1, duration: 0.3, ease: 'power2.out' })
-      }
-    }
-
-    const interactiveEls = document.querySelectorAll(
-      'a, button, div, .cursor-hover, span, p, input, textarea, label, select, h1,h2,h3,h4,h5,h6,li'
-    )
-    interactiveEls.forEach((el) => {
-      el.addEventListener('mouseenter', handleHover)
-      el.addEventListener('mouseleave', handleLeave)
-    })
 
     window.addEventListener('mousemove', moveCursor)
+    document.querySelectorAll('a, button, [data-cursor-hover]').forEach((el) => {
+      el.addEventListener('mouseenter', handleHover)
+      el.addEventListener('mouseleave', () => {
+        if (cursorRef.current) {
+          gsap.to(cursorRef.current, { scale: 1, duration: 0.3, ease: 'back.out(1.7)' })
+        }
+      })
+    })
 
     return () => {
       window.removeEventListener('mousemove', moveCursor)
-      interactiveEls.forEach((el) => {
+      document.querySelectorAll('a, button, [data-cursor-hover]').forEach((el) => {
         el.removeEventListener('mouseenter', handleHover)
-        el.removeEventListener('mouseleave', handleLeave)
+        el.removeEventListener('mouseleave', () => {})
       })
     }
-  }, [isClient])
+  }, [isClient, isMobile])
+
+  if (!isClient || isMobile) return null
 
   return (
     <div className="max-sm:hidden">
