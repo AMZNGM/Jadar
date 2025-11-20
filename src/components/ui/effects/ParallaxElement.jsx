@@ -1,4 +1,5 @@
 'use client'
+
 import { useEffect, useState } from 'react'
 
 export default function ParallaxElement({
@@ -13,27 +14,11 @@ export default function ParallaxElement({
   className = '',
   ...props
 }) {
-  const [isMobile, setIsMobile] = useState(null)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     setIsMobile(window.innerWidth < 768)
   }, [])
-
-  if (isMobile === null) {
-    return (
-      <div className={`${className}`} {...props}>
-        {children}
-      </div>
-    )
-  }
-
-  if (isMobile) {
-    return (
-      <div className={`${className}`} {...props}>
-        {children}
-      </div>
-    )
-  }
 
   const data = {
     'data-scroll-speed': speed,
@@ -45,8 +30,16 @@ export default function ParallaxElement({
     'data-scroll-origin': origin,
   }
 
+  if (isMobile) {
+    return (
+      <div className={className} {...props}>
+        {children}
+      </div>
+    )
+  }
+
   return (
-    <div {...data} className={`${className}`} {...props}>
+    <div {...data} className={className} {...props}>
       {children}
     </div>
   )
