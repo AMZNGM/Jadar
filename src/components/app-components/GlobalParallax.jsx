@@ -5,6 +5,8 @@ import { useGSAP } from '@gsap/react'
 
 export default function GlobalParallax() {
   useGSAP(() => {
+    if (document.innerWidth < 768) return
+
     const breakpoints = {
       sm: 640,
       md: 768,
