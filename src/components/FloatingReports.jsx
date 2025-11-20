@@ -14,6 +14,7 @@ export default function FloatingReports() {
   const { t } = useTranslation()
   const sectionRef = useRef(null)
   const bgImgRef = useRef(null)
+  const isMobile = typeof window !== 'undefined' && (window.innerWidth < 768 || window.matchMedia('(max-width: 767px)').matches)
 
   const imgsPositions = [
     { x: '70%', y: '5%', scale: 1.3, inScale: 1.4, clip: 'inset(0% 20% 0% 0%)' },
@@ -28,6 +29,8 @@ export default function FloatingReports() {
   ]
 
   useGSAP(() => {
+    if (isMobile) return
+
     const items = bgImgRef.current.querySelectorAll('.floating-img')
     items.forEach((el, i) => {
       gsap.to(el, {
