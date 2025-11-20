@@ -1,6 +1,5 @@
 'use client'
-
-import { useMemo } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function ParallaxElement({
   children,
@@ -12,25 +11,31 @@ export default function ParallaxElement({
   scrub = true,
   origin = 'center center',
   className = '',
-  container = null,
-  x = null,
-  y = null,
-  rotate = null,
-  scale = null,
-  opacity = null,
   ...props
 }) {
-  const isMobile = useMemo(() => typeof window !== 'undefined' && window.innerWidth < 768, [])
+  const [isMobile, setIsMobile] = useState(null)
 
-  if (isMobile) {
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768)
+  }, [])
+
+  if (isMobile === null) {
     return (
-      <div className={`ParallaxElement mobile ${className}`} {...props}>
+      <div className={`${className}`} {...props}>
         {children}
       </div>
     )
   }
 
-  const dataAttributes = {
+  if (isMobile) {
+    return (
+      <div className={`${className}`} {...props}>
+        {children}
+      </div>
+    )
+  }
+
+  const data = {
     'data-scroll-speed': speed,
     'data-scroll-direction': direction,
     'data-scroll-ease': ease,
@@ -40,17 +45,8 @@ export default function ParallaxElement({
     'data-scroll-origin': origin,
   }
 
-  if (container) dataAttributes['data-scroll-container'] = container
-  if (direction === 'custom') {
-    if (x !== null) dataAttributes['data-scroll-x'] = x
-    if (y !== null) dataAttributes['data-scroll-y'] = y
-    if (rotate !== null) dataAttributes['data-scroll-rotate'] = rotate
-    if (scale !== null) dataAttributes['data-scroll-scale'] = scale
-    if (opacity !== null) dataAttributes['data-scroll-opacity'] = opacity
-  }
-
   return (
-    <div {...dataAttributes} className={`ParallaxElement ${className}`} {...props}>
+    <div {...data} className={`${className}`} {...props}>
       {children}
     </div>
   )
