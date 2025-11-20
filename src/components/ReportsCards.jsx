@@ -14,8 +14,14 @@ export default function ReportsCards() {
   const { t } = useTranslation()
   const sectionRef = useRef(null)
   const reportsList = reportsData(t)
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
 
   useGSAP(() => {
+    if (isMobile) return
+
+    const section = sectionRef.current
+    if (!section) return
+
     const stickyCards = sectionRef.current.querySelectorAll('.sticky-card')
 
     stickyCards.forEach((card, index) => {
