@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import { useRef } from 'react'
-import { gsap, ScrollTrigger } from '@/utils/gsapConfig'
+import { gsap } from '@/utils/gsapConfig'
 import { useGSAP } from '@gsap/react'
 import { useTranslation } from '@/translations/useTranslation'
 import { ArtboardImgs } from '@/data/mediaData/artBoardImgs'
@@ -12,6 +12,10 @@ export default function OurApproach() {
   const { t } = useTranslation()
   const sectionRef = useRef([])
   const containerRef = useRef([])
+  const imageRefs = useRef([])
+  const contentRefs = useRef([])
+  const titleRefs = useRef([])
+  const descRefs = useRef([])
 
   const sections = [
     {
@@ -35,16 +39,18 @@ export default function OurApproach() {
   ]
 
   useGSAP(() => {
-    containerRef.current.forEach((el) => {
+    const isMobile = window.innerWidth < 768
+
+    containerRef.current.forEach((el, i) => {
       if (!el) return
 
-      const image = el.querySelector('.js-image')
-      const content = el.querySelector('.js-content')
-      const title = el.querySelector('.js-title')
-      const desc = el.querySelector('.js-desc')
+      const image = imageRefs.current[i]
+      const content = contentRefs.current[i]
+      const title = titleRefs.current[i]
+      const desc = descRefs.current[i]
 
-      gsap.set(content, { opacity: 0 })
       gsap.set(image, { opacity: 0, scale: 1.2 })
+      gsap.set(content, { opacity: 0 })
       gsap.set(title, { opacity: 0, y: 100 })
       gsap.set(desc, { opacity: 0, y: 50 })
 
@@ -92,33 +98,19 @@ export default function OurApproach() {
           '-=0.4'
         )
 
-      // parallax
-      gsap.to(title, {
-        y: -100,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: true,
-        },
-      })
-
-      gsap.to(desc, {
-        y: -50,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: true,
-        },
-      })
+      if (!isMobile) {
+        gsap.to([title, desc], {
+          y: (index) => (index === 0 ? -100 : -50),
+          ease: 'none',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true,
+          },
+        })
+      }
     })
-
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
-    }
   }, [])
 
   return (
@@ -127,16 +119,31 @@ export default function OurApproach() {
         {sections.map((section, i) => (
           <div key={section.id} ref={(el) => (containerRef.current[i] = el)} className="overflow-hidden relative w-full h-1/3">
             <div className="relative size-full">
-              <ParallaxElement direction="scale" className="size-full">
-                <Image src={section.image} alt={`Section ${section.id}`} fill className="object-cover js-image will-change-transform" />
+              <ParallaxElement direction="scale" className="relative size-full">
+                <Image
+                  ref={(el) => (imageRefs.current[i] = el)}
+                  src={section.image}
+                  alt={`Section ${section.id}`}
+                  fill
+                  className="object-cover will-change-transform"
+                />
               </ParallaxElement>
 
-              <div className="flex absolute inset-0 z-10 flex-col justify-center items-center p-4 font-light text-center uppercase js-content will-change-transform">
-                <div className="mb-8 max-w-6xl text-5xl font-extralight tracking-wider duration-300 js-title will-change-transform max-md:text-3xl text-text">
+              <div
+                ref={(el) => (contentRefs.current[i] = el)}
+                className="flex absolute inset-0 z-10 flex-col justify-center items-center p-4 font-light text-center uppercase will-change-transform"
+              >
+                <div
+                  ref={(el) => (titleRefs.current[i] = el)}
+                  className="mb-8 max-w-6xl text-5xl font-extralight tracking-wider duration-300 will-change-transform max-md:text-3xl text-text"
+                >
                   {section.title}
                 </div>
 
-                <div className="max-w-5xl text-lg tracking-wide leading-relaxed duration-300 js-desc will-change-transform max-md:text-sm text-text/80">
+                <div
+                  ref={(el) => (descRefs.current[i] = el)}
+                  className="max-w-5xl text-lg tracking-wide leading-relaxed duration-300 will-change-transform max-md:text-sm text-text/80"
+                >
                   {section.description}
                 </div>
               </div>
