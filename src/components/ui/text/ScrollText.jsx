@@ -8,14 +8,14 @@ export default function ScrollText({ text = 'Scroll Text', className = '' }) {
   const containerRef = useRef(null)
   const textRef = useRef(null)
   const [isClient, setIsClient] = useState(false)
+  const isMobile = typeof window !== 'undefined' && (window.innerWidth < 768 || window.matchMedia('(max-width: 767px)').matches)
 
   useEffect(() => {
     setIsClient(true)
   }, [])
 
   useGSAP(() => {
-    // Only run GSAP animations on the client side
-    if (!isClient) return
+    if (!isClient || isMobile) return
 
     const ctx = gsap.context(() => {
       if (textRef.current) {

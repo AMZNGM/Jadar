@@ -61,9 +61,10 @@ export default memo(function Newsletter() {
           start: 'top 75%',
         },
         opacity: 0,
-        x: offset,
+        x: typeof window !== 'undefined' && window.innerWidth > 768 ? offset : 0,
+        y: typeof window !== 'undefined' && window.innerWidth < 768 ? offset : 0,
         duration: 1,
-        delay: 0.3,
+        delay: typeof window !== 'undefined' && window.innerWidth < 768 ? 0.3 : 1,
         ease: 'power3.out',
       })
     }, sectionRef)
