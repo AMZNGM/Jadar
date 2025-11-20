@@ -46,7 +46,7 @@ export default function FloatingReports() {
   return (
     <section dir="ltr" ref={sectionRef} className="relative w-screen min-h-screen h-[150vh] bg-black text-text overflow-hidden">
       <div className="absolute inset-0 translate-y-50 flex items-center justify-center pointer-events-none z-10">
-        <div className="w-full max-w-4xl text-center px-4 -translate-y-1/2 top-1/2 absolute">
+        <div className="w-full max-w-4xl text-center px-4 md:-translate-y-1/2 top-1/2 absolute">
           <ParallaxElement>
             <ShinyText
               text={t('jadarReports')}

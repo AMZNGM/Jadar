@@ -10,7 +10,7 @@ import ClickEffect from '@/components/ui/effects/ClickEffect.jsx'
 
 export default memo(function NewsCard({ article }) {
   return (
-    <ParallaxElement speed={3} mobileSpeed={2} direction="opacity" className="relative h-full">
+    <ParallaxElement speed={3} direction="opacity" className="relative h-full">
       <ClickEffect className="h-full duration-300 group hover:shadow-lg shadow-main/30 hover:-translate-y-2">
         <div className="opacity-0 duration-300 group-hover:opacity-100">
           <MovingBorders />

@@ -41,7 +41,7 @@ export default function SocialResponsibility() {
       <div className="relative z-30">
         <OurMessage />
         <FloatingReports />
-        <ReportsCards />
+        {/* <ReportsCards /> */}
       </div>
     </main>
   )
