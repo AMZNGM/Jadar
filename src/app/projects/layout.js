@@ -1,5 +1,5 @@
 export const metadata = {
-  title: 'Social Responsibility',
+  title: 'Projects',
 }
 
 export default function Layout({ children }) {

@@ -37,7 +37,9 @@ export default function About() {
       <div className="relative z-20">
         <OurLegacy />
         <OurApproach />
-        {/* <BentoCards /> */}
+        <div className="bg-black pt-8">
+          <BentoCards />
+        </div>
         <OurVision />
       </div>
     </main>
