@@ -1,149 +1,130 @@
-import { useRef, useEffect, useCallback } from "react";
-import { gsap } from "@/utils/gsapConfig";
-import { useGSAP } from "@gsap/react";
+'use client'
 
-const FollowCursor = ({
+import { useRef, useEffect, useCallback } from 'react'
+import { gsap } from '@/utils/gsapConfig'
+import { useGSAP } from '@gsap/react'
+
+export default function FollowCursor({
   isActive = true,
   offset = { x: 20, y: 20 },
   duration = 0.15,
-  ease = "power2.out",
+  ease = 'power2.out',
   scaleOnHover = 1,
   children,
-  className = "",
+  className = '',
   style = {},
   ...props
-}) => {
-  const cursorRef = useRef(null);
-  const quickToRef = useRef(null);
-  const resizeTimeoutRef = useRef(null);
+}) {
+  const cursorRef = useRef(null)
+  const quickToXRef = useRef(null)
+  const quickToYRef = useRef(null)
 
   const getOffset = useCallback(() => {
-    return typeof offset === "function" ? offset() : offset;
-  }, [offset]);
+    return typeof offset === 'function' ? offset() : offset
+  }, [offset])
 
   const initQuickTo = useCallback(() => {
-    if (!cursorRef.current || quickToRef.current) return;
+    if (!cursorRef.current || quickToXRef.current) return
 
-    const cursor = cursorRef.current;
-
-    gsap.set(cursor, {
+    gsap.set(cursorRef.current, {
       x: 0,
       y: 0,
       opacity: isActive ? 1 : 0,
-    });
+    })
 
-    quickToRef.current = gsap.quickTo(cursor, "x", {
+    quickToXRef.current = gsap.quickTo(cursorRef.current, 'x', {
       duration,
       ease,
-      onUpdate() {
-        gsap.set(cursor, { y: this.targets()[0]._gsap.y });
-      },
-    });
+    })
 
-    gsap.quickTo(cursor, "y", { duration, ease });
-  }, [duration, ease, isActive]);
+    quickToYRef.current = gsap.quickTo(cursorRef.current, 'y', {
+      duration,
+      ease,
+    })
+  }, [duration, ease, isActive])
 
   const handleMouseMove = useCallback(
     (e) => {
-      if (!quickToRef.current || !isActive) return;
+      if (!isActive || !quickToXRef.current || !quickToYRef.current) return
 
-      const currentOffset = getOffset();
-      const targetX = e.clientX + currentOffset.x;
-      const targetY = e.clientY + currentOffset.y;
+      const { x, y } = getOffset()
 
-      quickToRef.current(targetX);
-
-      gsap.set(cursorRef.current, { y: targetY });
+      quickToXRef.current(e.clientX + x)
+      quickToYRef.current(e.clientY + y)
     },
     [isActive, getOffset]
-  );
+  )
 
   const handleHover = useCallback(
     (isHovering) => {
-      if (!cursorRef.current) return;
+      if (!cursorRef.current) return
 
       gsap.to(cursorRef.current, {
         scale: isHovering ? scaleOnHover : 1,
-        duration: 0.6,
-        ease: "power2.out",
-      });
+        duration: 0.5,
+        ease: 'power2.out',
+      })
     },
     [scaleOnHover]
-  );
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (resizeTimeoutRef.current) {
-        clearTimeout(resizeTimeoutRef.current);
-      }
-      resizeTimeoutRef.current = setTimeout(() => {}, 100);
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      if (resizeTimeoutRef.current) {
-        clearTimeout(resizeTimeoutRef.current);
-      }
-    };
-  }, []);
+  )
 
   useGSAP(() => {
-    if (!cursorRef.current) return;
+    if (!cursorRef.current) return
 
-    initQuickTo();
+    initQuickTo()
 
     if (isActive) {
-      window.addEventListener("mousemove", handleMouseMove);
-      gsap.set(cursorRef.current, { opacity: 1 });
+      window.addEventListener('mousemove', handleMouseMove)
 
-      const hoverElements = document.querySelectorAll("[data-cursor-hover]");
+      gsap.set(cursorRef.current, { opacity: 1 })
+
+      const hoverElements = document.querySelectorAll('[data-cursor-hover]')
+
+      const enter = () => handleHover(true)
+      const leave = () => handleHover(false)
 
       hoverElements.forEach((el) => {
-        el.addEventListener("mouseenter", () => handleHover(true));
-        el.addEventListener("mouseleave", () => handleHover(false));
-      });
+        el.addEventListener('mouseenter', enter)
+        el.addEventListener('mouseleave', leave)
+      })
 
       return () => {
-        window.removeEventListener("mousemove", handleMouseMove);
-
+        window.removeEventListener('mousemove', handleMouseMove)
         hoverElements.forEach((el) => {
-          el.removeEventListener("mouseenter", () => handleHover(true));
-          el.removeEventListener("mouseleave", () => handleHover(false));
-        });
-      };
+          el.removeEventListener('mouseenter', enter)
+          el.removeEventListener('mouseleave', leave)
+        })
+      }
     } else {
-      gsap.set(cursorRef.current, { opacity: 0 });
+      gsap.set(cursorRef.current, { opacity: 0 })
     }
-  }, [isActive, handleMouseMove, handleHover, initQuickTo]);
+  }, [isActive, handleMouseMove, handleHover, initQuickTo])
 
   useEffect(() => {
     return () => {
-      if (quickToRef.current) {
-        quickToRef.current = null;
-      }
-    };
-  }, []);
+      quickToXRef.current = null
+      quickToYRef.current = null
+    }
+  }, [])
 
-  if (!isActive) return null;
+  if (!isActive) return null
 
   return (
     <div
       ref={cursorRef}
       className={`follow-cursor ${className}`}
       style={{
-        position: "fixed",
+        position: 'fixed',
         top: 0,
         left: 0,
+        pointerEvents: 'none',
         zIndex: 9999,
-        pointerEvents: "none",
-        willChange: "transform",
+        willChange: 'transform',
         ...style,
       }}
-      {...props}>
+      {...props}
+    >
       {children}
     </div>
-  );
-};
-
-export default FollowCursor;
+  )
+}
