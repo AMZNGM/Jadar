@@ -1,7 +1,7 @@
 'use client'
 
-import { useRef, useState } from 'react'
 import Link from 'next/link'
+import { useRef, useState } from 'react'
 import { gsap } from '@/utils/gsapConfig'
 import { useGSAP } from '@gsap/react'
 import { BgNoise } from '@/data/mediaData/svgs'
@@ -12,7 +12,7 @@ import FollowCursor from '@/components/ui/effects/FollowCursor'
 import ShinyText from '@/components/ui/text/ShinyText'
 import MainBtn from '@/components/ui/buttons/MainBtn'
 
-const PartnersHero = () => {
+export default function PartnersHero() {
   const { t } = useTranslation()
   const partnerData = partnersData(t)
   const sectionRef = useRef(null)
@@ -119,7 +119,7 @@ const PartnersHero = () => {
     }, sectionRef)
 
     return () => ctx.revert()
-  }, [])
+  }, [sectionRef])
 
   return (
     <section ref={sectionRef} className="relative w-screen h-screen overflow-hidden text-text/75 py-14 px-4 max-md:p-2">
@@ -134,7 +134,7 @@ const PartnersHero = () => {
 
             {partnerData.map((partner, index) => (
               <Link
-                to={partner.website}
+                href={partner.website}
                 key={index}
                 onMouseEnter={() => isContainerVisible && setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
@@ -179,8 +179,7 @@ const PartnersHero = () => {
 
         <h1
           ref={heroTitleRef}
-          className="size-full flex justify-center items-center max-lg:absolute inset-0 max-lg:opacity-0 -rotate-20
-                    text-text text-7xl max-md:text-3xl max-lg:text-5xl font-light tracking-wider uppercase"
+          className="size-full flex justify-center items-center max-lg:absolute inset-0 max-lg:opacity-0 -rotate-20 text-text text-7xl max-md:text-3xl max-lg:text-5xl font-light tracking-wider uppercase"
         >
           <ShinyText text={t('ourPartners')} className="cursor-default" />
         </h1>
@@ -200,5 +199,3 @@ const PartnersHero = () => {
     </section>
   )
 }
-
-export default PartnersHero
