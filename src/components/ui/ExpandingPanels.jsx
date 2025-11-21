@@ -104,8 +104,11 @@ export default function ExpandingPanels() {
             onMouseLeave={() => setActiveImage(null)}
             className="relative size-full bg-bg/95 border-x border-text/30 cursor-pointer"
           >
-            <SpotlightContainer spotlightColor="#ededed" className="relative size-full flex flex-col justify-between items-center">
-              <Link href={project.to} ref={(el) => (imgWrapperRefs.current[index] = el)} className="relative size-full p-4">
+            <SpotlightContainer
+              spotlightColor="#ededed"
+              className="relative size-full flex flex-col justify-between max-md:justify-center items-center"
+            >
+              <Link href={project.to} ref={(el) => (imgWrapperRefs.current[index] = el)} className="relative size-full p-4 max-md:hidden">
                 <FloatingEffect className="relative size-full">
                   <Image
                     src={project.images[0]}
@@ -116,13 +119,13 @@ export default function ExpandingPanels() {
                 </FloatingEffect>
               </Link>
 
-              <div ref={(el) => (textRefs.current[index] = el)} className="flex justify-center items-center py-2 px-4">
+              <div ref={(el) => (textRefs.current[index] = el)} className="flex justify-center items-center py-2 px-4 max-md:hidden">
                 <span className="text-xl font-light tracking-wide">
                   {project.startDate} : {project.endDate}
                 </span>
               </div>
 
-              <div ref={(el) => (titleRefs.current[index] = el)} className="flex justify-center items-end py-8 px-4">
+              <div ref={(el) => (titleRefs.current[index] = el)} className="flex justify-center py-8 px-4">
                 <span className="font-semibold">{project.id}</span>
                 <Link href={project.to}>
                   <h2 className="text-3xl font-light rotate-180 [writing-mode:vertical-rl]">{project.title}</h2>
