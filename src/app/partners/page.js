@@ -1,7 +1,7 @@
 import PartnersBgVid from '@/components/ui/PartnersBgVid.jsx'
 import PartnersHero from '@/components/PartnersHero.jsx'
 import EgyptJourneyIntro from '@/components/EgyptJourneyIntro.jsx'
-// import HorizontalCards from '@/components/HorizontalCards.jsx'
+import HorizontalCards from '@/components/HorizontalCards.jsx'
 
 export default function Partners() {
   return (
@@ -11,7 +11,7 @@ export default function Partners() {
       </div>
       <PartnersHero />
       <EgyptJourneyIntro />
-      {/* <HorizontalCards /> */}
+      <HorizontalCards />
     </main>
   )
 }

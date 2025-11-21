@@ -11,8 +11,9 @@ import partnersData from '@/data/partnersData'
 import FixedLeftMenu from '@/components/ui/FixedLeftMenu'
 import TextStack from '@/components/ui/text/TextStack'
 import Logo from '@/components/ui/logo'
+import Image from 'next/image'
 
-const HorizontalCards = () => {
+export default function HorizontalCards() {
   const { t } = useTranslation()
   const partnerData = partnersData(t)
   const sectionRef = useRef(null)
@@ -281,7 +282,7 @@ const HorizontalCards = () => {
           </div>
 
           <div className="relative size-full">
-            <img src={ArtboardImgs[0]} loading="lazy" alt={`${ArtboardImgs[0]} background image`} className="size-full object-cover" />
+            <Image src={ArtboardImgs[0]} loading="lazy" alt={`${ArtboardImgs[0]} background image`} className="size-full object-cover" />
           </div>
         </div>
 
@@ -289,7 +290,7 @@ const HorizontalCards = () => {
           <div className="relative size-full flex flex-col justify-center items-center bg-black max-md:p-4">
             <div className="relative size-full overflow-hidden">
               <div className="relative size-full overflow-hidden">
-                <img
+                <Image
                   src={partnerData[1].img}
                   loading="lazy"
                   alt={`${partnerData[1].title} background image`}
@@ -313,7 +314,7 @@ const HorizontalCards = () => {
         <div className="horizontal-slide slide3 shrink-0 flex justify-center items-center w-screen h-screen overflow-hidden max-md:hidden">
           <div className="relative size-full flex justify-between items-end bg-black font-light">
             <div className="relative w-full h-1/2 overflow-hidden">
-              <img
+              <Image
                 src={projectImages.levelsTower[5]}
                 loading="lazy"
                 alt={`${partnerData[2].title} background image`}
@@ -332,7 +333,7 @@ const HorizontalCards = () => {
         <div className="horizontal-slide slide4 shrink-0 flex justify-center items-center w-screen h-screen overflow-hidden">
           <div className="relative size-full flex justify-center items-center bg-black">
             <div className="relative overflow-hidden flex justify-center items-center size-full">
-              <img
+              <Image
                 src={partnerData[2].img}
                 loading="lazy"
                 alt={`${partnerData[2].title} background image`}
@@ -413,7 +414,7 @@ const HorizontalCards = () => {
                 </div>
 
                 <div className="relative size-full">
-                  <img
+                  <Image
                     src={partnerData[3].img}
                     loading="lazy"
                     alt={`${partnerData[1].title} background image`}
@@ -450,7 +451,7 @@ const HorizontalCards = () => {
 
         <div className="horizontal-slide slide11 shrink-0 flex justify-center items-center w-screen h-screen">
           <div className="relative flex justify-center items-center size-full bg-black">
-            <img
+            <Image
               src={partnerData[5].img}
               loading="lazy"
               alt={`${ArtboardImgs[0]} background image`}
@@ -472,7 +473,7 @@ const HorizontalCards = () => {
               <Logo logoName={partnerData[6].logoName} to={partnerData[6].website} className={'w-300 size-full'} />
             </div>
 
-            <img
+            <Image
               src={partnerData[6].img}
               loading="lazy"
               alt={`${partnerData[6].title} background image`}
@@ -491,7 +492,7 @@ const HorizontalCards = () => {
 
       <div className="slide13 shrink-0 flex justify-center items-center w-screen h-screen max-md:hidden">
         <div className="relative flex justify-center items-center size-full bg-black">
-          <img
+          <Image
             src={partnerData[6].img}
             loading="lazy"
             alt={`${partnerData[6].title} background image`}
@@ -509,5 +510,3 @@ const HorizontalCards = () => {
     </section>
   )
 }
-
-export default HorizontalCards

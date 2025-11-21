@@ -33,7 +33,7 @@ export default function PartnersHero() {
           start: 'top top',
           end: '+=150%',
           pin: true,
-          scrub: true,
+          scrub: window.innerWidth > 768 ? true : false,
           anticipatePin: 1,
         },
       })
@@ -50,7 +50,7 @@ export default function PartnersHero() {
           x: document.dir === 'rtl' ? -getOffsetX() : getOffsetX(),
           rotate: 0,
           opacity: 1,
-          duration: 2.4,
+          duration: window.innerWidth > 768 ? 2.4 : 10,
           ease: 'power3.out',
         },
         0
