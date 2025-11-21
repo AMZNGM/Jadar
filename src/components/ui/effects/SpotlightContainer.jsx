@@ -1,72 +1,53 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 
-const SpotlightContainer = ({ children, className = '', spotlightColor = '#d73b13' }) => {
+export default function SpotlightContainer({ children, className = '', spotlightColor = '#d73b13' }) {
   const divRef = useRef(null)
-  const [isFocused, setIsFocused] = useState(false)
-  const [position, setPosition] = useState({ x: 0, y: 0 })
-  const [opacity, setOpacity] = useState(0)
+  const spotlightRef = useRef(null)
 
-  const handleMouseMove = (e) => {
-    if (!divRef.current) return
+  const [visible, setVisible] = useState(false)
 
-    const rect = divRef.current.getBoundingClientRect()
-    setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top })
-  }
+  useEffect(() => {
+    const el = divRef.current
+    const spot = spotlightRef.current
+    if (!el || !spot) return
 
-  const handleTouchMove = (e) => {
-    if (!divRef.current) return
-    const touch = e.touches && e.touches[0]
-    if (!touch) return
-    const rect = divRef.current.getBoundingClientRect()
-    setPosition({ x: touch.clientX - rect.left, y: touch.clientY - rect.top })
-  }
+    const handleMove = (e) => {
+      const rect = el.getBoundingClientRect()
+      const x = (e.clientX || e.touches?.[0].clientX) - rect.left
+      const y = (e.clientY || e.touches?.[0].clientY) - rect.top
 
-  const handleFocus = () => {
-    setIsFocused(true)
-    setOpacity(0.6)
-  }
+      spot.style.setProperty('--x', `${x}px`)
+      spot.style.setProperty('--y', `${y}px`)
+    }
 
-  const handleBlur = () => {
-    setIsFocused(false)
-    setOpacity(0)
-  }
+    el.addEventListener('pointermove', handleMove)
+    el.addEventListener('pointerdown', () => setVisible(true))
+    el.addEventListener('pointerenter', () => setVisible(true))
+    el.addEventListener('pointerleave', () => setVisible(false))
+    el.addEventListener('pointerup', () => setVisible(false))
 
-  const handleMouseEnter = () => {
-    setOpacity(0.6)
-  }
-
-  const handleMouseLeave = () => {
-    setOpacity(0)
-  }
+    return () => {
+      el.removeEventListener('pointermove', handleMove)
+      el.removeEventListener('pointerdown', () => setVisible(true))
+      el.removeEventListener('pointerenter', () => setVisible(true))
+      el.removeEventListener('pointerleave', () => setVisible(false))
+      el.removeEventListener('pointerup', () => setVisible(false))
+    }
+  }, [])
 
   return (
-    <div
-      ref={divRef}
-      tabIndex={0}
-      role="region"
-      aria-label="spotlight-container"
-      onMouseMove={handleMouseMove}
-      onFocus={handleFocus}
-      onBlur={handleBlur}
-      onTouchMove={handleTouchMove}
-      onTouchStart={handleMouseEnter}
-      onTouchEnd={handleMouseLeave}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      className={`relative overflow-hidden size-full ${className} max-md:hidden`}
-    >
+    <div ref={divRef} className={`relative overflow-hidden size-full ${className}`}>
       <div
-        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 ease-in-out"
+        ref={spotlightRef}
+        className="pointer-events-none absolute inset-0 transition-opacity duration-500 ease-out"
         style={{
-          opacity,
-          background: `radial-gradient(circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 10%)`,
+          opacity: visible ? 0.6 : 0,
+          background: `radial-gradient(circle at var(--x) var(--y), ${spotlightColor}, transparent 10%)`,
         }}
       />
       {children}
     </div>
   )
 }
-
-export default SpotlightContainer

@@ -77,13 +77,24 @@ export default function ExpandingPanels() {
 
   return (
     <div dir="ltr" className="relative w-screen h-screen overflow-hidden bg-bg text-text">
-      <Image src={ArtboardImgs[0]} alt="background Image" className="absolute inset-0 size-full object-cover pointer-events-none" />
+      <Image
+        src={ArtboardImgs[0]}
+        alt="background Image"
+        fill
+        loading="eager"
+        className="absolute inset-0 object-cover pointer-events-none"
+      />
 
-      <div className="absolute top-12 left-0 z-10 max-sm:hidden">
-        <MainBtn onClick={() => window.history.back()} text={t(`back`)} look="outline" className="text-text! border-text! border-x-0" />
+      <div className="absolute top-12 left-0 z-10 max-md:w-full">
+        <MainBtn
+          onClick={() => window.history.back()}
+          text={t(`back`)}
+          look="outline"
+          className="text-text! border-text! border-x-0 max-md:w-full"
+        />
       </div>
 
-      <div className="relative size-full flex justify-end max-sm:justify-center items-end max-sm:items-center">
+      <div className="relative size-full flex justify-end items-end max-sm:items-center">
         {projects.map((project, index) => (
           <div
             key={project.id}
