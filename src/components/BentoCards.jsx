@@ -74,7 +74,7 @@ const Card = ({ img, title, description, className }) => {
         <MovingBorders />
 
         <div className="absolute inset-0 overflow-hidden card-clip">
-          <Image src={img} alt={t(title)} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+          <Image src={img} alt={t(title)} className="object-cover size-full max-sm:h-1/2" />
         </div>
 
         <div className="flex relative z-10 flex-col justify-between p-3 size-full">

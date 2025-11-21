@@ -1,24 +1,28 @@
+'use client'
+
+import Image from 'next/image'
 import { useRef, useState } from 'react'
-import { gsap, ScrollTrigger } from '@/utils/gsapConfig'
+import { ScrollTrigger } from '@/utils/gsapConfig'
 import { useGSAP } from '@gsap/react'
-import { ArrowDown } from '@/data/mediaData/svgs'
 import { useTranslation } from '@/translations/useTranslation'
 import { ArtboardImgs } from '@/data/mediaData/artBoardImgs.js'
+import { ArrowDown } from 'lucide-react'
 import { visionData } from '@/data/visionData'
 import SplitedText from '@/components/ui/text/SplitedText.jsx'
-import { ArrowDown01 } from 'lucide-react'
 
-const OurVision = () => {
+export default function OurVision() {
   const { t } = useTranslation()
   const visions = visionData(t)
-  const sectionRef = useRef()
+  const sectionRef = useRef(null)
+
   const [activeIndex, setActiveIndex] = useState(-1)
 
   useGSAP(() => {
     if (!sectionRef.current) return
 
     const totalSteps = visions.length + 2
-    const scrollTrigger = ScrollTrigger.create({
+
+    ScrollTrigger.create({
       trigger: sectionRef.current,
       start: 'top top',
       end: `+=${totalSteps * window.innerHeight}`,
@@ -37,15 +41,11 @@ const OurVision = () => {
         }
       },
     })
-
-    return () => {
-      scrollTrigger.kill()
-    }
   }, [sectionRef])
 
   return (
     <section ref={sectionRef} className="overflow-hidden relative px-4 py-12 w-screen min-h-screen bg-bg">
-      <img className="object-cover absolute inset-0 size-full" src={ArtboardImgs[14]} alt="Background Image" loading="lazy" />
+      <Image className="object-cover absolute inset-0 size-full" src={ArtboardImgs[14]} alt="Background Image" loading="eager" />
 
       <div className="relative size-full">
         {/* intro text */}
@@ -69,7 +69,7 @@ const OurVision = () => {
               className="text-lg leading-relaxed duration-300 max-sm:text-sm"
             />
 
-            <ArrowDown01 className="mx-auto mt-12 animate-bounce size-6 text-main/50" />
+            <ArrowDown className="mx-auto mt-12 animate-bounce size-6 text-main/50" />
           </div>
         </div>
 
@@ -103,5 +103,3 @@ const OurVision = () => {
     </section>
   )
 }
-
-export default OurVision
