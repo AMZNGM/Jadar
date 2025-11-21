@@ -5,7 +5,7 @@ import { gsap } from '@/utils/gsapConfig'
 import { useGSAP } from '@gsap/react'
 import BgVideo from '@/components/ui/BgVideo.jsx'
 
-const PartnersBgVid = () => {
+export default function PartnersBgVid() {
   const bgVid = '/videos/bgVideo.mp4'
   const mobileImgsrc = '/images/bgVidCover.webp'
   const sectionRef = useRef()
@@ -46,5 +46,3 @@ const PartnersBgVid = () => {
     </section>
   )
 }
-
-export default PartnersBgVid
