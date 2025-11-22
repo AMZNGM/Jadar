@@ -1,7 +1,5 @@
-'use client'
-
-import Link from 'next/link'
 import Image from 'next/image'
+import Link from 'next/link'
 import { memo } from 'react'
 import { MousePointerClick } from 'lucide-react'
 import { DiagonalLines, MovingBorders } from '@/data/mediaData/svgs'
@@ -24,12 +22,14 @@ export default memo(function NewsCard({ article }) {
           className="overflow-hidden relative p-2 h-full border duration-300 cursor-pointer group border-main/25 hover:bg-main/5 flex flex-col"
         >
           <div className="overflow-hidden relative h-48">
-            <ParallaxElement direction="scale">
+            <ParallaxElement direction="scale" className="relative size-full">
               <Image
                 src={article.image}
                 alt={article.title}
+                fill
+                sizes="full"
                 loading="lazy"
-                className="object-cover transition-transform duration-500 size-full group-hover:scale-105"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
             </ParallaxElement>
 
