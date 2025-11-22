@@ -6,7 +6,7 @@ import { BgNoise } from '@/data/mediaData/svgs'
 import SectionHero from '@/components/hero-components/SectionHero.jsx'
 import Breadcrumb from '@/components/ui/Breadcrumb.jsx'
 import CareerCenterHeader from '@/components/CareerCenterHeader.jsx'
-// import JobsAtJadar from '@/components/JobsAtJadar.jsx'
+import JobsAtJadar from '@/components/JobsAtJadar.jsx'
 
 export default function CareerCenter() {
   const { t } = useTranslation()
@@ -45,9 +45,9 @@ export default function CareerCenter() {
         <CareerCenterHeader />
       </div>
 
-      {/* <div className="relative z-500">
+      <div className="relative z-500">
         <JobsAtJadar />
-      </div> */}
+      </div>
     </main>
   )
 }

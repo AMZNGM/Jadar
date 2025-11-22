@@ -62,7 +62,7 @@ const formFields = [
   },
 ]
 
-const JobsAtJadar = () => {
+export default function JobsAtJadar() {
   const { t } = useTranslation()
   const jobList = getJobList(t)
   const sectionRef = useRef(null)
@@ -239,7 +239,6 @@ const JobsAtJadar = () => {
         {jobList.map((job) => (
           <ParallaxElement
             speed={3}
-            mobileSpeed={4}
             direction="opacity"
             key={job.id}
             onClick={() => openJob(job)}
@@ -423,5 +422,3 @@ const JobsAtJadar = () => {
     </section>
   )
 }
-
-export default JobsAtJadar
