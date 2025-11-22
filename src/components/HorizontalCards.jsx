@@ -126,6 +126,8 @@ export default function HorizontalCards() {
         scrollTrigger: {
           trigger: '.img4',
           start: 'bottom top',
+          end: '100%',
+          markers: true,
           scrub: true,
           containerAnimation: horizontalScroll,
         },
