@@ -1,12 +1,11 @@
-import { ArrowLeft } from 'lucide-react'
+import { ChevronDown, ChevronUp } from 'lucide-react'
 import { useTranslation } from '@/translations/useTranslation'
 
-const FixedLeftMenu = ({ scrollProgress, isVisible }) => {
+export default function FixedLeftMenu({ scrollProgress, isVisible }) {
   const { t } = useTranslation()
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
-
   const scrollToBottom = () => {
     window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
   }
@@ -24,7 +23,7 @@ const FixedLeftMenu = ({ scrollProgress, isVisible }) => {
         aria-label="Scroll to top"
         className="group flex justify-center items-center cursor-pointer w-full py-12 duration-300"
       >
-        <ArrowLeft className="rotate-270 size-8 text-text/50 group-hover:text-main duration-300" />
+        <ChevronUp className="text-text/50 group-hover:text-main duration-300" />
       </button>
 
       <h2 className="text-2xl whitespace-nowrap font-light -rotate-90 uppercase tracking-[0.3em] duration-300">{t('ourPartners')}</h2>
@@ -34,7 +33,7 @@ const FixedLeftMenu = ({ scrollProgress, isVisible }) => {
         aria-label="Scroll to bottom"
         className="group flex justify-center items-center cursor-pointer w-full py-12 duration-300"
       >
-        <ArrowLeft className="rotate-90! size-8 text-text/50 group-hover:text-main duration-300" />
+        <ChevronDown className="text-text/50 group-hover:text-main duration-300" />
       </button>
 
       <div id="progress-bar" className="fixed top-0 left-[3.3rem] h-full w-1 z-50 overflow-hidden transition-all duration-300">
@@ -51,5 +50,3 @@ const FixedLeftMenu = ({ scrollProgress, isVisible }) => {
     </section>
   )
 }
-
-export default FixedLeftMenu

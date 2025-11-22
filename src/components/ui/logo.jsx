@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { logos } from '@/data/mediaData/logos'
 
-export default function Logo({ className, to = '/', logoName = 'MainLogo' }) {
+export default function Logo({ className, width = 120, to = '/', logoName = 'MainLogo' }) {
   const selectedLogo = logos.find((logo) => logo.project.toLowerCase() === logoName.toLowerCase()) || logos[0]
 
   const getLogoImg = (logo) => {
@@ -33,7 +33,7 @@ export default function Logo({ className, to = '/', logoName = 'MainLogo' }) {
       <Image
         src={logoImg}
         alt={`${selectedLogo?.project} logo`}
-        width={120}
+        width={width}
         height={40}
         className={`size-auto cursor-pointer hover:scale-105 duration-300 ${className || ''}`}
         loading="eager"

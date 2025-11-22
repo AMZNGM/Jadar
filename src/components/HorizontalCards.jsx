@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useRef, useState } from 'react'
 import { gsap } from '@/utils/gsapConfig'
 import { useGSAP } from '@gsap/react'
@@ -8,10 +9,9 @@ import { projectImages } from '@/data/mediaData/projectMedia'
 import { ArtboardImgs } from '@/data/mediaData/artBoardImgs'
 import { useTranslation } from '@/translations/useTranslation'
 import partnersData from '@/data/partnersData'
-import FixedLeftMenu from '@/components/ui/FixedLeftMenu'
+import FixedLeftMenu from '@/components/ui/FixedLeftMenu.jsx'
 import TextStack from '@/components/ui/text/TextStack'
 import Logo from '@/components/ui/logo'
-import Image from 'next/image'
 
 export default function HorizontalCards() {
   const { t } = useTranslation()
@@ -428,7 +428,7 @@ export default function HorizontalCards() {
 
         <div className="horizontal-slide slide8 shrink-0 flex justify-center items-center w-screen h-screen overflow-hidden">
           <div className="relative flex justify-center items-center size-full bg-black">
-            <Logo logoName={partnerData[4].logoName} to={partnerData[4].website} className={'w-500'} />
+            <Logo logoName={partnerData[4].logoName} to={partnerData[4].website} width={500} className={'w-500'} />
           </div>
         </div>
 
@@ -445,7 +445,7 @@ export default function HorizontalCards() {
 
         <div className="horizontal-slide slide10 shrink-0 flex justify-center items-center w-screen h-screen z-10">
           <div className="relative flex justify-center md:items-center size-full py-24">
-            <Logo logoName={partnerData[5].logoName} to={partnerData[5].website} className={'logo10 w-300'} />
+            <Logo logoName={partnerData[5].logoName} to={partnerData[5].website} className={'logo10 w-300'} width={500} />
           </div>
         </div>
 
@@ -470,7 +470,7 @@ export default function HorizontalCards() {
         <div className="horizontal-slide slide12 shrink-0 flex justify-center items-center w-screen h-screen">
           <div className="relative flex max-md:flex-col justify-center items-center size-full bg-black">
             <div className="relative flex justify-center items-center size-full z-10">
-              <Logo logoName={partnerData[6].logoName} to={partnerData[6].website} className={'w-300 size-full'} />
+              <Logo logoName={partnerData[6].logoName} to={partnerData[6].website} className={'w-full'} width={500} />
             </div>
 
             <Image
