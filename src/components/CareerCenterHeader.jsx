@@ -8,16 +8,19 @@ import { useTranslation } from '@/translations/useTranslation'
 import ShuffleText from '@/components/ui/text/ShuffleText.jsx'
 import SplitedText from '@/components/ui/text/SplitedText.jsx'
 
-const CareerCenterHeader = () => {
+export default function CareerCenterHeader() {
   const { t } = useTranslation()
   const sectionRef = useRef(null)
   const contentRef = useRef(null)
   const listRef = useRef(null)
 
-  useGSAP(() => {
-    const ctx = gsap.context(() => {
+  useGSAP(
+    () => {
+      const contents = Array.from(contentRef.current?.children || [])
+      const listItems = Array.from(listRef.current?.children || [])
+
       gsap.fromTo(
-        contentRef.current.children,
+        contents,
         { y: 60, opacity: 0 },
         {
           y: 0,
@@ -34,7 +37,7 @@ const CareerCenterHeader = () => {
       )
 
       gsap.fromTo(
-        listRef.current.children,
+        listItems,
         { x: -60, opacity: 0 },
         {
           x: 0,
@@ -49,10 +52,9 @@ const CareerCenterHeader = () => {
           },
         }
       )
-    }, sectionRef)
-
-    return () => ctx.revert()
-  }, [])
+    },
+    { scope: sectionRef }
+  )
 
   return (
     <section ref={sectionRef} className="relative w-screen overflow-hidden bg-text text-bg py-24 px-4">
@@ -64,7 +66,6 @@ const CareerCenterHeader = () => {
           tag="h1"
           className="text-6xl max-md:text-4xl max-md:text-center uppercase tracking-wider cursor-default text-main"
         />
-
         <SplitedText text={t('jadarsCareersDesc')} tag="p" delay={5} className="text-xl max-md:text-sm leading-7.5 tracking-wide" />
       </div>
 
@@ -77,5 +78,3 @@ const CareerCenterHeader = () => {
     </section>
   )
 }
-
-export default CareerCenterHeader
