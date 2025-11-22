@@ -17,7 +17,7 @@ import {
   PaginationPrevious,
 } from '@/components/ui/Pagination'
 
-const News = () => {
+export default function News() {
   const { t } = useTranslation()
   const articlesPerPage = 12
   const categories = ['All', 'Hospitality', 'Building', 'Community']
@@ -123,5 +123,3 @@ const News = () => {
     </section>
   )
 }
-
-export default News

@@ -28,7 +28,7 @@ export default function AllNews() {
       />
 
       <div className="relative z-20">
-        {/* <News /> */}
+        <News />
         {/* <Newsletter /> */}
       </div>
     </main>
