@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useMemo, useRef, useCallback, useState, memo, forwardRef } from 'react'
+import Image from 'next/image'
 import { useGesture } from '@use-gesture/react'
 import { BgNoise, MovingBorders } from '@/data/mediaData/svgs'
 import articlesData from '@/data/articlesData'
@@ -120,12 +121,18 @@ const OverlayViewer = memo(
           pointerEvents: 'auto',
         }}
       >
-        <div>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={article?.image || article?.src}
+        <div className="relative w-full h-full">
+          <Image
+            src={
+              typeof (article?.image || article?.src) === 'string'
+                ? article?.image || article?.src
+                : article?.image?.src || article?.src?.src || ''
+            }
             alt={article?.alt || article?.title || ''}
-            className={`size-full object-cover overflow-hidden relative ${showArticleInfo ? 'flex-[0_0_60%]' : 'flex-1'}`}
+            fill
+            sizes="full"
+            loading="eager"
+            className={`object-cover overflow-hidden relative ${showArticleInfo ? 'flex-[0_0_60%]' : 'flex-1'}`}
             style={{ filter: grayscale ? 'grayscale(1)' : 'none' }}
           />
         </div>
@@ -810,16 +817,20 @@ export default function Gallery3d({
                     borderRadius: imageBorderRadius,
                   }}
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={typeof it.src === 'string' ? it.src : ''}
-                    draggable={false}
-                    alt={it.alt}
-                    className="size-full object-cover pointer-events-none backface-hidden"
-                    style={{
-                      filter: grayscale ? 'grayscale(1)' : 'none',
-                    }}
-                  />
+                  {it.src && (
+                    <Image
+                      src={typeof it.src === 'string' ? it.src : ''}
+                      alt={it.alt}
+                      fill
+                      sizes="full"
+                      loading="eager"
+                      draggable={false}
+                      className="object-cover pointer-events-none backface-hidden"
+                      style={{
+                        filter: grayscale ? 'grayscale(1)' : 'none',
+                      }}
+                    />
+                  )}
                 </div>
               </div>
             ))}
