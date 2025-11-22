@@ -11,7 +11,7 @@ import { useTranslation } from '@/translations/useTranslation'
 import partnersData from '@/data/partnersData'
 import FixedLeftMenu from '@/components/ui/FixedLeftMenu.jsx'
 import TextStack from '@/components/ui/text/TextStack'
-import Logo from '@/components/ui/Logo'
+import Logo from '@/components/ui/logo'
 
 export default function HorizontalCards() {
   const { t } = useTranslation()

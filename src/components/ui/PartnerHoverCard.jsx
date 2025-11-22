@@ -4,7 +4,7 @@ import Image from 'next/image'
 import React, { forwardRef } from 'react'
 import { BgNoise, MovingBorders } from '@/data/mediaData/svgs'
 import TextStack from '@/components/ui/text/TextStack.jsx'
-import Logo from '@/components/ui/Logo'
+import Logo from '@/components/ui/logo'
 
 const PartnerHoverCard = forwardRef(({ partner, isVisible }, ref) => {
   const show = isVisible && partner
