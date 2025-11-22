@@ -10,7 +10,7 @@ import { ArtboardImgs } from '@/data/mediaData/artBoardImgs'
 import partnersData from '@/data/partnersData'
 import ShuffleText from '@/components/ui/text/ShuffleText.jsx'
 import MainBtn from '@/components/ui/buttons/MainBtn.jsx'
-import Logo from '@/components/ui/logo.jsx'
+import Logo from '@/components/ui/Logo.jsx'
 import BgVideo from '@/components/ui/BgVideo.jsx'
 
 const OurJourney = () => {
