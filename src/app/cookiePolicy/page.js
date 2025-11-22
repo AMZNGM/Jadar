@@ -10,7 +10,7 @@ import CookiesContent from '@/components/CookiesContent.jsx'
 export default function CookiePolicy() {
   const { t } = useTranslation()
   const bgVid = '/videos/homeHero.mp4'
-  const mobileImgsrc = ArtboardImgs[8]
+  const mobileImgsrc = ArtboardImgs[4]
 
   return (
     <main className="relative z-10">

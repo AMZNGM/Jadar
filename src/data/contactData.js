@@ -1,34 +1,34 @@
-import { Facebook, Instagram, Linkedin, Twitter, YouTube } from '@/data/mediaData/svgs.jsx'
+import { FacebookIcon, InstagramIcon, LinkedinIcon, TwitterIcon, YoutubeIcon } from 'lucide-react'
 
 export const getSocialLinks = (t) => [
   {
     name: t('instagram'),
     url: 'https://instagram.com/yourusername',
-    icon: Instagram,
+    icon: InstagramIcon,
     color: '#E4405F',
   },
   {
     name: t('linkedin'),
     url: 'https://linkedin.com/in/yourusername',
-    icon: Linkedin,
+    icon: LinkedinIcon,
     color: '#0A66C2',
   },
   {
     name: t('twitter'),
     url: 'https://twitter.com/yourusername',
-    icon: Twitter,
+    icon: TwitterIcon,
     color: '#1DA1F2',
   },
   {
     name: t('youtube'),
     url: 'https://youtube.com/c/yourchannel',
-    icon: YouTube,
+    icon: YoutubeIcon,
     color: '#FF0000',
   },
   {
     name: t('facebook'),
     url: 'https://facebook.com/yourusername',
-    icon: Facebook,
+    icon: FacebookIcon,
     color: '#1877F2',
   },
 ]
