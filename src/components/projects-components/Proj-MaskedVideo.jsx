@@ -1,31 +1,33 @@
-import { useRef } from "react";
-import { gsap } from "@/utils/gsapConfig";
-import { useGSAP } from "@gsap/react";
-import { projectImages } from "@/data/mediaData/projectMedia.js";
-import ParallaxElement from "@/components/ui/effects/ParallaxElement.jsx";
-import FloatingEffect from "@/components/ui/effects/FloatingEffect.jsx";
-import BgVideo from "@/components/ui/BgVideo.jsx";
-import Logo from "@/components/ui/logo.jsx";
+'use client'
 
-const ProjMaskedVideo = ({ maskedVid, maskedVidUrl, logoName, projectName }) => {
-  const containerRef = useRef(null);
-  const videoRef = useRef(null);
-  const logoRef = useRef(null);
-  const imagesContainerRef = useRef(null);
-  const projectImgs = projectImages[projectName]?.slice(0, 6) || [];
+import { useRef } from 'react'
+import { gsap } from '@/utils/gsapConfig'
+import { useGSAP } from '@gsap/react'
+import { projectImages } from '@/data/mediaData/projectMedia.js'
+import ParallaxElement from '@/components/ui/effects/ParallaxElement.jsx'
+import FloatingEffect from '@/components/ui/effects/FloatingEffect.jsx'
+import BgVideo from '@/components/ui/BgVideo.jsx'
+import Logo from '@/components/ui/logo.jsx'
+
+export default function ProjMaskedVideo({ maskedVid, maskedVidUrl, logoName, projectName }) {
+  const containerRef = useRef(null)
+  const videoRef = useRef(null)
+  const logoRef = useRef(null)
+  const imagesContainerRef = useRef(null)
+  const projectImgs = projectImages[projectName]?.slice(0, 6) || []
 
   useGSAP(() => {
-    if (!containerRef.current || !videoRef.current) return;
+    if (!containerRef.current || !videoRef.current) return
 
     const ctx = gsap.context(() => {
       const masterTL = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top top",
-          end: "bottom bottom",
+          start: 'top top',
+          end: 'bottom bottom',
           scrub: 0.5,
         },
-      });
+      })
 
       masterTL
         .fromTo(
@@ -39,20 +41,20 @@ const ProjMaskedVideo = ({ maskedVid, maskedVidUrl, logoName, projectName }) => 
             opacity: 0,
             scale: 5,
             rotate: 90,
-            ease: "power2.inOut",
+            ease: 'power2.inOut',
             duration: 1.5,
           },
-          "start"
+          'start'
         )
 
         .to(
           containerRef.current,
           {
-            backgroundColor: "#181818",
-            ease: "power2.inOut",
+            backgroundColor: '#181818',
+            ease: 'power2.inOut',
             duration: 0.8,
           },
-          "start+=0.2"
+          'start+=0.2'
         )
 
         .fromTo(
@@ -61,22 +63,22 @@ const ProjMaskedVideo = ({ maskedVid, maskedVidUrl, logoName, projectName }) => 
           {
             scale: 10,
             opacity: 1,
-            ease: "power2.out",
+            ease: 'power2.out',
             duration: 0.8,
           },
-          "start+=0.5"
+          'start+=0.5'
         )
 
         .to(
           logoRef.current,
           {
-            y: "-35vh",
+            y: '-35vh',
             scale: 3,
-            transformOrigin: "center center",
-            ease: "power2.inOut",
+            transformOrigin: 'center center',
+            ease: 'power2.inOut',
             duration: 1.6,
           },
-          "start+=1"
+          'start+=1'
         )
 
         .fromTo(
@@ -86,13 +88,13 @@ const ProjMaskedVideo = ({ maskedVid, maskedVidUrl, logoName, projectName }) => 
             opacity: 1,
             xPercent: 0,
             duration: 15.8,
-            ease: "power2.out",
+            ease: 'power2.out',
           },
-          "start+=0.5"
+          'start+=0.5'
         )
 
         .fromTo(
-          ".project-img",
+          '.project-img',
           { scale: 0.8, opacity: 0, y: 50 },
           {
             scale: 1,
@@ -100,17 +102,17 @@ const ProjMaskedVideo = ({ maskedVid, maskedVidUrl, logoName, projectName }) => 
             y: 0,
             duration: 0.6,
             stagger: 0.1,
-            ease: "back.out(1.7)",
+            ease: 'back.out(1.7)',
           },
-          "start+=1.4"
-        );
-    }, containerRef);
+          'start+=1.4'
+        )
+    }, containerRef)
 
     return () => {
       // Kill only triggers created within this context
-      ctx.revert();
-    };
-  }, []);
+      ctx.revert()
+    }
+  }, [])
 
   return (
     <section ref={containerRef} className="relative w-screen h-[1500vh] bg-text text-bg px-4 max-lg:hidden">
@@ -119,10 +121,7 @@ const ProjMaskedVideo = ({ maskedVid, maskedVidUrl, logoName, projectName }) => 
           <ParallaxElement speed={-0.5} direction="scale">
             <FloatingEffect intensity={1.5}>
               <div ref={videoRef} className="relative bg-bg will-change-transform">
-                <BgVideo
-                  src={maskedVid}
-                  className="relative size-full object-cover mix-blend-screen border-5 border-bg z-0"
-                />
+                <BgVideo src={maskedVid} className="relative size-full object-cover mix-blend-screen border-5 border-bg z-0" />
               </div>
             </FloatingEffect>
           </ParallaxElement>
@@ -134,7 +133,8 @@ const ProjMaskedVideo = ({ maskedVid, maskedVidUrl, logoName, projectName }) => 
 
             <div
               ref={imagesContainerRef}
-              className="absolute right-0 min-w-1500 flex items-center justify-center gap-16 will-change-transform">
+              className="absolute right-0 min-w-1500 flex items-center justify-center gap-16 will-change-transform"
+            >
               {projectImgs.map((img, index) => (
                 <div key={index} className="project-img size-[60%] overflow-hidden mt-50">
                   <img
@@ -150,7 +150,5 @@ const ProjMaskedVideo = ({ maskedVid, maskedVidUrl, logoName, projectName }) => 
         </div>
       </div>
     </section>
-  );
-};
-
-export default ProjMaskedVideo;
+  )
+}

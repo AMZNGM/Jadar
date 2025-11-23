@@ -4,7 +4,6 @@ import { useTranslation } from '@/translations/useTranslation'
 import { BgNoise } from '@/data/mediaData/svgs.jsx'
 import { projectsData } from '@/data/projectsData'
 import SectionHero from '@/components/hero-components/SectionHero.jsx'
-import MovingText from '@/components/ui/MovingText.jsx'
 import Breadcrumb from '@/components/ui/Breadcrumb.jsx'
 import { AbdullaMubarakHero, AbdullaMubarakHeadline } from '@/components/projects-components/Proj-TextContent.jsx'
 import { AbdullaMubarakGridImg } from '@/components/projects-components/Proj-Imgs.jsx'
@@ -32,17 +31,9 @@ export default function AbdullaMubarak() {
         />
       </div>
 
-      {/* <MovingText
-        projTitle={thisProject.title}
-        startScroll="top -50%"
-        endScroll="10% top"
-        startPosition={{ x: -650, y: 400 }}
-        movementDistance={{ x: 1300, y: -330 }}
-      /> */}
+      <Breadcrumb pages={thisProject.breadcrumb} />
 
-      {/* <Breadcrumb pages={thisProject.breadcrumb} /> */}
-
-      {/* <div className="relative z-30">
+      <div className="relative z-30">
         <AbdullaMubarakHero
           desc1={thisProject.desc1}
           desc2={thisProject.desc2}
@@ -56,16 +47,16 @@ export default function AbdullaMubarak() {
           location={thisProject.location}
           mainLine={thisProject.mainLine}
         />
-      </div> */}
+      </div>
 
       <div className="relative z-50">
-        {/* <ProjMaskedVideo
+        <ProjMaskedVideo
           maskedVid={thisProject.projVid}
           maskedVidUrl={thisProject.maskedVidUrl}
           logoName={thisProject.logoName}
           projectName={thisProject.name}
-        /> */}
-        {/* <BgNoise /> */}
+        />
+        <BgNoise />
 
         {/* <AbdullaMubarakHeadline headLine={thisProject.headLine} /> */}
         {/* <ProjPanner imgSrc={thisProject.pannerImg} logoName={thisProject.logoName} logoLink={thisProject.projectUrl} /> */}
