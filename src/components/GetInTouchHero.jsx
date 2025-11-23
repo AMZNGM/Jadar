@@ -134,7 +134,7 @@ export default function GetInTouchHero() {
   ]
 
   return (
-    <section className="relative w-screen h-screen overflow-hidden bg-bg text-text max-md:py-8">
+    <section className="relative w-screen min-h-screen bg-bg text-text max-md:py-8">
       <BgNoise />
 
       <div className="relative w-full h-screen flex max-md:flex-col justify-center items-center">

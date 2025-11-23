@@ -21,7 +21,11 @@ export default function SplitedText({
   const ref = useRef(null)
   const [isClient, setIsClient] = useState(false)
 
+  // MOBILE DETECTION
   const isMobile = typeof window !== 'undefined' && (window.innerWidth < 768 || window.matchMedia('(max-width: 767px)').matches)
+
+  // ARABIC DETECTION
+  const isArabic = /[\u0600-\u06FF]/.test(text)
 
   useEffect(() => {
     setIsClient(true)
@@ -30,19 +34,19 @@ export default function SplitedText({
   useGSAP(() => {
     if (!ref.current || !isClient) return
 
-    // ⛔ MOBILE MODE — No SplitText
-    if (isMobile) {
+    // === MOBILE OR ARABIC MODE ===
+    if (isMobile || isArabic) {
       gsap.fromTo(
         ref.current,
-        { opacity: 0, y: 140 },
+        { opacity: 0, y: 50 },
         {
           opacity: 1,
           y: 0,
-          duration: 1.5,
+          duration: 1.2,
           ease: 'power2.out',
           scrollTrigger: {
             trigger: ref.current,
-            start: 'top 85%',
+            start: 'top 90%',
             once: true,
           },
         }
@@ -50,7 +54,7 @@ export default function SplitedText({
       return
     }
 
-    // DESKTOP MODE — Full SplitText animation
+    // === DESKTOP ENGLISH MODE (SplitText) ===
     let split = new GSAPSplitText(ref.current, {
       type: splitType,
       linesClass: 'split-line',
@@ -75,10 +79,8 @@ export default function SplitedText({
       }
     )
 
-    return () => {
-      split.revert()
-    }
-  }, [text, isClient])
+    return () => split.revert()
+  }, [text, isClient, isArabic])
 
   const Tag = tag
 
