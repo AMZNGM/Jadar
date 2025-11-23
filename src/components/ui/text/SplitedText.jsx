@@ -38,15 +38,16 @@ export default function SplitedText({
     if (isMobile || isArabic) {
       gsap.fromTo(
         ref.current,
-        { opacity: 0, y: 50 },
+        { opacity: 0, y: 20, willChange: 'transform' },
         {
           opacity: 1,
           y: 0,
-          duration: 1.2,
+          duration: 1.1,
           ease: 'power2.out',
+          force3D: true,
           scrollTrigger: {
             trigger: ref.current,
-            start: 'top 90%',
+            start: 'top 92%', // slightly later → smoother
             once: true,
           },
         }
