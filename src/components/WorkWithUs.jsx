@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { useTranslation } from '@/translations/useTranslation'
-import { ArrowLeftIcon } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { BgNoise } from '@/data/mediaData/svgs'
 import { ArtboardImgs } from '@/data/mediaData/artBoardImgs'
 import SplitedText from '@/components/ui/text/SplitedText.jsx'
@@ -8,7 +8,7 @@ import ShuffleText from '@/components/ui/text/ShuffleText.jsx'
 import ScrollText from '@/components/ui/text/ScrollText.jsx'
 import MainBtn from '@/components/ui/buttons/MainBtn.jsx'
 
-const WorkWithUs = () => {
+export default function WorkWithUs() {
   const { t } = useTranslation()
   const cardImg = ArtboardImgs[18]
 
@@ -48,7 +48,7 @@ const WorkWithUs = () => {
             <MainBtn
               text={t('knowMore')}
               to={'/jadarInvestmentOffice'}
-              icon={ArrowLeftIcon}
+              icon={ArrowRight}
               look="ghost"
               className="px-0! bg-transparent! text-text"
             />
@@ -60,5 +60,3 @@ const WorkWithUs = () => {
     </section>
   )
 }
-
-export default WorkWithUs

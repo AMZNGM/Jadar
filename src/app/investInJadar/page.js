@@ -42,7 +42,7 @@ export default function InvestInJadar() {
       <div className="relative z-20">
         <SectionHeader title={t(`openForBusiness`)} para={t(`openForBusinessPara`)} />
         <OurProposition />
-        {/* <WorkWithUs /> */}
+        <WorkWithUs />
         {/* <Map /> */}
         {/* <FeaturedNews /> */}
       </div>
