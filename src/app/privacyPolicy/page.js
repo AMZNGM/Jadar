@@ -27,9 +27,7 @@ export default function PrivacyPolicy() {
       <Breadcrumb
         pages={[
           { label: t(`home`), path: '/', isActive: false },
-          { label: t(`privacyPolicy`), path: '/privacyPolicy', isActive: false },
-          { label: t(`termsOfUse`), path: '/termsOfUse', isActive: false },
-          { label: t(`cookiePolicy`), path: '/cookiePolicy', isActive: true },
+          { label: t(`privacyPolicy`), path: '/privacyPolicy', isActive: true },
         ]}
       />
 
