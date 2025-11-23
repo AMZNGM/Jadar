@@ -67,7 +67,7 @@ export default function ReportsCards() {
                 <MovingBorders />
                 <div className="absolute inset-0 z-20 pointer-events-none bg-black/50" style={{ opacity: 'var(--after-Opacity)' }} />
 
-                <Image src={report.image} alt="Image" fill className="object-cover" />
+                <Image src={report.image} alt="Image" fill loading="eager" className="object-cover" />
 
                 <BgNoise />
 
