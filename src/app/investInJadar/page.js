@@ -14,14 +14,14 @@ import FeaturedNews from '@/components/FeaturedNews.jsx'
 export default function InvestInJadar() {
   const { t } = useTranslation()
   const bgVid = '/videos/homeHero.mp4'
-  const mobileImgsrc = ArtboardImgs[8]
+  const mobileImgsrc = ArtboardImgs[13]
 
   return (
     <main className="relative z-10">
       <div className="sticky top-0 z-20 bg-bg">
         <BgNoise />
         <SectionHero
-          title={t('aboutJadar')}
+          title={t('investInJadar')}
           bgVidSrc={bgVid}
           mobileImgsrc={mobileImgsrc}
           videoUrl="https://www.youtube.com/embed/jw58xh03aB8?si=bR-9cJ48s8iebkgE"
@@ -41,7 +41,7 @@ export default function InvestInJadar() {
 
       <div className="relative z-20">
         <SectionHeader title={t(`openForBusiness`)} para={t(`openForBusinessPara`)} />
-        {/* <OurProposition /> */}
+        <OurProposition />
         {/* <WorkWithUs /> */}
         {/* <Map /> */}
         {/* <FeaturedNews /> */}

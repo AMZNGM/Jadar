@@ -1,10 +1,10 @@
-import { BgNoise } from "@/data/mediaData/svgs";
-import { useTranslation } from "@/translations/useTranslation";
-import ShinyText from "@/components/ui/text/ShinyText.jsx";
-import SplitedText from "@/components/ui/text/SplitedText.jsx";
+import { BgNoise } from '@/data/mediaData/svgs'
+import { useTranslation } from '@/translations/useTranslation'
+import SplitedText from '@/components/ui/text/SplitedText.jsx'
+import ShinyText from '@/components/ui/text/ShinyText.jsx'
 
-const OurProposition = () => {
-  const { t } = useTranslation();
+export default function OurProposition() {
+  const { t } = useTranslation()
 
   const cards = [
     {
@@ -18,22 +18,18 @@ const OurProposition = () => {
           />
         </svg>
       ),
-      title: t("card1title"),
-      para: t("card1desc"),
+      title: t('card1title'),
+      para: t('card1desc'),
     },
     {
       id: 2,
       icon: (
         <svg fill="none" viewBox="0 0 24 24" strokeWidth={0.5} stroke="currentColor" className="size-12 text-main">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z"
-          />
+          <path strokeLinecap="round" strokeLinejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
         </svg>
       ),
-      title: t("card2title"),
-      para: t("card2desc"),
+      title: t('card2title'),
+      para: t('card2desc'),
     },
     {
       id: 3,
@@ -46,8 +42,8 @@ const OurProposition = () => {
           />
         </svg>
       ),
-      title: t("card3title"),
-      para: t("card3desc"),
+      title: t('card3title'),
+      para: t('card3desc'),
     },
     {
       id: 4,
@@ -60,17 +56,17 @@ const OurProposition = () => {
           />
         </svg>
       ),
-      title: t("card4title"),
-      para: t("card4desc"),
+      title: t('card4title'),
+      para: t('card4desc'),
     },
-  ];
+  ]
 
   return (
     <section dir="ltr" className="relative w-screen overflow-hidden bg-bg text-text pt-12 pb- 32 px-4">
       <BgNoise />
 
       <SplitedText
-        text={t("ourProposition")}
+        text={t('ourProposition')}
         delay={50}
         tag="h3"
         className="text-main text-5xl max-md:text-4xl font-light uppercase -mb-6 -rotate-15"
@@ -80,7 +76,8 @@ const OurProposition = () => {
         {cards.map((card) => (
           <div
             key={card.id}
-            className="relative flex flex-col justify-between items-center gap-4 w-full text-center font-light border border-main/30 py-12 px-4 z-10">
+            className="relative flex flex-col justify-between items-center gap-4 w-full text-center font-light border border-main/30 py-12 px-4 z-10"
+          >
             {card.icon}
 
             <ShinyText text={card.title} speed={8} className="text-2xl" />
@@ -90,7 +87,5 @@ const OurProposition = () => {
         ))}
       </div>
     </section>
-  );
-};
-
-export default OurProposition;
+  )
+}
