@@ -36,17 +36,17 @@ import LevelsTowerImg5 from '../../../public/images/LevelsTower/LevelsTower 5.we
 import LevelsTowerImg6 from '../../../public/images/LevelsTower/LevelsTower 6.webp'
 import LevelsTowerImg7 from '../../../public/images/LevelsTower/LevelsTower 7.webp'
 
-const AlMutlaaVid1 = '../../../public/videos/AbdullaMubarak 1.webm'
-const AbdullaMubarakVid1 = '../../../public/videos/AbdullaMubarak 1.webm'
+const AbdullaMubarakVidHero = '/videos/AbdullaMubarakHero.mp4'
+const AbdullaMubarakVid = '/videos/AbdullaMubarak.mp4'
 
-const AlMutlaaVidHero = '../../../public/videos/AbdullaMubarakHero.webm'
-const AbdullaMubarakVidHero = '../../../public/videos/AbdullaMubarakHero.webm'
+const eastSabahVidHero = '/videos/EastSabahHero.mp4'
+const eastSabahVid = '/videos/EastSabah.mp4'
 
-const eastSabahVid1 = '../../../public/videos/EastSabah 1.webm'
-const eastSabahVidHero = '../../../public/videos/EastSabahHero.webm'
+const AlMutlaaVidHero = '/videos/AbdullaMubarak.mp4'
+const AlMutlaaVid = '/videos/AbdullaMubarak.mp4'
 
-const LevelsTowerVid1 = '../../../public/videos/LevelsTower1.webm'
-const LevelsTowerVidHero = '../../../public/videos/LevelsTowerHero.webm'
+const LevelsTowerVidHero = '/videos/LevelsTowerHero.mp4'
+const LevelsTowerVid = '/videos/LevelsTower.mp4'
 
 export const AbdullaMubarakImgs = [
   AbdullaMubarakImg1,
@@ -57,7 +57,7 @@ export const AbdullaMubarakImgs = [
   AbdullaMubarakImg6,
   AbdullaMubarakImg7,
 ]
-export const AbdullaMubarakVids = [AbdullaMubarakVidHero, AbdullaMubarakVid1]
+export const AbdullaMubarakVids = [AbdullaMubarakVidHero, AbdullaMubarakVid]
 
 export const EastSabahImgs = [
   eastSabahImg1,
@@ -73,10 +73,10 @@ export const EastSabahImgs = [
   eastSabahImg11,
   eastSabahImg12,
 ]
-export const EastSabahVids = [eastSabahVidHero, eastSabahVid1]
+export const EastSabahVids = [eastSabahVidHero, eastSabahVid]
 
 export const AlMutlaaImgs = [AlMutlaaImg1, AlMutlaaImg2, AlMutlaaImg3, AlMutlaaImg4, AlMutlaaImg5, AlMutlaaImg6, AlMutlaaImg7, AlMutlaaImg8]
-export const AlMutlaaVids = [AlMutlaaVidHero, AlMutlaaVid1]
+export const AlMutlaaVids = [AlMutlaaVidHero, AlMutlaaVid]
 
 export const LevelsTowerImgs = [
   LevelsTowerImg1,
@@ -87,7 +87,7 @@ export const LevelsTowerImgs = [
   LevelsTowerImg6,
   LevelsTowerImg7,
 ]
-export const LevelsTowerVids = [LevelsTowerVidHero, LevelsTowerVid1]
+export const LevelsTowerVids = [LevelsTowerVidHero, LevelsTowerVid]
 
 export const projectImages = {
   abdullaMubarak: AbdullaMubarakImgs,
