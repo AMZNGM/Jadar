@@ -7,5 +7,5 @@ export default function ArticlePage() {
   const params = useParams()
   const articleId = parseInt(params.id, 10)
 
-  return <SingleArticle articleId={articleId} />
+  return <SingleArticle articleId={articleId} preloadedImage={null} />
 }

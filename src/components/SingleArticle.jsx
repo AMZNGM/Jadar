@@ -9,15 +9,25 @@ import { useTranslation } from '@/translations/useTranslation'
 import articlesData from '@/data/articlesData'
 import ShuffleText from '@/components/ui/text/ShuffleText'
 import MainBtn from '@/components/ui/buttons/MainBtn.jsx'
+import { ArtboardImgs } from '@/data/mediaData/artBoardImgs.js'
 
 export default function SingleArticle({ articleId }) {
   const { t } = useTranslation()
-  const currentIndex = articlesData.findIndex((a) => a.id === articleId)
-  const prevArticle = currentIndex > 0 ? articlesData[currentIndex - 1] : null
-  const nextArticle = currentIndex < articlesData.length - 1 ? articlesData[currentIndex + 1] : null
+
   const article = useMemo(() => {
     return articlesData.find((a) => a.id === articleId)
   }, [articleId])
+
+  const currentIndex = articlesData.findIndex((a) => a.id === articleId)
+  const prevArticle = currentIndex > 0 ? articlesData[currentIndex - 1] : null
+  const nextArticle = currentIndex < articlesData.length - 1 ? articlesData[currentIndex + 1] : null
+
+  // Deterministic image based on article ID to prevent hydration mismatch
+  const articleImage = useMemo(() => {
+    const index = (articleId - 1) % ArtboardImgs.length
+    return ArtboardImgs[index]
+  }, [articleId])
+
   const handleShare = () => {
     if (navigator.share) {
       navigator.share({
@@ -70,10 +80,10 @@ export default function SingleArticle({ articleId }) {
         <p className="text-lg text-text/70">{article.description}</p>
       </header>
 
-      {article.image && (
+      {articleImage && (
         <div className="relative w-full h-96 max-sm:h-64 mb-12 overflow-hidden">
           <Image
-            src={article.image}
+            src={articleImage}
             alt={article.title}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 60vw"
