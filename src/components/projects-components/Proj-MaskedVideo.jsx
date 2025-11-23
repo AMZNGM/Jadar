@@ -16,103 +16,99 @@ export default function ProjMaskedVideo({ maskedVid, maskedVidUrl, logoName, pro
   const imagesContainerRef = useRef(null)
   const projectImgs = projectImages[projectName]?.slice(0, 6) || []
 
-  useGSAP(() => {
-    if (!containerRef.current || !videoRef.current) return
+  useGSAP(
+    () => {
+      if (!containerRef.current || !videoRef.current) return
 
-    const ctx = gsap.context(() => {
-      const masterTL = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top top',
-          end: 'bottom bottom',
-          scrub: 0.5,
-        },
-      })
-
-      masterTL
-        .fromTo(
-          videoRef.current,
-          {
-            opacity: 1,
-            scale: 0.6,
-            rotate: 0,
+      const ctx = gsap.context(() => {
+        const masterTL = gsap.timeline({
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top top',
+            end: 'bottom bottom',
+            scrub: 0.5,
           },
-          {
-            opacity: 0,
-            scale: 5,
-            rotate: 90,
-            ease: 'power2.inOut',
-            duration: 1.5,
-          },
-          'start'
-        )
+        })
 
-        .to(
-          containerRef.current,
-          {
-            backgroundColor: '#181818',
-            ease: 'power2.inOut',
-            duration: 0.8,
-          },
-          'start+=0.2'
-        )
+        masterTL
+          .fromTo(
+            videoRef.current,
+            { opacity: 1, scale: 0.6, rotate: 0 },
+            {
+              opacity: 0,
+              scale: 5,
+              rotate: 90,
+              ease: 'power2.inOut',
+              duration: 1.5,
+            },
+            'start'
+          )
 
-        .fromTo(
-          logoRef.current,
-          { scale: 0.5, opacity: 0 },
-          {
-            scale: 10,
-            opacity: 1,
-            ease: 'power2.out',
-            duration: 0.8,
-          },
-          'start+=0.5'
-        )
+          .to(
+            containerRef.current,
+            {
+              backgroundColor: '#181818',
+              ease: 'power2.inOut',
+              duration: 0.8,
+            },
+            'start+=0.2'
+          )
 
-        .to(
-          logoRef.current,
-          {
-            y: '-35vh',
-            scale: 3,
-            transformOrigin: 'center center',
-            ease: 'power2.inOut',
-            duration: 1.6,
-          },
-          'start+=1'
-        )
+          .fromTo(
+            logoRef.current,
+            { scale: 0.5, opacity: 0 },
+            {
+              scale: 10,
+              opacity: 1,
+              ease: 'power2.out',
+              duration: 0.8,
+            },
+            'start+=0.5'
+          )
 
-        .fromTo(
-          imagesContainerRef.current,
-          { opacity: 0, xPercent: 140 },
-          {
-            opacity: 1,
-            xPercent: 0,
-            duration: 15.8,
-            ease: 'power2.out',
-          },
-          'start+=0.5'
-        )
+          .to(
+            logoRef.current,
+            {
+              y: '-35vh',
+              scale: 3,
+              transformOrigin: 'center center',
+              ease: 'power2.inOut',
+              duration: 1.6,
+            },
+            'start+=1'
+          )
 
-        .fromTo(
-          '.project-img',
-          { scale: 0.8, opacity: 0, y: 50 },
-          {
-            scale: 1,
-            opacity: 1,
-            y: 0,
-            duration: 0.6,
-            stagger: 0.1,
-            ease: 'back.out(1.7)',
-          },
-          'start+=1.4'
-        )
-    }, containerRef)
+          .fromTo(
+            imagesContainerRef.current,
+            { opacity: 0, xPercent: 140 },
+            {
+              opacity: 1,
+              xPercent: 0,
+              duration: 15.8,
+              ease: 'power2.out',
+            },
+            'start+=0.5'
+          )
 
-    return () => {
-      // Kill only triggers created within this context
-      ctx.revert()
-    }
-  }, [])
+          .fromTo(
+            '.project-img',
+            { scale: 0.8, opacity: 0, y: 50 },
+            {
+              scale: 1,
+              opacity: 1,
+              y: 0,
+              duration: 0.6,
+              stagger: 0.1,
+              ease: 'back.out(1.7)',
+            },
+            'start+=1.4'
+          )
+      }, containerRef)
+
+      return () => ctx.revert()
+    },
+    { dependencies: [] }
+  )
 
   return (
     <section ref={containerRef} className="relative w-screen h-[1500vh] bg-text text-bg px-4 max-lg:hidden">
@@ -128,7 +124,7 @@ export default function ProjMaskedVideo({ maskedVid, maskedVidUrl, logoName, pro
 
           <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
             <div ref={logoRef} className="relative z-20 will-change-transform">
-              <Logo logoName={logoName} to={maskedVidUrl} />
+              <Logo logoName={logoName} to={maskedVidUrl} width={500} className="h-6" />
             </div>
 
             <div

@@ -2,8 +2,9 @@
 
 import Image from 'next/image'
 import { forwardRef } from 'react'
+import { ArtboardImgs } from '@/data/mediaData/artBoardImgs'
 
-const BgVideo = forwardRef(({ src, mobileImgsrc, className = '', forceVideo = false }, ref) => {
+const BgVideo = forwardRef(({ src, mobileImgsrc = ArtboardImgs[0], className = '', forceVideo = false }, ref) => {
   return (
     <>
       {!forceVideo && (

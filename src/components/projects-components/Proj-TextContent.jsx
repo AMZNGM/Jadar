@@ -1,34 +1,24 @@
-import { useRef } from "react";
-import { gsap, ScrollTrigger } from "@/utils/gsapConfig";
-import { useGSAP } from "@gsap/react";
-import { projectImages } from "@/data/mediaData/projectMedia.js";
-import { HoverGallery } from "@/components/ui/HoverGallery.jsx";
-import { useTranslation } from "@/translations/useTranslation.js";
-import { BgNoise } from "@/data/mediaData/svgs.jsx";
-import ParallaxElement from "@/components/ui/effects/ParallaxElement.jsx";
-import ShuffleText from "@/components/ui/text/ShuffleText.jsx";
+'use client'
 
-export const AbdullaMubarakHero = ({
-  desc1,
-  desc2,
-  desc3,
-  desc4,
-  value,
-  startDate,
-  endDate,
-  status,
-  category,
-  location,
-  mainLine,
-}) => {
-  const { t } = useTranslation();
-  const containerRef = useRef(null);
+import { useRef } from 'react'
+import { gsap, ScrollTrigger } from '@/utils/gsapConfig'
+import { useGSAP } from '@gsap/react'
+import { projectImages } from '@/data/mediaData/projectMedia.js'
+import { HoverGallery } from '@/components/ui/HoverGallery.jsx'
+import { useTranslation } from '@/translations/useTranslation.js'
+import { BgNoise } from '@/data/mediaData/svgs.jsx'
+import ParallaxElement from '@/components/ui/effects/ParallaxElement.jsx'
+import ShuffleText from '@/components/ui/text/ShuffleText.jsx'
+
+export const AbdullaMubarakHero = ({ desc1, desc2, desc3, desc4, value, startDate, endDate, status, category, location, mainLine }) => {
+  const { t } = useTranslation()
+  const containerRef = useRef(null)
 
   useGSAP(
     () => {
-      if (window.innerWidth <= 768) return;
+      if (window.innerWidth <= 768) return
 
-      ScrollTrigger.batch(".reveal-text", {
+      ScrollTrigger.batch('.reveal-text', {
         onEnter: (batch) =>
           gsap.fromTo(
             batch,
@@ -37,15 +27,15 @@ export const AbdullaMubarakHero = ({
               opacity: 1,
               y: 0,
               duration: 1,
-              ease: "power3.out",
+              ease: 'power3.out',
               stagger: 0.15,
             }
           ),
-        start: "top 95%",
-        toggleActions: "play none none reverse",
-      });
+        start: 'top 95%',
+        toggleActions: 'play none none reverse',
+      })
 
-      ScrollTrigger.batch(".reveal-section", {
+      ScrollTrigger.batch('.reveal-section', {
         onEnter: (batch) =>
           gsap.fromTo(
             batch,
@@ -54,18 +44,18 @@ export const AbdullaMubarakHero = ({
               opacity: 1,
               y: 0,
               duration: 1.2,
-              ease: "power2.out",
+              ease: 'power2.out',
               stagger: 0.2,
             }
           ),
-        start: "top 95%",
-        toggleActions: "play none none reverse",
-      });
+        start: 'top 95%',
+        toggleActions: 'play none none reverse',
+      })
 
-      return () => ScrollTrigger.getAll().forEach((st) => st.kill());
+      return () => ScrollTrigger.getAll().forEach((st) => st.kill())
     },
     { scope: containerRef }
-  );
+  )
 
   return (
     <section ref={containerRef} className="relative w-screen overflow-hidden bg-text text-bg px-4">
@@ -83,7 +73,7 @@ export const AbdullaMubarakHero = ({
       <div className="reveal-section grid grid-cols-3 overflow-hidden gap-y-4 pt-3">
         <div className="col-span-1 col-start-2 max-md:col-span-3 max-md:col-start-1 border-x border-bgb p-3 pb-24 space-y-2">
           <span className="text-bg/30 text-sm block">01</span>
-          <ShuffleText text={t("development")} tag="h3" className="reveal-text text-2xl" />
+          <ShuffleText text={t('development')} tag="h3" className="reveal-text text-2xl" />
           <p dangerouslySetInnerHTML={{ __html: desc1 }} className="reveal-text text-bg/50" />
         </div>
       </div>
@@ -94,7 +84,7 @@ export const AbdullaMubarakHero = ({
 
         <div className="col-span-1 col-start-1 max-md:col-span-3 max-md:col-start-1 max-md:border-y border-bgb space-y-2 pe-4 max-md:py-4">
           <span className="text-bg/30 text-sm block">02</span>
-          <ShuffleText text={t("innovation")} tag="h3" className="reveal-text text-2xl" />
+          <ShuffleText text={t('innovation')} tag="h3" className="reveal-text text-2xl" />
           <p dangerouslySetInnerHTML={{ __html: desc2 }} className="reveal-text text-bg/50" />
         </div>
 
@@ -123,7 +113,7 @@ export const AbdullaMubarakHero = ({
 
         <div className="col-span-1 col-start-3 max-md:col-span-3 max-md:col-start-1 border-s max-md:border-s-0 max-md:border-y border-bgb space-y-2 md:ps-4 max-md:py-4">
           <span className="text-bg/30 text-sm block">04</span>
-          <ShuffleText text={t("communityCentric")} tag="h3" className="reveal-text text-2xl" />
+          <ShuffleText text={t('communityCentric')} tag="h3" className="reveal-text text-2xl" />
           <p dangerouslySetInnerHTML={{ __html: desc3 }} className="reveal-text text-bg/50" />
         </div>
 
@@ -134,13 +124,13 @@ export const AbdullaMubarakHero = ({
       <div className="reveal-section grid grid-cols-3 overflow-hidden gap-y-4 py-3">
         <div className="col-span-1 col-start-2 max-md:col-span-3 max-md:col-start-1 border-x max-md:border-b border-bgb p-3 pb-24 max-md:pb-12 space-y-2">
           <span className="text-bg/30 text-sm block">05</span>
-          <ShuffleText text={t("futureReady")} tag="h3" className="reveal-text text-2xl" />
+          <ShuffleText text={t('futureReady')} tag="h3" className="reveal-text text-2xl" />
           <p dangerouslySetInnerHTML={{ __html: desc4 }} className="reveal-text text-bg/50" />
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
 export const AbdullaMubarakHeadline = ({ headLine }) => {
   return (
@@ -151,26 +141,21 @@ export const AbdullaMubarakHeadline = ({ headLine }) => {
         <ParallaxElement
           speed={0.8}
           direction="scale"
-          mdSpeed={0.5}
-          mdDirection={"horizontal"}
-          smSpeed={0.1}
-          smDirection={"horizontal"}
           ease="power2.out"
-          className="col-span-4 max-md:col-span-6 col-start-3 flex justify-start items-center border-s border-main/50
+          className={`col-span-4 max-md:col-span-6 col-start-3 flex justify-start items-center border-s border-main/50
           px-8 py-32 max-lg:px-2 max-md:px-4 max-md:py-12
-          ms-60 2xl:ms-80 max-xl:ms-20 max-lg:-ms-10 max-md:ms-52 max-sm:ms-7">
-          <p
-            dangerouslySetInnerHTML={{ __html: headLine }}
-            className="text-5xl font-extralight tracking-wide max-w-md uppercase"
-          />
+          ms-60 2xl:ms-80 max-xl:ms-20 max-lg:-ms-10 max-md:ms-52 max-sm:ms-7`}
+        >
+          <p dangerouslySetInnerHTML={{ __html: headLine }} className="text-5xl font-extralight tracking-wide max-w-md uppercase" />
         </ParallaxElement>
 
         <ParallaxElement
           speed={0.45}
           direction="horizontal"
           ease="power2.out"
-          className="leading-5 uppercase pointer-events-none select-none text-[15vw] text-main/10
-          absolute left-400 2xl:left-500 max-sm:left-90 max-md:left-150 max-lg:left-220 max-xl:left-300">
+          className={`leading-5 uppercase pointer-events-none select-none text-[15vw] text-main/10
+          absolute left-400 2xl:left-500 max-sm:left-90 max-md:left-150 max-lg:left-220 max-xl:left-300`}
+        >
           Shaping Life Shaping Life Shaping Life Shaping Life
           <br />
           Shaping Life Shaping Life Shaping Life Shaping Life
@@ -179,27 +164,16 @@ export const AbdullaMubarakHeadline = ({ headLine }) => {
         </ParallaxElement>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export const EastSabahHero = ({
-  desc1,
-  desc2,
-  desc3,
-  value,
-  startDate,
-  endDate,
-  status,
-  category,
-  location,
-  mainLine,
-}) => {
-  const { t } = useTranslation();
-  const containerRef = useRef(null);
+export const EastSabahHero = ({ desc1, desc2, desc3, value, startDate, endDate, status, category, location, mainLine }) => {
+  const { t } = useTranslation()
+  const containerRef = useRef(null)
 
   useGSAP(
     () => {
-      ScrollTrigger.batch(".reveal-text", {
+      ScrollTrigger.batch('.reveal-text', {
         onEnter: (batch) =>
           gsap.fromTo(
             batch,
@@ -208,15 +182,15 @@ export const EastSabahHero = ({
               opacity: 1,
               y: 0,
               duration: 1,
-              ease: "power3.out",
+              ease: 'power3.out',
               stagger: 0.15,
             }
           ),
-        start: "top 95%",
-        toggleActions: "play none none reverse",
-      });
+        start: 'top 95%',
+        toggleActions: 'play none none reverse',
+      })
 
-      ScrollTrigger.batch(".reveal-img", {
+      ScrollTrigger.batch('.reveal-img', {
         onEnter: (batch) =>
           gsap.fromTo(
             batch,
@@ -225,15 +199,15 @@ export const EastSabahHero = ({
               opacity: 1,
               y: 0,
               duration: 1,
-              ease: "power3.out",
+              ease: 'power3.out',
               stagger: 0.15,
             }
           ),
-        start: "top 95%",
-        toggleActions: "play none none reverse",
-      });
+        start: 'top 95%',
+        toggleActions: 'play none none reverse',
+      })
 
-      ScrollTrigger.batch(".reveal-section", {
+      ScrollTrigger.batch('.reveal-section', {
         onEnter: (batch) =>
           gsap.fromTo(
             batch,
@@ -242,18 +216,18 @@ export const EastSabahHero = ({
               opacity: 1,
               y: 0,
               duration: 1.2,
-              ease: "power2.out",
+              ease: 'power2.out',
               stagger: 0.2,
             }
           ),
-        start: "top 95%",
-        toggleActions: "play none none reverse",
-      });
+        start: 'top 95%',
+        toggleActions: 'play none none reverse',
+      })
 
-      return () => ScrollTrigger.getAll().forEach((st) => st.kill());
+      return () => ScrollTrigger.getAll().forEach((st) => st.kill())
     },
     { scope: containerRef }
-  );
+  )
 
   return (
     <section ref={containerRef} className="relative w-screen bg-text text-bg px-4">
@@ -275,7 +249,7 @@ export const EastSabahHero = ({
       <div className="reveal-section grid grid-cols-6 gap-4 border-b border-bgb py-3">
         <div className="col-span-4 max-md:col-span-6 col-start-1 flex flex-col justify-between border-e max-md:border-e-0 max-md:border-b border-bgb overflow-hidden py-8 pe-2">
           <ShuffleText
-            text={t("theEssentials")}
+            text={t('theEssentials')}
             className="reveal-text text-7xl max-lg:text-6xl max-sm:text-5xl font-extralight tracking-wide mb-32 max-md:mb-18 rtl:text-right"
           />
 
@@ -285,10 +259,7 @@ export const EastSabahHero = ({
           />
 
           <ParallaxElement speed={1} className="flex justify-end pe-4">
-            <p
-              dangerouslySetInnerHTML={{ __html: desc3 }}
-              className="reveal-text text-sm font-light tracking-wider leading-6 max-w-sm"
-            />
+            <p dangerouslySetInnerHTML={{ __html: desc3 }} className="reveal-text text-sm font-light tracking-wider leading-6 max-w-sm" />
           </ParallaxElement>
         </div>
 
@@ -325,14 +296,15 @@ export const EastSabahHero = ({
             opacity={1}
             disableSm
             disableMd
-            className="md:absolute top-100 size-full">
-            <HoverGallery images={projectImages.eastSabah.slice(0, 12)} className={"md:h-1/3"} />
+            className="md:absolute top-100 size-full"
+          >
+            <HoverGallery images={projectImages.eastSabah.slice(0, 12)} className={'md:h-1/3'} />
           </ParallaxElement>
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
 export const EastSabahHeadline = ({ headLine }) => {
   return (
@@ -341,17 +313,15 @@ export const EastSabahHeadline = ({ headLine }) => {
 
       <div className="grid grid-cols-6 border-b border-bgb py-3">
         <div className="col-span-4 max-md:col-span-6 col-start-3 border-s border-bgb px-8 py-32 max-md:py-12">
-          <p
-            dangerouslySetInnerHTML={{ __html: headLine }}
-            className="text-5xl font-extralight tracking-wide max-w-md uppercase"
-          />
+          <p dangerouslySetInnerHTML={{ __html: headLine }} className="text-5xl font-extralight tracking-wide max-w-md uppercase" />
 
           <ParallaxElement
             speed={-0.9}
             smSpeed={1}
             ease="power2.out"
             className="text-[15vw] text-main/10 leading-5 uppercase pointer-events-none select-none text-nowrap
-            absolute left-0 bottom-0">
+            absolute left-0 bottom-0"
+          >
             {Array.from({ length: 12 }).map((_, idx) => (
               <span key={idx}>
                 East Sabah East Sabah East Sabah East Sabah
@@ -366,16 +336,16 @@ export const EastSabahHeadline = ({ headLine }) => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
 export const AlMutlaaHero = ({ desc1, desc2, desc3, desc4, value, startDate, endDate, mainLine, images }) => {
-  const { t } = useTranslation();
-  const containerRef = useRef(null);
+  const { t } = useTranslation()
+  const containerRef = useRef(null)
 
   useGSAP(
     () => {
-      ScrollTrigger.batch(".reveal-text", {
+      ScrollTrigger.batch('.reveal-text', {
         onEnter: (batch) =>
           gsap.fromTo(
             batch,
@@ -384,15 +354,15 @@ export const AlMutlaaHero = ({ desc1, desc2, desc3, desc4, value, startDate, end
               opacity: 1,
               y: 0,
               duration: 1,
-              ease: "power3.out",
+              ease: 'power3.out',
               stagger: 0.15,
             }
           ),
-        start: "top 95%",
-        toggleActions: "play none none reverse",
-      });
+        start: 'top 95%',
+        toggleActions: 'play none none reverse',
+      })
 
-      ScrollTrigger.batch(".reveal-img", {
+      ScrollTrigger.batch('.reveal-img', {
         onEnter: (batch) =>
           gsap.fromTo(
             batch,
@@ -401,15 +371,15 @@ export const AlMutlaaHero = ({ desc1, desc2, desc3, desc4, value, startDate, end
               opacity: 1,
               y: 0,
               duration: 1,
-              ease: "power3.out",
+              ease: 'power3.out',
               stagger: 0.15,
             }
           ),
-        start: "top 95%",
-        toggleActions: "play none none reverse",
-      });
+        start: 'top 95%',
+        toggleActions: 'play none none reverse',
+      })
 
-      ScrollTrigger.batch(".reveal-section", {
+      ScrollTrigger.batch('.reveal-section', {
         onEnter: (batch) =>
           gsap.fromTo(
             batch,
@@ -418,18 +388,18 @@ export const AlMutlaaHero = ({ desc1, desc2, desc3, desc4, value, startDate, end
               opacity: 1,
               y: 0,
               duration: 1.2,
-              ease: "power2.out",
+              ease: 'power2.out',
               stagger: 0.2,
             }
           ),
-        start: "top 95%",
-        toggleActions: "play none none reverse",
-      });
+        start: 'top 95%',
+        toggleActions: 'play none none reverse',
+      })
 
-      return () => ScrollTrigger.getAll().forEach((st) => st.kill());
+      return () => ScrollTrigger.getAll().forEach((st) => st.kill())
     },
     { scope: containerRef }
-  );
+  )
 
   return (
     <section ref={containerRef} className="relative w-screen bg-text text-bg px-4">
@@ -443,13 +413,12 @@ export const AlMutlaaHero = ({ desc1, desc2, desc3, desc4, value, startDate, end
           </ParallaxElement>
           <ParallaxElement
             speed={0.1}
-            className="w-full flex max-lg:flex-col justify-between items-start overflow-hidden mb-4 md:mt-24 md:pe-4">
+            className="w-full flex max-lg:flex-col justify-between items-start overflow-hidden mb-4 md:mt-24 md:pe-4"
+          >
             <ParallaxElement speed={0.3} direction="scale" origin="right bottom">
               <img src={images[2]} alt="Image" loading="lazy" className="size-full object-cover overflow-hidden" />
             </ParallaxElement>
-            <p className="reveal-text text-sm font-extralight tracking-wide max-w-sm lg:px-4 max-lg:mt-4 max-md:mt-8">
-              {desc1}
-            </p>
+            <p className="reveal-text text-sm font-extralight tracking-wide max-w-sm lg:px-4 max-lg:mt-4 max-md:mt-8">{desc1}</p>
           </ParallaxElement>
         </div>
 
@@ -457,34 +426,23 @@ export const AlMutlaaHero = ({ desc1, desc2, desc3, desc4, value, startDate, end
           speed={-0.25}
           disableMd
           disableSm
-          className="col-span-2 col-start-5 max-md:col-span-6 max-sm:col-start-1 px-4 my-36 max-md:p-0 max-md:my-8 space-y-8">
+          className="col-span-2 col-start-5 max-md:col-span-6 max-sm:col-start-1 px-4 my-36 max-md:p-0 max-md:my-8 space-y-8"
+        >
           <div className="space-y-1">
             <span className="text-sm text-bg/50 font-light block">01.</span>
-            <ShuffleText
-              text={t("nationBuilding")}
-              tag="h3"
-              className="reveal-text text-2xl font-light tracking-wide max-w-md"
-            />
+            <ShuffleText text={t('nationBuilding')} tag="h3" className="reveal-text text-2xl font-light tracking-wide max-w-md" />
             <p className="reveal-text text-sm font-extralight tracking-wide pt-2">{desc2}</p>
           </div>
 
           <div className="space-y-2">
             <span className="text-sm text-bg/50 font-light block">02.</span>
-            <ShuffleText
-              text={t("communityCore")}
-              tag="h3"
-              className="reveal-text text-2xl font-light tracking-wide max-w-md"
-            />
+            <ShuffleText text={t('communityCore')} tag="h3" className="reveal-text text-2xl font-light tracking-wide max-w-md" />
             <p className="reveal-text text-sm font-extralight tracking-wide pt-2">{desc3}</p>
           </div>
 
           <div className="space-y-2">
             <span className="text-sm text-bg/50 font-light block">03.</span>
-            <ShuffleText
-              text={t("futureSpaces")}
-              tag="h3"
-              className="reveal-text text-2xl font-light tracking-wide max-w-md"
-            />
+            <ShuffleText text={t('futureSpaces')} tag="h3" className="reveal-text text-2xl font-light tracking-wide max-w-md" />
             <p className="reveal-text text-sm font-extralight tracking-wide pt-2">{desc4}</p>
           </div>
         </ParallaxElement>
@@ -493,7 +451,7 @@ export const AlMutlaaHero = ({ desc1, desc2, desc3, desc4, value, startDate, end
       <div className="reveal-section grid grid-cols-5 gap-4 border-t border-bgb max-md:border-none overflow-hidden py-3 max-md:pt-0">
         <div className="col-span-4 max-md:col-span-6 col-start-3 border-s border-bgb max-md:border max-md:bg-main/5 max-md:text-center space-y-4 px-8 py-32 max-md:px-0">
           <span className="reveal-text text-bg/30 text-sm block">N6 & N9</span>
-          <ShuffleText text={t("projectDetails")} tag="h3" className="reveal-text text-4xl" />
+          <ShuffleText text={t('projectDetails')} tag="h3" className="reveal-text text-4xl" />
           <p className="reveal-text text-xl text-bg/50">
             {t(`projectValue`)}: <span className="text-main/50">{value}</span>
           </p>
@@ -506,8 +464,8 @@ export const AlMutlaaHero = ({ desc1, desc2, desc3, desc4, value, startDate, end
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
 export const AlMutlaaHeadline = ({ headLine }) => {
   return (
@@ -525,7 +483,8 @@ export const AlMutlaaHeadline = ({ headLine }) => {
           smSpeed={1}
           ease="power2.out"
           className="text-[15vw] text-main/10 leading-5 uppercase pointer-events-none select-none text-nowrap
-            absolute left-0 bottom-0">
+            absolute left-0 bottom-0"
+        >
           {Array.from({ length: 12 }).map((_, idx) => (
             <span key={idx}>
               East Sabah East Sabah East Sabah East Sabah
@@ -539,15 +498,15 @@ export const AlMutlaaHeadline = ({ headLine }) => {
         </ParallaxElement>
       </div>
     </section>
-  );
-};
+  )
+}
 
 export const LevelsTowerHero = ({ desc1, desc2, mainLine, images }) => {
-  const containerRef = useRef(null);
+  const containerRef = useRef(null)
 
   useGSAP(
     () => {
-      ScrollTrigger.batch(".reveal-text", {
+      ScrollTrigger.batch('.reveal-text', {
         onEnter: (batch) =>
           gsap.fromTo(
             batch,
@@ -556,15 +515,15 @@ export const LevelsTowerHero = ({ desc1, desc2, mainLine, images }) => {
               opacity: 1,
               y: 0,
               duration: 1,
-              ease: "power3.out",
+              ease: 'power3.out',
               stagger: 0.15,
             }
           ),
-        start: "top 95%",
-        toggleActions: "play none none reverse",
-      });
+        start: 'top 95%',
+        toggleActions: 'play none none reverse',
+      })
 
-      ScrollTrigger.batch(".reveal-img", {
+      ScrollTrigger.batch('.reveal-img', {
         onEnter: (batch) =>
           gsap.fromTo(
             batch,
@@ -573,15 +532,15 @@ export const LevelsTowerHero = ({ desc1, desc2, mainLine, images }) => {
               opacity: 1,
               y: 0,
               duration: 1,
-              ease: "power3.out",
+              ease: 'power3.out',
               stagger: 0.15,
             }
           ),
-        start: "top 95%",
-        toggleActions: "play none none reverse",
-      });
+        start: 'top 95%',
+        toggleActions: 'play none none reverse',
+      })
 
-      ScrollTrigger.batch(".reveal-section", {
+      ScrollTrigger.batch('.reveal-section', {
         onEnter: (batch) =>
           gsap.fromTo(
             batch,
@@ -590,18 +549,18 @@ export const LevelsTowerHero = ({ desc1, desc2, mainLine, images }) => {
               opacity: 1,
               y: 0,
               duration: 1.2,
-              ease: "power2.out",
+              ease: 'power2.out',
               stagger: 0.2,
             }
           ),
-        start: "top 95%",
-        toggleActions: "play none none reverse",
-      });
+        start: 'top 95%',
+        toggleActions: 'play none none reverse',
+      })
 
-      return () => ScrollTrigger.getAll().forEach((st) => st.kill());
+      return () => ScrollTrigger.getAll().forEach((st) => st.kill())
     },
     { scope: containerRef }
-  );
+  )
 
   return (
     <section ref={containerRef} className="relative w-screen overflow-hidden bg-text text-bg px-4">
@@ -621,12 +580,7 @@ export const LevelsTowerHero = ({ desc1, desc2, mainLine, images }) => {
 
           <div className="w-full h-150 overflow-hidden md:pe-4 mt-24 max-md:mt-12">
             <ParallaxElement direction="scale" origin="right center" className="size-full overflow-hidden">
-              <img
-                src={images[5]}
-                alt="Image"
-                loading="lazy"
-                className="reveal-img size-full object-cover overflow-hidden"
-              />
+              <img src={images[5]} alt="Image" loading="lazy" className="reveal-img size-full object-cover overflow-hidden" />
             </ParallaxElement>
           </div>
         </div>
@@ -644,15 +598,15 @@ export const LevelsTowerHero = ({ desc1, desc2, mainLine, images }) => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
 export const LevelsTowerHeadline = ({ headLine }) => {
-  const containerRef = useRef(null);
+  const containerRef = useRef(null)
 
   useGSAP(
     () => {
-      ScrollTrigger.batch(".reveal-text", {
+      ScrollTrigger.batch('.reveal-text', {
         onEnter: (batch) =>
           gsap.fromTo(
             batch,
@@ -661,15 +615,15 @@ export const LevelsTowerHeadline = ({ headLine }) => {
               opacity: 1,
               y: 0,
               duration: 1,
-              ease: "power3.out",
+              ease: 'power3.out',
               stagger: 0.15,
             }
           ),
-        start: "top 95%",
-        toggleActions: "play none none reverse",
-      });
+        start: 'top 95%',
+        toggleActions: 'play none none reverse',
+      })
 
-      ScrollTrigger.batch(".reveal-section", {
+      ScrollTrigger.batch('.reveal-section', {
         onEnter: (batch) =>
           gsap.fromTo(
             batch,
@@ -678,18 +632,18 @@ export const LevelsTowerHeadline = ({ headLine }) => {
               opacity: 1,
               y: 0,
               duration: 1.2,
-              ease: "power2.out",
+              ease: 'power2.out',
               stagger: 0.2,
             }
           ),
-        start: "top 95%",
-        toggleActions: "play none none reverse",
-      });
+        start: 'top 95%',
+        toggleActions: 'play none none reverse',
+      })
 
-      return () => ScrollTrigger.getAll().forEach((st) => st.kill());
+      return () => ScrollTrigger.getAll().forEach((st) => st.kill())
     },
     { scope: containerRef }
-  );
+  )
 
   return (
     <section ref={containerRef} className="relative w-screen overflow-hidden bg-text text-bg px-4">
@@ -698,7 +652,8 @@ export const LevelsTowerHeadline = ({ headLine }) => {
       <div className="reveal-section grid grid-cols-6 gap-4 border-t border-bgb py-3">
         <ParallaxElement
           direction="scale"
-          className="col-span-4 max-md:col-span-6 col-start-3 px-8 py-24 max-md:px-4 max-md:py-12 border-s border-bg/50">
+          className="col-span-4 max-md:col-span-6 col-start-3 px-8 py-24 max-md:px-4 max-md:py-12 border-s border-bg/50"
+        >
           <p
             dangerouslySetInnerHTML={{ __html: headLine }}
             className="reveal-text text-5xl max-md:text-4xl font-extralight tracking-wide max-w-2xl uppercase"
@@ -711,7 +666,8 @@ export const LevelsTowerHeadline = ({ headLine }) => {
           direction="horizontal"
           ease="power2.out"
           className="text-[15vw] text-main/10 leading-5 uppercase pointer-events-none select-none text-nowrap
-            absolute left-450">
+            absolute left-450"
+        >
           {Array.from({ length: 12 }).map((_, idx) => (
             <span key={idx}>
               East Sabah East Sabah East Sabah East Sabah
@@ -725,5 +681,5 @@ export const LevelsTowerHeadline = ({ headLine }) => {
         </ParallaxElement>
       </div>
     </section>
-  );
-};
+  )
+}

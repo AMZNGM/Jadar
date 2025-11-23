@@ -58,7 +58,7 @@ export default function AbdullaMubarak() {
         />
         <BgNoise />
 
-        {/* <AbdullaMubarakHeadline headLine={thisProject.headLine} /> */}
+        <AbdullaMubarakHeadline headLine={thisProject.headLine} />
         {/* <ProjPanner imgSrc={thisProject.pannerImg} logoName={thisProject.logoName} logoLink={thisProject.projectUrl} /> */}
         {/* <ProjLogo logoName={thisProject.logoName} logoLink={thisProject.companyUrl} /> */}
         {/* <AbdullaMubarakGridImg images={thisProject.images} /> */}
