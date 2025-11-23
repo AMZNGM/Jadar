@@ -18,7 +18,6 @@ export default memo(function NewsCard({ article }) {
         <Link
           dir="ltr"
           href={`/allNews/${article.id}`}
-          aria-label={`Read more about ${article.title}`}
           className="overflow-hidden relative p-2 h-full border duration-300 cursor-pointer group border-main/25 hover:bg-main/5 flex flex-col"
         >
           <div className="overflow-hidden relative h-48">

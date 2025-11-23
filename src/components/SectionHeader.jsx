@@ -69,7 +69,7 @@ export default function SectionHeader({ className = '', title, para }) {
         </div>
 
         <div
-          className={`relative w-3/5 font-light text-main/75 border-s border-main/30 ps-4 mb-6
+          className={`relative w-3/5 font-light text-main/75 border-s border-main/30 md:ps-4 mb-6
           ${selectedLanguage === 'English' ? '' : 'text-right'}`}
         >
           <SplitedText
