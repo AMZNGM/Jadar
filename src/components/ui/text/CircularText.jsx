@@ -76,7 +76,7 @@ export default function CircularText({ text, spinDuration = 20, onHover = '', cl
   return (
     <div
       ref={containerRef}
-      className={`relative size-50 max-md:size-40 text-main font-black text-center uppercase rounded-full origin-center cursor-pointer m-0 mx-auto ${className}`}
+      className={`relative size-50 max-md:size-40 text-main font-black text-center uppercase rounded-full origin-center cursor-pointer m-0 mx-auto max-md:hidden ${className}`}
       onMouseEnter={handleHoverStart}
       onMouseLeave={handleHoverEnd}
     >

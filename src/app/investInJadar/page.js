@@ -14,7 +14,7 @@ import FeaturedNews from '@/components/FeaturedNews.jsx'
 export default function InvestInJadar() {
   const { t } = useTranslation()
   const bgVid = '/videos/homeHero.mp4'
-  const mobileImgsrc = ArtboardImgs[13]
+  const mobileImgsrc = ArtboardImgs[10]
 
   return (
     <main className="relative z-10">
