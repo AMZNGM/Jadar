@@ -77,7 +77,7 @@ export default function OurPotential() {
       <div className="relative flex flex-col justify-center items-center bg-text/30 py-24 max-md:border-x max-md:border-text/10 overflow-hidden">
         <Noise />
 
-        <ShuffleText text={t(`ourPotential`)} tag="h3" className="text-5xl font-light uppercase mb-12 cursor-default" />
+        <ShuffleText text={t(`ourPotential`)} tag="h3" className="text-5xl font-light uppercase mb-12 cursor-default max-md:text-center" />
 
         <div className="grid grid-cols-3 max-md:grid-cols-1 max-w-6xl w-full gap-16 font-light">
           {points.map((point, index) => (

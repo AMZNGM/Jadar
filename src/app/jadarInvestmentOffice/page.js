@@ -49,7 +49,7 @@ export default function JadarInvestmentOffice() {
         <SectionHeader title={t(`ourInvestmentOffice`)} para={t(`ourInvestmentOfficePara`)} />
         <FAQ faqs={investmentFaqs} title={t(`faq`)} />
         <OurPotential />
-        {/* <FeaturedNews /> */}
+        <FeaturedNews />
       </div>
     </main>
   )
