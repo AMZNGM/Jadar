@@ -17,22 +17,6 @@ export default function ShinyText({ text, disabled = false, speed = 5, className
       >
         {text}
       </h1>
-
-      <style>
-        {`
-        @keyframes shine {
-          from {
-            background-position: 200% 0;
-          }
-          to {
-            background-position: -200% 0;
-          }
-        }
-        .animate-shine {
-          animation: shine linear infinite;
-        }
-        `}
-      </style>
     </div>
   )
 }
