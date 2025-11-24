@@ -45,7 +45,7 @@ export default function AlMutlaa() {
           images={thisProject.images}
         />
         <ProjPanner imgSrc={thisProject.pannerImg} logoName={thisProject.logoName} logoLink={thisProject.projectUrl} />
-        {/* <ProjLogo logoName={thisProject.logoName} logoLink={thisProject.companyUrl} /> */}
+        <ProjLogo logoName={thisProject.logoName} logoLink={thisProject.companyUrl} />
         {/* <ProjFooterCards
           look={'dark'}
           bgCards={[
