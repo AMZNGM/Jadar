@@ -44,7 +44,7 @@ export default function EastSabah() {
           location={thisProject.location}
           mainLine={thisProject.mainLine}
         />
-        {/* <EastSabahHeadline headLine={thisProject.headLine} /> */}
+        <EastSabahHeadline headLine={thisProject.headLine} />
       </div>
 
       <div className="relative z-50">

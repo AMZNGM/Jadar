@@ -307,10 +307,8 @@ export const EastSabahHeadline = ({ headLine }) => {
 
           <ParallaxElement
             speed={-0.9}
-            smSpeed={1}
             ease="power2.out"
-            className="text-[15vw] text-main/10 leading-5 uppercase pointer-events-none select-none text-nowrap
-            absolute left-0 bottom-0"
+            className={`absolute left-0 bottom-0 text-[15vw] text-main/10 leading-5 uppercase pointer-events-none select-none text-nowrap`}
           >
             {Array.from({ length: 12 }).map((_, idx) => (
               <span key={idx}>
