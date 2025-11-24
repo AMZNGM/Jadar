@@ -29,6 +29,7 @@ export default function HomeHeroContent({ onOpenVideo, slideUpRef, sectionRef })
 
   useGSAP(
     () => {
+      if (window.innerWidth < 1024) return
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
       tl.fromTo(topLineRef.current, { xPercent: -200 }, { xPercent: 0, duration: 3, ease: 'power2.out' }, '-=2')
       tl.fromTo(bottomLineRef.current, { xPercent: 200 }, { xPercent: 0, duration: 3, ease: 'power2.out' }, '-=3')
@@ -134,7 +135,10 @@ export default function HomeHeroContent({ onOpenVideo, slideUpRef, sectionRef })
         </div>
       </div>
 
-      <div ref={bottomLineRef} className="absolute bottom-6 rtl:left-9 ltr:right-9 w-95 flex flex-col gap-2 transform-3d px-4">
+      <div
+        ref={bottomLineRef}
+        className="absolute bottom-6 rtl:left-9 ltr:right-9 w-95 flex flex-col gap-2 transform-3d px-4 max-lg:hidden"
+      >
         <div
           ref={slideUpRef}
           onClick={() => scrollToSection('#map-section')}

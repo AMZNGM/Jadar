@@ -11,7 +11,7 @@ import OurJourney from '@/components/OurJourney'
 
 export default function Home() {
   const bgVid = '/videos/homeHero.mp4'
-  const mobileImgsrc = ArtboardImgs[12]
+  const mobileImgsrc = ArtboardImgs[11]
 
   return (
     <main className="relative">

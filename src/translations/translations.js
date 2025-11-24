@@ -25,7 +25,7 @@ export const TRANSLATIONS = {
 
     // News & Media
     news: 'News',
-    newVision: 'NewVision',
+    newVision: 'New Vision',
     allNews: 'All News',
     mediaResources: 'Media Resources',
     press: 'Press',
