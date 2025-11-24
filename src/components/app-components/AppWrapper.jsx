@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import { AlertProvider } from '@/components/app-components/alert/AlertContext.jsx'
 import { LanguageProvider } from '@/translations/LanguageContext'
 import Lenis from 'lenis'
+import PrivacyConsentSidebar from '@/components/app-components/PrivacyConsentSidebar.jsx'
 import ErrorBoundary from '@/components/app-components/ErrorBoundary.jsx'
 import GlobalParallax from '@/components/app-components/GlobalParallax'
 import Navbar from '@/components/navbar-components/Navbar.jsx'
@@ -80,6 +81,7 @@ export default function AppWrapper({ children }) {
             )}
           </div>
         </AlertProvider>
+        <PrivacyConsentSidebar position="bl" />
       </LanguageProvider>
     </ErrorBoundary>
   )

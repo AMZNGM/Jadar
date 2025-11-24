@@ -1,5 +1,6 @@
 import './globals.css'
 import AppWrapper from '@/components/app-components/AppWrapper'
+import LoadingScreen from '@/components/app-components/LoadingScreen'
 
 export const metadata = {
   title: 'Jadar - Beyond hospitality',
@@ -10,6 +11,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`relative w-screen min-h-screen overflow-x-hidden! bg-bg text-text scroll-smooth antialiased`}>
+        <LoadingScreen />
         <AppWrapper>{children}</AppWrapper>
       </body>
     </html>
