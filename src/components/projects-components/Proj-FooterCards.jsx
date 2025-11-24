@@ -50,7 +50,7 @@ const BackgroundCards = ({ bgCards = [], look, bgColor, textColor, borderColor, 
         <div className="flex flex-col justify-between items-center size-full p-8">
           <div className="font-light text-center space-y-1">
             <p className="max-md:text-sm tracking-wider">{card.location}</p>
-            <h3 className="text-6xl max-md:text-3xl">{card.title}</h3>
+            <h3 className="text-6xl max-md:text-4xl">{card.title}</h3>
           </div>
 
           <div className="font-light text-center space-y-1 blur-xs">
