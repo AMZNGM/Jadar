@@ -1,5 +1,5 @@
 export const metadata = {
-  title: 'West Abdullah AlMubarak City',
+  title: 'East Sabah Al-Ahmad City',
 }
 
 export default function Layout({ children }) {

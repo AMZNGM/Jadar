@@ -1,5 +1,5 @@
 export const metadata = {
-  title: 'West Abdullah AlMubarak City',
+  title: 'Levels Tower',
 }
 
 export default function Layout({ children }) {
