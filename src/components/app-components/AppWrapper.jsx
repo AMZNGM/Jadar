@@ -5,8 +5,9 @@ import { usePathname } from 'next/navigation'
 import { AlertProvider } from '@/components/app-components/alert/AlertContext.jsx'
 import { LanguageProvider } from '@/translations/LanguageContext'
 import Lenis from 'lenis'
-import Navbar from '@/components/navbar-components/Navbar.jsx'
 import GlobalParallax from '@/components/app-components/GlobalParallax'
+import Navbar from '@/components/navbar-components/Navbar.jsx'
+import Footer from '@/components/Footer.jsx'
 
 export default function AppWrapper({ children }) {
   useEffect(() => {
@@ -50,6 +51,7 @@ export default function AppWrapper({ children }) {
     return false
   })
   const shouldShowNavbar = isValidRoute && !['/getInTouch', '/projects'].includes(pathname)
+  const shouldShowFooter = isValidRoute && !['/getInTouch', '/projects', '/search'].includes(pathname)
 
   return (
     <LanguageProvider>
@@ -58,6 +60,12 @@ export default function AppWrapper({ children }) {
         <div className="relative">
           {shouldShowNavbar && <Navbar />}
           <main className="relative z-10">{children}</main>
+
+          {shouldShowFooter && (
+            <div className="sticky bottom-0">
+              <Footer />
+            </div>
+          )}
         </div>
       </AlertProvider>
     </LanguageProvider>
