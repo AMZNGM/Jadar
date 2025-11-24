@@ -1,43 +1,45 @@
-import { useRef } from "react";
-import { gsap } from "@/utils/gsapConfig";
-import { useGSAP } from "@gsap/react";
-import BgVideo from "@/components/ui/BgVideo.jsx";
-import Logo from "@/components/ui/logo.jsx";
+'use client'
 
-const ProjVideo = ({ videoSrc, videoUrl, logoName, className }) => {
-  const containerRef = useRef(null);
+import { useRef } from 'react'
+import { gsap } from '@/utils/gsapConfig'
+import { useGSAP } from '@gsap/react'
+import BgVideo from '@/components/ui/BgVideo.jsx'
+import Logo from '@/components/ui/logo.jsx'
+
+export default function ProjVideo({ videoSrc, videoUrl, logoName, className }) {
+  const containerRef = useRef(null)
 
   useGSAP(() => {
     const ctx = gsap.context(() => {
-      gsap.from(".reveal-video", {
+      gsap.from('.reveal-video', {
         opacity: 0,
         scale: 1.1,
         duration: 1.5,
-        ease: "power2.out",
+        ease: 'power2.out',
         scrollTrigger: {
-          trigger: ".reveal-video",
-          start: "top 80%",
-          toggleActions: "play none none reverse",
+          trigger: '.reveal-video',
+          start: 'top 80%',
+          toggleActions: 'play none none reverse',
         },
-      });
+      })
 
-      gsap.utils.toArray(".reveal-section").forEach((section) => {
+      gsap.utils.toArray('.reveal-section').forEach((section) => {
         gsap.from(section, {
           opacity: 0,
           y: 80,
           duration: 1.2,
-          ease: "power2.out",
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: section,
-            start: "top 85%",
-            toggleActions: "play none none reverse",
+            start: 'top 85%',
+            toggleActions: 'play none none reverse',
           },
-        });
-      });
-    }, containerRef);
+        })
+      })
+    }, containerRef)
 
-    return () => ctx.revert();
-  }, []);
+    return () => ctx.revert()
+  }, [])
 
   return (
     <section ref={containerRef} className={`relative w-screen overflow-hidden bg-black text-bg ${className}`}>
@@ -52,7 +54,5 @@ const ProjVideo = ({ videoSrc, videoUrl, logoName, className }) => {
         </div>
       </div>
     </section>
-  );
-};
-
-export default ProjVideo;
+  )
+}

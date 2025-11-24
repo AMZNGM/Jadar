@@ -48,7 +48,7 @@ export default function EastSabah() {
       </div>
 
       <div className="relative z-50">
-        {/* <ProjVideo videoSrc={thisProject.projVid} videoUrl={thisProject.projectUrl} logoName={thisProject.logoName} /> */}
+        <ProjVideo videoSrc={thisProject.projVid} videoUrl={thisProject.projectUrl} logoName={thisProject.logoName} />
         {/* <EastSabahCarousel /> */}
         {/* <ProjFooterCards
           look={'dark'}
