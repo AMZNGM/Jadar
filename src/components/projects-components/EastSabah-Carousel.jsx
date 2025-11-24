@@ -1,10 +1,11 @@
 'use client'
 
+import Image from 'next/image'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { gsap } from '@/utils/gsapConfig'
 import { useGSAP } from '@gsap/react'
 import Draggable from 'gsap/Draggable'
-import { ArrowLeftRightIcon, Shuffle } from 'lucide-react'
+import { RefreshCcw, Shuffle } from 'lucide-react'
 import { BgNoise, MovingBorders } from '@/data/mediaData/svgs.jsx'
 import { projectImages } from '@/data/mediaData/projectMedia.js'
 import CloseBtn from '@/components/ui/buttons/CloseBtn.jsx'
@@ -13,7 +14,7 @@ import Noise from '@/components/ui/effects/Noise.jsx'
 gsap.registerPlugin(Draggable)
 gsap.config({ nullTargetWarn: false })
 
-const EastSabahCarousel = () => {
+export default function EastSabahCarousel() {
   const projectImgs = projectImages.eastSabah
   const containerRef = useRef(null)
   const CarouselRef = useRef(null)
@@ -357,8 +358,8 @@ const EastSabahCarousel = () => {
       <div ref={CarouselRef} className="relative size-full touch-none max-md:touch-auto select-none">
         {/* imgs */}
         {projectImgs.map((img, index) => (
-          <img
-            key={img}
+          <Image
+            key={index}
             src={img}
             alt="Carousel Image"
             draggable={false}
@@ -376,7 +377,10 @@ const EastSabahCarousel = () => {
             disabled={isAnimating}
             className="group bg-text/75 rounded-lg font-light cursor-pointer duration-300 disabled:opacity-50 disabled:cursor-not-allowed px-8 hover:px-12"
           >
-            <Shuffle className={`size-5 transition-transform duration-500 ${isAnimating ? 'animate-spin' : 'group-hover:rotate-180'}`} />
+            <RefreshCcw
+              size={16}
+              className={`transition-transform duration-500 ${isAnimating ? 'animate-spin' : 'group-hover:rotate-180'}`}
+            />
           </button>
 
           <button
@@ -384,7 +388,7 @@ const EastSabahCarousel = () => {
             disabled={isAnimating}
             className="group bg-text/75 rounded-lg font-light cursor-pointer duration-300 disabled:opacity-50 disabled:cursor-not-allowed px-8 hover:px-12 flex items-center gap-2"
           >
-            <ArrowLeftRightIcon className="group-hover:scale-110 transition-transform" />
+            <Shuffle size={16} className="group-hover:scale-110 transition-transform" />
             Shuffle
           </button>
         </div>
@@ -395,7 +399,7 @@ const EastSabahCarousel = () => {
         <div
           ref={lightboxBackdropRef}
           onClick={closeLightbox}
-          className={`fixed inset-0 flex flex-col justify-center items-center bg-black/70 backdrop-blur-sm transition-opacity z-[9999] ${
+          className={`fixed inset-0 flex flex-col justify-center items-center bg-black/70 backdrop-blur-sm transition-opacity z-9999 ${
             lightboxOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
           }`}
         >
@@ -407,12 +411,12 @@ const EastSabahCarousel = () => {
             className="relative flex justify-center items-center max-w-6xl m-auto bg-bg shadow-2xl shadow-main/10 overflow-hidden"
           >
             <Noise />
-            <img
+            <Image
               ref={lightboxImgRef}
               src={projectImgs[lightboxIndex]}
               alt={`Image ${lightboxIndex + 1}`}
               onDoubleClick={closeLightbox}
-              className="size-full object-cover backface-hidden will-change-transform z-[10000] p-2"
+              className="size-full object-cover backface-hidden will-change-transform z-10000 p-2"
             />
             <MovingBorders />
           </div>
@@ -425,7 +429,7 @@ const EastSabahCarousel = () => {
               e.stopPropagation()
               goPrev()
             }}
-            className="group absolute left-4 max-lg:left-2 max-xl:bottom-25 max-lg:bottom-40 max-md:bottom-60 text-4xl text-main bg-bg shadow-lg shadow-main/10 hover:scale-110 cursor-pointer duration-300 overflow-hidden z-[10000] px-4"
+            className="group absolute left-4 max-lg:left-2 max-xl:bottom-25 max-lg:bottom-40 max-md:bottom-60 text-4xl text-main bg-bg shadow-lg shadow-main/10 hover:scale-110 cursor-pointer duration-300 overflow-hidden z-10000 px-4"
             aria-label="Previous image"
           >
             <BgNoise className="opacity-25" />
@@ -438,7 +442,7 @@ const EastSabahCarousel = () => {
               e.stopPropagation()
               goNext()
             }}
-            className="absolute right-4 max-md:right-2 max-xl:bottom-25 max-lg:bottom-40 max-md:bottom-60 text-4xl text-main bg-bg shadow-lg shadow-main/10 hover:scale-110 cursor-pointer duration-300 overflow-hidden z-[10000] px-4"
+            className="absolute right-4 max-md:right-2 max-xl:bottom-25 max-lg:bottom-40 max-md:bottom-60 text-4xl text-main bg-bg shadow-lg shadow-main/10 hover:scale-110 cursor-pointer duration-300 overflow-hidden z-10000 px-4"
             aria-label="Next image"
           >
             <BgNoise className="opacity-25" />
@@ -446,7 +450,7 @@ const EastSabahCarousel = () => {
           </button>
 
           {/* indicator */}
-          <div className="absolute bottom-10 max-xl:bottom-25 max-lg:bottom-40 max-md:bottom-20 w-fit max-sm:w-[96%] flex justify-center items-center gap-4 text-sm text-main bg-bg shadow-lg shadow-main/10 backdrop-blur-sm select-none overflow-hidden z-[10001] py-2 px-4">
+          <div className="absolute bottom-10 max-xl:bottom-25 max-lg:bottom-40 max-md:bottom-20 w-fit max-sm:w-[96%] flex justify-center items-center gap-4 text-sm text-main bg-bg shadow-lg shadow-main/10 backdrop-blur-sm select-none overflow-hidden z-10001 py-2 px-4">
             <BgNoise className="blur-[2px]" />
             <MovingBorders />
             <span>
@@ -459,5 +463,3 @@ const EastSabahCarousel = () => {
     </section>
   )
 }
-
-export default EastSabahCarousel
