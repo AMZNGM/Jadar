@@ -259,13 +259,13 @@ export const EastSabahHero = ({ desc1, desc2, desc3, value, startDate, endDate, 
             className="reveal-text text-3xl max-sm:text-2xl font-extralight tracking-wide mb-48 max-md:mb-12"
           />
 
-          <ParallaxElement speed={1} className="flex justify-end pe-4">
+          <ParallaxElement speed={1} className={`flex justify-end pe-4`}>
             <p dangerouslySetInnerHTML={{ __html: desc3 }} className="reveal-text text-sm font-light tracking-wider leading-6 max-w-sm" />
           </ParallaxElement>
         </div>
 
         <div className="col-span-2 max-md:col-span-6 col-start-5 flex flex-col md:justify-between gap-4 relative">
-          <ParallaxElement className="space-y-2 max-md:mt-4 mt-18">
+          <ParallaxElement className={`space-y-2 max-md:mt-4 mt-18`}>
             <h3 className="reveal-text text-2xl">{t(`projectDetails`)}</h3>
             <p className="reveal-text text-bg/50">
               {t(`projectValue`)}: <span className="text-main/50">{value}</span>
@@ -287,18 +287,7 @@ export const EastSabahHero = ({ desc1, desc2, desc3, value, startDate, endDate, 
             </p>
           </ParallaxElement>
 
-          <ParallaxElement
-            speed={1}
-            direction="custom"
-            x={-30}
-            y={-50}
-            rotate={20}
-            scale={0.2}
-            opacity={1}
-            disableSm
-            disableMd
-            className="md:absolute top-100 size-full"
-          >
+          <ParallaxElement speed={0.1} direction="rotate" origin="top right" className={`md:absolute top-100 size-full`}>
             <HoverGallery images={projectImages.eastSabah.slice(0, 12)} className={'md:h-1/3'} />
           </ParallaxElement>
         </div>

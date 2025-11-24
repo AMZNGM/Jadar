@@ -22,7 +22,8 @@ export default function EastSabah() {
         <BgNoise />
         <SectionHero
           title={thisProject.title}
-          backgroundSource={thisProject.bgVid}
+          bgVidSrc={thisProject.bgVid}
+          mobileImgsrc={thisProject.images[2]}
           videoUrl={thisProject.bgVidUrl}
           videoclassName={'opacity-50 blur-[3px]'}
         />
@@ -31,7 +32,7 @@ export default function EastSabah() {
       <Breadcrumb pages={thisProject.breadcrumb} />
 
       <div className="relative z-20">
-        {/* <EastSabahHero
+        <EastSabahHero
           desc1={thisProject.desc1}
           desc2={thisProject.desc2}
           desc3={thisProject.desc3}
@@ -42,7 +43,7 @@ export default function EastSabah() {
           category={thisProject.category}
           location={thisProject.location}
           mainLine={thisProject.mainLine}
-        /> */}
+        />
         {/* <EastSabahHeadline headLine={thisProject.headLine} /> */}
       </div>
 
