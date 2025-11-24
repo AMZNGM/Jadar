@@ -1,14 +1,14 @@
 'use client'
 
 import { useTranslation } from '@/translations/useTranslation'
-import { BgNoise } from '@/data/mediaData/svgs'
-import SectionHero from '@/components/SectionHero.jsx'
-import Breadcrumb from '@/components/ui/Breadcrumb.jsx'
-import { AlMutlaaHero, AlMutlaaHeadline } from '@/components/projects/Proj-TextContent.jsx'
-import ProjPanner from '@/components/projects/Proj-Panner.jsx'
-import ProjLogo from '@/components/projects/Proj-Logo.jsx'
-import ProjFooterCards from '@/components/projects/Proj-FooterCards.jsx'
+import { BgNoise } from '@/data/mediaData/svgs.jsx'
 import { projectsData } from '@/data/projectsData'
+import SectionHero from '@/components/hero-components/SectionHero.jsx'
+import Breadcrumb from '@/components/ui/Breadcrumb.jsx'
+import { AlMutlaaHero, AlMutlaaHeadline } from '@/components/projects-components/Proj-TextContent.jsx'
+import ProjPanner from '@/components/projects-components/Proj-Panner.jsx'
+import ProjLogo from '@/components/projects-components/Proj-Logo.jsx'
+import ProjFooterCards from '@/components/projects-components/Proj-FooterCards.jsx'
 
 export default function AlMutlaa() {
   const { t } = useTranslation()
@@ -22,17 +22,18 @@ export default function AlMutlaa() {
         <BgNoise />
         <SectionHero
           title={thisProject.title}
-          backgroundSource={thisProject.bgVid}
+          bgVidSrc={thisProject.bgVid}
+          mobileImgsrc={thisProject.pannerImg}
           videoUrl={thisProject.bgVidUrl}
           videoclassName={'opacity-50 blur-[3px]'}
         />
       </div>
 
-      <Breadcrumb pages={thisProject.breadcrumb} />
+      {/* <Breadcrumb pages={thisProject.breadcrumb} /> */}
 
       <div className="relative z-20">
-        <AlMutlaaHeadline headLine={thisProject.headLine} />
-        <AlMutlaaHero
+        {/* <AlMutlaaHeadline headLine={thisProject.headLine} /> */}
+        {/* <AlMutlaaHero
           desc1={thisProject.desc1}
           desc2={thisProject.desc2}
           desc3={thisProject.desc3}
@@ -42,10 +43,10 @@ export default function AlMutlaa() {
           endDate={thisProject.endDate}
           mainLine={thisProject.mainLine}
           images={thisProject.images}
-        />
-        <ProjPanner imgSrc={thisProject.pannerImg} logoName={thisProject.logoName} logoLink={thisProject.projectUrl} />
-        <ProjLogo logoName={thisProject.logoName} logoLink={thisProject.companyUrl} />
-        <ProjFooterCards
+        /> */}
+        {/* <ProjPanner imgSrc={thisProject.pannerImg} logoName={thisProject.logoName} logoLink={thisProject.projectUrl} /> */}
+        {/* <ProjLogo logoName={thisProject.logoName} logoLink={thisProject.companyUrl} /> */}
+        {/* <ProjFooterCards
           look={'dark'}
           bgCards={[
             {
@@ -75,7 +76,7 @@ export default function AlMutlaa() {
               to: nextProject.to,
             },
           ]}
-        />
+        /> */}
       </div>
     </main>
   )
