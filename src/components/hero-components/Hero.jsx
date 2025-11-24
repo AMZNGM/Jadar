@@ -1,136 +1,41 @@
 'use client'
 
-import Image from 'next/image'
 import { useRef, useState, useEffect } from 'react'
 import { gsap } from '@/utils/gsapConfig'
 import { useGSAP } from '@gsap/react'
-import { MovingBorders } from '@/data/mediaData/svgs'
-import { Globe2Icon, PlayIcon } from 'lucide-react'
-import { useTranslation } from '@/translations/useTranslation'
-import { useLanguage } from '@/translations/LanguageContext'
-import { getCountriesData } from '@/data/countriesData'
-import { logos } from '@/data/mediaData/logos'
-import { ArtboardImgs } from '@/data/mediaData/artBoardImgs'
 import BgVideo from '@/components/ui/BgVideo.jsx'
-import CloseBtn from '@/components/ui/buttons/CloseBtn.jsx'
 import DynCursor from '@/components/ui/effects/DynCursor.jsx'
-import ClickEffect from '@/components/ui/effects/ClickEffect.jsx'
-import TextFlipper from '@/components/ui/text/TextFlipper.jsx'
-import ShinyText from '@/components/ui/text/ShinyText.jsx'
-import MainBtn from '@/components/ui/buttons/MainBtn.jsx'
+import HomeHeroContent from '@/components/hero-components/HomeHeroContent.jsx'
+import HeroHomeCards from '@/components/hero-components/HomeHeroCards.jsx'
+import VideoModal from '@/components/hero-components/HeroVideoModal.jsx'
+import HeroLines from '@/components/hero-components/HeroLines.jsx'
 
-export default function Hero({ videoUrl }) {
-  const vid = '/videos/homeHero.mp4'
-  const getMobileImgSrc = (img) => {
-    if (!img) return ''
-    if (typeof img === 'object') {
-      return Object.values(img)[0]
-    }
-    return img
-  }
-  const mobileImgsrc = getMobileImgSrc(ArtboardImgs[11])
-  const { t } = useTranslation()
-  const { selectedLanguage } = useLanguage()
-  const countries = getCountriesData(t)
+export default function Hero({ videoUrl, bgVidSrc, mobileImgsrc }) {
   const sectionRef = useRef(null)
-  const contentRef = useRef(null)
-  const cardsRef = useRef(null)
-  const autoplayRef = useRef(null)
+  const slideUpRef = useRef(null)
   const [isVideoOpen, setIsVideoOpen] = useState(false)
-  const [selectedIndex, setSelectedIndex] = useState(0)
-  const [currentLogoIndex, setCurrentLogoIndex] = useState(0)
-  const [shuffledLogos, setShuffledLogos] = useState([...logos])
-  const [videoSrc, setVideoSrc] = useState(null)
-  const selectedCountry = countries[selectedIndex]
   const openVideo = () => setIsVideoOpen(true)
   const closeVideo = () => setIsVideoOpen(false)
-  const shuffleLogos = () => {
-    const newShuffledLogos = [...logos]
-    for (let i = newShuffledLogos.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1))
-      ;[newShuffledLogos[i], newShuffledLogos[j]] = [newShuffledLogos[j], newShuffledLogos[i]]
-    }
-    setShuffledLogos(newShuffledLogos)
-  }
 
   useGSAP(() => {
-    gsap.fromTo('.slideUp', { y: 100, opacity: 0 }, { y: 0, opacity: 1, duration: 2, ease: 'power2.out' })
+    gsap.fromTo(slideUpRef.current, { y: 100, opacity: 0 }, { y: 0, opacity: 1, duration: 2, ease: 'power2.out' })
 
-    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
-    tl.fromTo('.topLine', { x: -5000 }, { x: 0, duration: 3, ease: 'power2.out' }, '-=2')
-    tl.fromTo('.bottomLine', { x: 5000 }, { x: 0, duration: 3, ease: 'power2.out' }, '-=3')
-
-    gsap.utils.toArray(['.topLine', '.bottomLine']).forEach((line) => {
-      const isTopLine = line.classList.contains('topLine')
-      const isRTL = selectedLanguage !== 'English'
-      gsap.set(line, { x: 0 })
-      gsap.to(line, {
+    if (window.innerWidth > 768) {
+      gsap.to(sectionRef.current, {
+        scale: 0.85,
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top top',
-          end: '25% top',
+          end: 'bottom center',
           scrub: true,
-          onUpdate: (self) => {
-            const progress = self.progress
-            const xValue = isTopLine
-              ? isRTL
-                ? `${progress * 400}%`
-                : `-${progress * 400}%`
-              : isRTL
-              ? `-${progress * 400}%`
-              : `${progress * 400}%`
-            gsap.set(line, { x: xValue })
-          },
-          onLeave: () => {
-            const finalX = isTopLine ? (isRTL ? '150%' : '-150%') : isRTL ? '-150%' : '150%'
-            gsap.set(line, { x: finalX })
-          },
-          onEnterBack: () => {
-            gsap.to(line, { x: 0, duration: 0.8, ease: 'power2.out' })
-          },
         },
       })
-    })
-
-    gsap.to(sectionRef.current, {
-      scale: 0.85,
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: 'top top',
-        end: 'bottom center',
-        scrub: true,
-      },
-    })
-
-    gsap.to(contentRef.current, {
-      yPercent: window.innerWidth < 768 ? '50' : '',
-      xPercent: window.innerWidth > 768 ? (document.dir === `ltr` ? '300' : '-300') : '',
-      opacity: 0,
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: 'top top',
-        scrub: true,
-      },
-    })
-
-    shuffleLogos()
-    const logoIntervalRef = setInterval(() => {
-      setCurrentLogoIndex((prev) => (prev + 1) % shuffledLogos.length)
-      if ((currentLogoIndex + 1) % shuffledLogos.length === 0) {
-        shuffleLogos()
-      }
-    }, 5000)
-    autoplayRef.current = setInterval(() => {
-      setSelectedIndex((prev) => (prev + 1) % countries.length)
-    }, 5000)
-
-    return () => {
-      if (logoIntervalRef) clearInterval(logoIntervalRef)
-      if (autoplayRef.current) clearInterval(autoplayRef.current)
     }
-  }, [])
+  })
 
   useEffect(() => {
+    document.body.classList.toggle('no-scroll', isVideoOpen)
+
     if (isVideoOpen) {
       document.body.style.overflow = 'hidden'
     } else {
@@ -141,147 +46,13 @@ export default function Hero({ videoUrl }) {
     }
   }, [isVideoOpen])
 
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        setVideoSrc(vid)
-      }
-    })
-    observer.observe(sectionRef.current)
-    return () => observer.disconnect()
-  }, [])
-
-  const scrollToSection = (sectionId) => {
-    const section = document.querySelector(sectionId)
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
-
-  if (!selectedCountry) return null
-
   return (
-    <section ref={sectionRef} className="relative w-screen h-screen bg-bg text-text px-4 py-12">
-      {videoSrc && <BgVideo src={videoSrc} mobileImgsrc={mobileImgsrc} />}
-
+    <section ref={sectionRef} className="relative w-screen h-screen bg-bg text-text">
       <DynCursor />
-
-      <div className="relative flex max-lg:justify-center items-end size-full">
-        <div ref={contentRef} className="flex flex-col justify-end max-lg:items-center size-full max-md:mb-12">
-          <div className="slideUp max-lg:text-center font-semibold tracking-[0.7rem] uppercase overflow-hidden">
-            <div className="flex max-lg:flex-col items-center text-6xl">
-              <ShinyText text={t('new')} />
-              <ShinyText text={t('vision')} />
-            </div>
-            <ShinyText text={t('lifecyclePropertySolutionsProviders')} className="text-text/85 tracking-[0.15rem]" />
-          </div>
-
-          <ClickEffect className="flex justify-center items-center gap-4 size-fit mt-6">
-            <MainBtn onClick={openVideo} look="outline" className="slideUp text-text border-text/75 border-y-0 hover:border-transparent">
-              <Globe2Icon strokeWidth={1.5} className="size-5 animate-spin" />
-              <TextFlipper className={'text-text font-medium text-lg'}>{t('watchFullVideo')}</TextFlipper>
-              <PlayIcon strokeWidth={1.5} className="size-5" />
-            </MainBtn>
-          </ClickEffect>
-        </div>
-
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 max-lg:hidden">
-          <div className="overflow-hidden relative w-px h-10 bg-text/50">
-            <div className="absolute top-0 left-0 w-full h-1/2 bg-text animate-scroll-indicator" />
-          </div>
-        </div>
-      </div>
-
-      {isVideoOpen && (
-        <div onClick={closeVideo} className="fixed inset-0 flex justify-center items-center bg-bg/75 backdrop-blur-sm duration-200 z-50">
-          <div onClick={(e) => e.stopPropagation()} className="relative w-[90%] h-[60%] max-md:h-[25%] max-w-[1000px] bg-bg">
-            <CloseBtn onClick={closeVideo} className="-translate-y-16 right-0!" />
-            <iframe
-              src={videoUrl}
-              allowFullScreen
-              frameBorder="0"
-              title="YouTube video player"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              className="absolute inset-0 size-full"
-            />
-          </div>
-        </div>
-      )}
-
-      <div
-        ref={cardsRef}
-        className="absolute bottomLine bottom-3.5 rtl:left-5 ltr:right-5 w-95 flex flex-col gap-2 z-50 max-lg:hidden transform-3d"
-      >
-        <div
-          onClick={() => scrollToSection('#map-section')}
-          className="w-full h-35 bg-text/5 backdrop-blur-lg overflow-hidden hover:bg-main/5 duration-500 cursor-pointer p-6"
-        >
-          <MovingBorders />
-          <div className="hover:scale-95 duration-500 space-y-4 font-light uppercase">
-            <h3 className="text-main text-4xl">{selectedCountry.countryName}</h3>
-            <p className="text-text/80">
-              Currently working on <span className="text-main">{selectedCountry.value}</span> projects in{' '}
-              <span className="text-main">{selectedCountry.countryCode}</span>
-            </p>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-2 gap-2">
-          <div
-            onClick={() => scrollToSection('#map-section')}
-            className="size-full bg-text/5 backdrop-blur-lg overflow-hidden hover:bg-main/5 duration-500 cursor-pointer p-2"
-          >
-            <MovingBorders />
-
-            {selectedCountry.img ? (
-              <Image
-                src={selectedCountry.img}
-                alt={selectedCountry.countryName}
-                loading="lazy"
-                priority={false}
-                className="size-full object-cover hover:scale-95 duration-500"
-              />
-            ) : (
-              <div className="flex items-center justify-center h-full">
-                <span className="text-main font-light">No image available</span>
-              </div>
-            )}
-          </div>
-
-          <div
-            onClick={() => scrollToSection('#Our-Work-logos')}
-            className="size-full bg-text/5 backdrop-blur-lg overflow-hidden hover:bg-main/5 duration-500 cursor-pointer p-2"
-          >
-            <MovingBorders />
-
-            <Image
-              src={shuffledLogos[currentLogoIndex].img}
-              alt={shuffledLogos[currentLogoIndex].project}
-              loading="lazy"
-              priority={false}
-              className="size-full object-contain rounded-lg hover:scale-95 transition-all duration-500"
-            />
-          </div>
-        </div>
-      </div>
-
-      <div className="max-lg:hidden">
-        <div className={`topLine w-100 h-1 bg-main absolute top-35.5 ${selectedLanguage === 'English' ? 'left-0' : 'right-0'}`} />
-        <div className={`bottomLine w-100 h-1 bg-main absolute bottom-32 ${selectedLanguage === 'English' ? 'right-0' : 'left-0'}`} />
-      </div>
-
-      <style>
-        {`
-            @keyframes scroll-indicator {
-              0% { transform: translateY(-100%); opacity: 0; }
-              50% { opacity: 1; }
-              100% { transform: translateY(200%); opacity: 0; }
-            }
-            .animate-scroll-indicator {
-              animation: scroll-indicator 1.5s infinite ease-in-out;
-            }
-        `}
-      </style>
+      <BgVideo src={bgVidSrc} mobileImgsrc={mobileImgsrc} />
+      <HomeHeroContent onOpenVideo={openVideo} slideUpRef={slideUpRef} sectionRef={sectionRef} />
+      {isVideoOpen && <VideoModal videoUrl={videoUrl} onClose={closeVideo} />}
+      <HeroLines sectionRef={sectionRef} />
     </section>
   )
 }

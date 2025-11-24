@@ -19,15 +19,17 @@ export default function SectionHero({ title, bgVidSrc, mobileImgsrc, videoUrl, v
   useGSAP(() => {
     gsap.fromTo(slideUpRef.current, { y: 100, opacity: 0 }, { y: 0, opacity: 1, duration: 2, ease: 'power2.out' })
 
-    gsap.to(sectionRef.current, {
-      scale: 0.85,
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: 'top top',
-        end: 'bottom center',
-        scrub: true,
-      },
-    })
+    if (window.innerWidth > 768) {
+      gsap.to(sectionRef.current, {
+        scale: 0.85,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top top',
+          end: 'bottom center',
+          scrub: true,
+        },
+      })
+    }
   })
 
   useEffect(() => {

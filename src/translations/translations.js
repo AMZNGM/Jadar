@@ -25,6 +25,7 @@ export const TRANSLATIONS = {
 
     // News & Media
     news: 'News',
+    newVision: 'NewVision',
     allNews: 'All News',
     mediaResources: 'Media Resources',
     press: 'Press',
@@ -598,6 +599,7 @@ export const TRANSLATIONS = {
 
     // News & Media
     news: 'الأخبار',
+    newVision: 'الرؤية الجديدة',
     allNews: 'جميع الأخبار',
     mediaResources: 'المصادر الإعلامية',
     press: 'المركز الإعلامي',
