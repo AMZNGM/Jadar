@@ -223,7 +223,7 @@ export default function PrivacyConsentSidebar({ position = 'br' }) {
 
   const positions = {
     br: 'right-2 bottom-2',
-    bl: 'left-2 bottom-2',
+    bl: 'left-4 bottom-4',
     tr: 'right-2 top-2',
     tl: 'left-2 top-2',
   }
@@ -260,11 +260,13 @@ export default function PrivacyConsentSidebar({ position = 'br' }) {
         updatedPrefs.performance = true
         updatedPrefs.functional = true
         updatedPrefs.targeting = true
+        setShowBanner(false)
       } else if (action === 'reject') {
         // Disable all optional cookie categories
         updatedPrefs.performance = false
         updatedPrefs.functional = false
         updatedPrefs.targeting = false
+        setShowBanner(false)
       }
 
       // Update the state with new preferences using setPrefs
