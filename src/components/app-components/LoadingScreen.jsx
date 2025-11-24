@@ -42,7 +42,13 @@ export default function LoadingScreen() {
     }
 
     const finishLoading = () => {
-      // Play the selected grid animation first, then run the rest after it completes.
+      const tl = gsap.timeline({
+        onComplete: () => {
+          setIsComplete(true)
+          document.body.style.overflow = 'auto'
+        },
+      })
+
       if (gridRef.current) {
         const centerBox = boxRefs.current[centerIndex]
         if (centerBox) {
@@ -50,21 +56,7 @@ export default function LoadingScreen() {
           const centerX = rect.left + rect.width / 2 - window.innerWidth / 2
           const centerY = rect.top + rect.height / 2 - window.innerHeight / 2
 
-          const gridTl = gsap.timeline({
-            onComplete: () => {
-              const restTl = gsap.timeline({
-                onComplete: () => {
-                  setIsComplete(true)
-                  document.body.style.overflow = 'auto'
-                },
-              })
-
-              if (contentRef.current) restTl.to(contentRef.current, { opacity: 0, duration: 0.6 })
-              if (sectionRef.current) restTl.to(sectionRef.current, { y: '-100vh', duration: 0.8, ease: 'power2.inOut' }, '-=0.4')
-            },
-          })
-
-          gridTl.to(gridRef.current, {
+          tl.to(gridRef.current, {
             scale: 10,
             x: -centerX,
             y: -centerY,
@@ -72,15 +64,9 @@ export default function LoadingScreen() {
             duration: 1.8,
             ease: 'power4.inOut',
           })
-        } else {
-          // fallback: no center box found
-          setIsComplete(true)
-          document.body.style.overflow = 'auto'
+          tl.to(contentRef.current, { opacity: 0, duration: 0.6 })
+          tl.to(sectionRef.current, { y: '-100vh', duration: 0.8, ease: 'power2.inOut' }, '-=0.4')
         }
-      } else {
-        // fallback: no grid found
-        setIsComplete(true)
-        document.body.style.overflow = 'auto'
       }
     }
 
