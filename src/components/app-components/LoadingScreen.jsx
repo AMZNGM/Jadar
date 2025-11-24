@@ -55,7 +55,7 @@ export default function LoadingScreen() {
             ease: 'power4.inOut',
           })
           tl.to(contentRef.current, { opacity: 0, duration: 0.6 })
-          tl.to(sectionRef.current, { yPercent: -1000, duration: 0.8, ease: 'power2.inOut' }, '-=0.4')
+          tl.to(sectionRef.current, { y: '-100vh', duration: 0.8, ease: 'power2.inOut' }, '-=0.4')
         }
       }
     }
