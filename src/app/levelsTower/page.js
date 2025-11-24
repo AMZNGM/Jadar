@@ -35,22 +35,22 @@ export default function LevelsTower() {
 
       <div className="relative z-20">
         <LevelsTowerHero desc1={thisProject.desc1} desc2={thisProject.desc2} mainLine={thisProject.mainLine} images={thisProject.images} />
-        {/* <LevelsTowerGridImg images={thisProject.images} /> */}
-        {/* <LevelsTowerHeadline headLine={thisProject.headLine} /> */}
-        {/* <ProjVideo
+        <LevelsTowerGridImg images={thisProject.images} />
+        <LevelsTowerHeadline headLine={thisProject.headLine} />
+        <ProjVideo
           videoSrc={thisProject.projVid}
           videoUrl={thisProject.logoVidUrl}
           logoName={thisProject.logoName}
           className={'bg-text p-4'}
-        /> */}
-        {/* <ProjLogo logoName={thisProject.logoName} logoLink={thisProject.projectUrl} look={'dark'} /> */}
-        {/* <ProjPanner
+        />
+        <ProjLogo logoName={thisProject.logoName} logoLink={thisProject.projectUrl} look={'dark'} />
+        <ProjPanner
           imgSrc={thisProject.pannerImg}
           logoName={thisProject.logoName}
           logoLink={thisProject.companyUrl}
           className={'bg-text'}
-        /> */}
-        {/* <ProjFooterCards
+        />
+        <ProjFooterCards
           look={'light'}
           bgCards={[
             {
@@ -80,7 +80,7 @@ export default function LevelsTower() {
               to: '/workAtJadar',
             },
           ]}
-        /> */}
+        />
       </div>
     </main>
   )

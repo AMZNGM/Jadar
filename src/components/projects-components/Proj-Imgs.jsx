@@ -147,10 +147,11 @@ export const LevelsTowerGridImg = ({ images }) => {
         {/* Big left image */}
         <div className="reveal-section col-span-2 col-start-1 relative h-[60vh] max-md:h-[40vh] overflow-hidden">
           {images.map((img, index) => (
-            <img
+            <Image
               key={index}
               src={img}
               alt="img"
+              loading="eager"
               className="reveal-img absolute inset-0 size-full object-cover pe-2 border-e border-bgb opacity-0 duration-1000 ease-in-out"
               style={{
                 opacity: currentIndex === index ? 1 : 0,
@@ -162,10 +163,11 @@ export const LevelsTowerGridImg = ({ images }) => {
         {/* Top right image */}
         <div className="reveal-section col-span-1 col-start-3 relative overflow-hidden">
           {images.map((img, index) => (
-            <img
+            <Image
               key={`top-${index}`}
               src={img}
               alt="img"
+              loading="eager"
               className="reveal-img absolute top-0 w-full h-1/2 object-cover ps-2 pb-2 opacity-0 duration-1000 ease-in-out"
               style={{
                 opacity: currentIndex2 === index ? 1 : 0,
@@ -174,10 +176,11 @@ export const LevelsTowerGridImg = ({ images }) => {
           ))}
 
           {images.map((img, index) => (
-            <img
+            <Image
               key={`bottom-${index}`}
               src={img}
               alt="img"
+              loading="eager"
               className="reveal-img absolute bottom-0 w-full h-1/2 object-cover ps-2 pt-2 opacity-0 duration-1000 ease-in-out"
               style={{
                 opacity: currentIndex3 === index ? 1 : 0,

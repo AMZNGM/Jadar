@@ -564,7 +564,7 @@ export const LevelsTowerHero = ({ desc1, desc2, mainLine, images }) => {
 
           <div className="w-full h-150 overflow-hidden md:pe-4 mt-24 max-md:mt-12">
             <ParallaxElement direction="scale" origin="right center" className={`size-full overflow-hidden`}>
-              <Image src={images[5]} alt="Image" loading="lazy" className="reveal-img size-full object-cover overflow-hidden" />
+              <Image src={images[5]} alt="Image" loading="eager" className="reveal-img size-full object-cover overflow-hidden" />
             </ParallaxElement>
           </div>
         </div>
@@ -638,7 +638,7 @@ export const LevelsTowerHeadline = ({ headLine }) => {
       <div className="reveal-section grid grid-cols-6 gap-4 border-t border-bgb py-3">
         <ParallaxElement
           direction="scale"
-          className="col-span-4 max-md:col-span-6 col-start-3 px-8 py-24 max-md:px-4 max-md:py-12 border-s border-bg/50"
+          className={`col-span-4 max-md:col-span-6 col-start-3 px-8 py-24 max-md:px-4 max-md:py-12 border-s border-bg/50`}
         >
           <p
             dangerouslySetInnerHTML={{ __html: headLine }}
@@ -648,11 +648,10 @@ export const LevelsTowerHeadline = ({ headLine }) => {
 
         <ParallaxElement
           speed={0.1}
-          smSpeed={1}
           direction="horizontal"
           ease="power2.out"
-          className="text-[15vw] text-main/10 leading-5 uppercase pointer-events-none select-none text-nowrap
-            absolute left-450"
+          className={`text-[15vw] text-main/10 leading-5 uppercase pointer-events-none select-none text-nowrap
+            absolute left-450`}
         >
           {Array.from({ length: 12 }).map((_, idx) => (
             <span key={idx}>
