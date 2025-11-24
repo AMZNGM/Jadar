@@ -320,7 +320,7 @@ export default function ProjFooterCards({ floatingCards, bgCards = [], ...otherP
               ref={(el) => (cardRef.current[index] = el)}
               className="flex justify-center items-center w-full"
             >
-              <Link to={card.to}>
+              <Link href={card.to}>
                 <ClickEffect
                   className={`group px-8 py-3 rounded-full hover:bg-main hover:text-text duration-300 cursor-pointer max-sm:scale-75
                   ${otherProps.look === 'dark' ? 'bg-main/75' : 'bg-text'} 
