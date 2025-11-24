@@ -80,7 +80,7 @@ const BackgroundCards = ({ bgCards = [], look, bgColor, textColor, borderColor, 
   )
 }
 
-const ProjFooterCards = ({ floatingCards, bgCards = [], ...otherProps }) => {
+export default function ProjFooterCards({ floatingCards, bgCards = [], ...otherProps }) {
   const { t } = useTranslation()
   const [isMobile, setIsMobile] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
@@ -273,7 +273,7 @@ const ProjFooterCards = ({ floatingCards, bgCards = [], ...otherProps }) => {
                   </div>
 
                   <Link
-                    to={card.to}
+                    href={card.to}
                     className={`group absolute inset-0 flex justify-center items-end hover:-translate-y-63 duration-800 ease-in-out z-10 ${
                       otherProps.look === 'dark' ? 'bg-bg hover:bg-main' : 'bg-text hover:bg-main'
                     }`}
@@ -347,5 +347,3 @@ const ProjFooterCards = ({ floatingCards, bgCards = [], ...otherProps }) => {
     </section>
   )
 }
-
-export default ProjFooterCards

@@ -1,31 +1,34 @@
-import { useState, useEffect, useRef } from "react";
-import { gsap } from "@/utils/gsapConfig";
-import { useGSAP } from "@gsap/react";
-import { BgNoise } from "@/data/mediaData/svgs.jsx";
-import ParallaxElement from "@/components/ui/effects/ParallaxElement.jsx";
+'use client'
+
+import Image from 'next/image'
+import { useState, useEffect, useRef } from 'react'
+import { gsap } from '@/utils/gsapConfig'
+import { useGSAP } from '@gsap/react'
+import { BgNoise } from '@/data/mediaData/svgs.jsx'
+import ParallaxElement from '@/components/ui/effects/ParallaxElement.jsx'
 
 export const AbdullaMubarakGridImg = ({ images }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [currentIndex2, setCurrentIndex2] = useState(1);
-  const [currentIndex3, setCurrentIndex3] = useState(2);
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [currentIndex2, setCurrentIndex2] = useState(1)
+  const [currentIndex3, setCurrentIndex3] = useState(2)
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex(Math.floor(Math.random() * images.length));
-      setCurrentIndex2(Math.floor(Math.random() * images.length));
-      setCurrentIndex3(Math.floor(Math.random() * images.length));
-    }, 2000);
-    return () => clearInterval(interval);
-  }, []);
+      setCurrentIndex(Math.floor(Math.random() * images.length))
+      setCurrentIndex2(Math.floor(Math.random() * images.length))
+      setCurrentIndex3(Math.floor(Math.random() * images.length))
+    }, 2000)
+    return () => clearInterval(interval)
+  }, [images.length])
 
   return (
     <section className="relative w-screen overflow-hidden bg-bg px-4">
       <BgNoise />
 
-      <ParallaxElement speed={5} direction="opacity" className="grid grid-cols-3 border-t border-main/50 py-3">
+      <ParallaxElement speed={5} direction="opacity" className={`grid grid-cols-3 border-t border-main/50 py-3`}>
         <div className="col-span-2 col-start-1 relative h-[60vh] max-md:h-[40vh] overflow-hidden z-10">
           {images.map((img, index) => (
-            <img
+            <Image
               key={index}
               src={img}
               alt="img"
@@ -39,7 +42,7 @@ export const AbdullaMubarakGridImg = ({ images }) => {
 
         <div className="col-span-1 col-start-3 relative h-[30vh] max-md:h-[20vh] overflow-hidden z-10">
           {images.map((img, index) => (
-            <img
+            <Image
               key={`top-${index}`}
               src={img}
               alt="img"
@@ -51,18 +54,13 @@ export const AbdullaMubarakGridImg = ({ images }) => {
           ))}
         </div>
 
-        <ParallaxElement
-          speed={1.15}
-          smSpeed={1.1}
-          mdSpeed={1.15}
-          xlSpeed={1.15}
-          className="col-span-1 col-start-3 relative h-[30vh] max-md:h-[20vh] overflow-hidden mt-2 ms-2 z-10">
+        <ParallaxElement speed={1.15} className={`col-span-1 col-start-3 relative h-[30vh] max-md:h-[20vh] overflow-hidden mt-2 ms-2 z-10`}>
           {images.map((img, index) => (
-            <img
+            <Image
               key={`bottom-${index}`}
               src={img}
               alt="img"
-              className="absolute inset-0 size-full object-cover opacity-0 duration-1000 ease-in-out"
+              className={`absolute inset-0 size-full object-cover opacity-0 duration-1000 ease-in-out`}
               style={{
                 opacity: currentIndex3 === index ? 1 : 0,
               }}
@@ -74,14 +72,11 @@ export const AbdullaMubarakGridImg = ({ images }) => {
           <ParallaxElement
             speed={2.35}
             direction="custom"
-            x={-80}
-            y={10}
-            scale={0.6}
-            opacity={0.1}
             ease="power2.out"
-            className="font-bold leading-5 uppercase whitespace-nowrap pointer-events-none select-none text-[15vw] text-main/10">
+            className={`font-bold leading-5 uppercase whitespace-nowrap pointer-events-none select-none text-[15vw] text-main/10`}
+          >
             {Array(14)
-              .fill("Jadar")
+              .fill('Jadar')
               .map((_, i) => (
                 <div key={i}>
                   Jadar
@@ -93,56 +88,56 @@ export const AbdullaMubarakGridImg = ({ images }) => {
         </div>
       </ParallaxElement>
     </section>
-  );
-};
+  )
+}
 
 export const LevelsTowerGridImg = ({ images }) => {
-  const containerRef = useRef(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [currentIndex2, setCurrentIndex2] = useState(1);
-  const [currentIndex3, setCurrentIndex3] = useState(2);
+  const containerRef = useRef(null)
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [currentIndex2, setCurrentIndex2] = useState(1)
+  const [currentIndex3, setCurrentIndex3] = useState(2)
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex(Math.floor(Math.random() * images.length));
-      setCurrentIndex2(Math.floor(Math.random() * images.length));
-      setCurrentIndex3(Math.floor(Math.random() * images.length));
-    }, 2000);
-    return () => clearInterval(interval);
-  }, []);
+      setCurrentIndex(Math.floor(Math.random() * images.length))
+      setCurrentIndex2(Math.floor(Math.random() * images.length))
+      setCurrentIndex3(Math.floor(Math.random() * images.length))
+    }, 2000)
+    return () => clearInterval(interval)
+  }, [])
 
   useGSAP(() => {
     const ctx = gsap.context(() => {
-      gsap.utils.toArray(".reveal-img").forEach((img) => {
+      gsap.utils.toArray('.reveal-img').forEach((img) => {
         gsap.from(img, {
           opacity: 0,
           duration: 0.1,
-          ease: "power2.out",
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: img,
-            start: "top 80%",
-            toggleActions: "play none none reverse",
+            start: 'top 80%',
+            toggleActions: 'play none none reverse',
           },
-        });
-      });
+        })
+      })
 
-      gsap.utils.toArray(".reveal-section").forEach((section) => {
+      gsap.utils.toArray('.reveal-section').forEach((section) => {
         gsap.from(section, {
           opacity: 0,
           y: 80,
           duration: 1.2,
-          ease: "power2.out",
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: section,
-            start: "top 85%",
-            toggleActions: "play none none reverse",
+            start: 'top 85%',
+            toggleActions: 'play none none reverse',
           },
-        });
-      });
-    }, containerRef);
+        })
+      })
+    }, containerRef)
 
-    return () => ctx.revert();
-  }, []);
+    return () => ctx.revert()
+  }, [])
 
   return (
     <section ref={containerRef} className="relative w-screen overflow-hidden bg-text text-bg px-4">
@@ -192,5 +187,5 @@ export const LevelsTowerGridImg = ({ images }) => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}

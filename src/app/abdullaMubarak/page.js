@@ -59,10 +59,10 @@ export default function AbdullaMubarak() {
         <BgNoise />
 
         <AbdullaMubarakHeadline headLine={thisProject.headLine} />
-        {/* <ProjPanner imgSrc={thisProject.pannerImg} logoName={thisProject.logoName} logoLink={thisProject.projectUrl} /> */}
-        {/* <ProjLogo logoName={thisProject.logoName} logoLink={thisProject.companyUrl} /> */}
-        {/* <AbdullaMubarakGridImg images={thisProject.images} /> */}
-        {/* <ProjFooterCards
+        <ProjPanner imgSrc={thisProject.pannerImg} logoName={thisProject.logoName} logoLink={thisProject.projectUrl} />
+        <ProjLogo logoName={thisProject.logoName} logoLink={thisProject.companyUrl} />
+        <AbdullaMubarakGridImg images={thisProject.images} />
+        <ProjFooterCards
           look={'dark'}
           bgCards={[
             {
@@ -92,7 +92,7 @@ export default function AbdullaMubarak() {
               to: '/workAtJadar',
             },
           ]}
-        /> */}
+        />
       </div>
     </main>
   )
