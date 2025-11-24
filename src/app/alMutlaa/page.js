@@ -46,7 +46,7 @@ export default function AlMutlaa() {
         />
         <ProjPanner imgSrc={thisProject.pannerImg} logoName={thisProject.logoName} logoLink={thisProject.projectUrl} />
         <ProjLogo logoName={thisProject.logoName} logoLink={thisProject.companyUrl} />
-        {/* <ProjFooterCards
+        <ProjFooterCards
           look={'dark'}
           bgCards={[
             {
@@ -76,7 +76,7 @@ export default function AlMutlaa() {
               to: nextProject.to,
             },
           ]}
-        /> */}
+        />
       </div>
     </main>
   )
