@@ -137,7 +137,7 @@ export const AbdullaMubarakHeadline = ({ headLine }) => {
     <section className="relative w-screen overflow-hidden bg-bg text-text px-4 lg:-mt-32">
       <BgNoise />
 
-      <div className="grid grid-cols-6 border-t border-main/50 py-3">
+      <div className="grid grid-cols-6 border-t border-main/50 py-3 max-md:-translate-x-9">
         <ParallaxElement
           speed={0.8}
           direction="scale"
