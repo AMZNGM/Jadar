@@ -5,8 +5,8 @@ import { BgNoise } from '@/data/mediaData/svgs.jsx'
 import { projectsData } from '@/data/projectsData'
 import SectionHero from '@/components/hero-components/SectionHero.jsx'
 import Breadcrumb from '@/components/ui/Breadcrumb.jsx'
-import { LevelsTowerGridImg } from '@/components/projects-components/Proj-Imgs.jsx'
 import { LevelsTowerHero, LevelsTowerHeadline } from '@/components/projects-components/Proj-TextContent.jsx'
+import { LevelsTowerGridImg } from '@/components/projects-components/Proj-Imgs.jsx'
 import ProjVideo from '@/components/projects-components/Proj-Video.jsx'
 import ProjLogo from '@/components/projects-components/Proj-Logo.jsx'
 import ProjPanner from '@/components/projects-components/Proj-Panner.jsx'
@@ -22,19 +22,19 @@ export default function LevelsTower() {
     <main className="relative z-10">
       <div className="sticky top-0 z-20 bg-bg">
         <BgNoise />
-        {/* <SectionHero
+        <SectionHero
           title={thisProject.title}
           bgVidSrc={thisProject.bgVid}
           mobileImgsrc={thisProject.images[2]}
           videoUrl={thisProject.bgVidUrl}
           videoclassName={'opacity-50 blur-[3px]'}
-        /> */}
+        />
       </div>
 
-      {/* <Breadcrumb pages={thisProject.breadcrumb} /> */}
+      <Breadcrumb pages={thisProject.breadcrumb} />
 
       <div className="relative z-20">
-        {/* <LevelsTowerHero desc1={thisProject.desc1} desc2={thisProject.desc2} mainLine={thisProject.mainLine} images={thisProject.images} /> */}
+        <LevelsTowerHero desc1={thisProject.desc1} desc2={thisProject.desc2} mainLine={thisProject.mainLine} images={thisProject.images} />
         {/* <LevelsTowerGridImg images={thisProject.images} /> */}
         {/* <LevelsTowerHeadline headLine={thisProject.headLine} /> */}
         {/* <ProjVideo

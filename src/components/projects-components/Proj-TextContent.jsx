@@ -563,19 +563,21 @@ export const LevelsTowerHero = ({ desc1, desc2, mainLine, images }) => {
           </ParallaxElement>
 
           <div className="w-full h-150 overflow-hidden md:pe-4 mt-24 max-md:mt-12">
-            <ParallaxElement direction="scale" origin="right center" className="size-full overflow-hidden">
-              <img src={images[5]} alt="Image" loading="lazy" className="reveal-img size-full object-cover overflow-hidden" />
+            <ParallaxElement direction="scale" origin="right center" className={`size-full overflow-hidden`}>
+              <Image src={images[5]} alt="Image" loading="lazy" className="reveal-img size-full object-cover overflow-hidden" />
             </ParallaxElement>
           </div>
         </div>
 
         <div className="col-span-4 col-start-3 max-md:col-span-6 max-sm:col-start-1 flex flex-col justify-between">
-          <ParallaxElement className="reveal-text text-4xl max-md:text-2xl max-w-xl font-extralight tracking-wide px-4 max-md:p-0 mt-60 max-md:mt-12">
+          <ParallaxElement
+            className={`reveal-text text-4xl max-md:text-2xl max-w-xl font-extralight tracking-wide px-4 max-md:p-0 mt-60 max-md:mt-12`}
+          >
             {desc1}
           </ParallaxElement>
 
           <div className="flex justify-end mb-4 max-md:mt-12">
-            <ParallaxElement className="reveal-text text-sm font-extralight tracking-wide max-w-sm px-4 border-s border-bgb">
+            <ParallaxElement className={`reveal-text text-sm font-extralight tracking-wide max-w-sm px-4 border-s border-bgb`}>
               {desc2}
             </ParallaxElement>
           </div>
