@@ -30,11 +30,11 @@ export default function Home() {
       </div>
 
       <div className="relative z-40">
-        {/* <div className="absolute inset-0">
+        <div className="absolute inset-0">
           <PartnersBgVid />
-        </div> */}
-        {/* <EgyptJourneyIntro /> */}
-        {/* <OurJourney /> */}
+        </div>
+        <EgyptJourneyIntro />
+        <OurJourney />
         {/* <ProjectsGallery /> */}
       </div>
     </main>

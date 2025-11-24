@@ -114,7 +114,7 @@ const Card = ({ img, title, description, className }) => {
 
 export default function BentoCards() {
   return (
-    <div className="relative w-screen min-h-screen bg-black text-text px-4">
+    <div className="relative w-screen min-h-screen bg-black text-text pb-4 px-4">
       <FloatingEffect className="duration-300 hover:scale-95">
         <Card {...cardData[0]} index={0} />
       </FloatingEffect>
