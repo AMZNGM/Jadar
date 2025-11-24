@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useRef } from 'react'
 import { gsap, ScrollTrigger } from '@/utils/gsapConfig'
 import { useGSAP } from '@gsap/react'
@@ -408,15 +409,15 @@ export const AlMutlaaHero = ({ desc1, desc2, desc3, desc4, value, startDate, end
       <div className="grid grid-cols-6 border-t border-bgb overflow-hidden py-3">
         <div className="col-span-4 col-start-1 max-md:col-span-6 border-e max-md:border-0 border-bgb">
           <span className="text-sm text-bg/50 font-light">N6 & N9</span>
-          <ParallaxElement className="reveal-text text-4xl font-light tracking-wide max-w-md my-36 max-md:my-14">
+          <ParallaxElement className={`reveal-text text-4xl font-light tracking-wide max-w-md my-36 max-md:my-14`}>
             {mainLine}
           </ParallaxElement>
           <ParallaxElement
             speed={0.1}
-            className="w-full flex max-lg:flex-col justify-between items-start overflow-hidden mb-4 md:mt-24 md:pe-4"
+            className={`w-full flex max-lg:flex-col justify-between items-start overflow-hidden mb-4 md:mt-24 md:pe-4`}
           >
             <ParallaxElement speed={0.3} direction="scale" origin="right bottom">
-              <img src={images[2]} alt="Image" loading="lazy" className="size-full object-cover overflow-hidden" />
+              <Image src={images[2]} alt="Image" loading="lazy" className="size-full object-cover overflow-hidden" />
             </ParallaxElement>
             <p className="reveal-text text-sm font-extralight tracking-wide max-w-sm lg:px-4 max-lg:mt-4 max-md:mt-8">{desc1}</p>
           </ParallaxElement>
@@ -424,9 +425,7 @@ export const AlMutlaaHero = ({ desc1, desc2, desc3, desc4, value, startDate, end
 
         <ParallaxElement
           speed={-0.25}
-          disableMd
-          disableSm
-          className="col-span-2 col-start-5 max-md:col-span-6 max-sm:col-start-1 px-4 my-36 max-md:p-0 max-md:my-8 space-y-8"
+          className={`col-span-2 col-start-5 max-md:col-span-6 max-sm:col-start-1 px-4 my-36 max-md:p-0 max-md:my-8 space-y-8`}
         >
           <div className="space-y-1">
             <span className="text-sm text-bg/50 font-light block">01.</span>
@@ -480,10 +479,8 @@ export const AlMutlaaHeadline = ({ headLine }) => {
 
         <ParallaxElement
           speed={-0.9}
-          smSpeed={1}
           ease="power2.out"
-          className="text-[15vw] text-main/10 leading-5 uppercase pointer-events-none select-none text-nowrap
-            absolute left-0 bottom-0"
+          className={`absolute left-0 bottom-0 text-[15vw] text-main/10 leading-5 uppercase pointer-events-none select-none text-nowrap`}
         >
           {Array.from({ length: 12 }).map((_, idx) => (
             <span key={idx}>

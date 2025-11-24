@@ -29,11 +29,11 @@ export default function AlMutlaa() {
         />
       </div>
 
-      {/* <Breadcrumb pages={thisProject.breadcrumb} /> */}
+      <Breadcrumb pages={thisProject.breadcrumb} />
 
       <div className="relative z-20">
-        {/* <AlMutlaaHeadline headLine={thisProject.headLine} /> */}
-        {/* <AlMutlaaHero
+        <AlMutlaaHeadline headLine={thisProject.headLine} />
+        <AlMutlaaHero
           desc1={thisProject.desc1}
           desc2={thisProject.desc2}
           desc3={thisProject.desc3}
@@ -43,7 +43,7 @@ export default function AlMutlaa() {
           endDate={thisProject.endDate}
           mainLine={thisProject.mainLine}
           images={thisProject.images}
-        /> */}
+        />
         {/* <ProjPanner imgSrc={thisProject.pannerImg} logoName={thisProject.logoName} logoLink={thisProject.projectUrl} /> */}
         {/* <ProjLogo logoName={thisProject.logoName} logoLink={thisProject.companyUrl} /> */}
         {/* <ProjFooterCards
