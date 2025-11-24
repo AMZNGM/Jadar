@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { useRef, useState } from 'react'
 import { gsap } from '@/utils/gsapConfig'
 import { useGSAP } from '@gsap/react'
-import { BgNoise, MovingBorders } from '@/data/mediaData/svgs'
+import { MovingBorders } from '@/data/mediaData/svgs'
 import { useTranslation } from '@/translations/useTranslation'
 import { ArtboardImgs } from '@/data/mediaData/artBoardImgs'
 import SpotlightContainer from '@/components/ui/effects/SpotlightContainer.jsx'
@@ -115,8 +115,6 @@ const Card = ({ img, title, description, className }) => {
 export default function BentoCards() {
   return (
     <div className="relative w-screen min-h-screen bg-black text-text px-4">
-      <BgNoise />
-
       <FloatingEffect className="duration-300 hover:scale-95">
         <Card {...cardData[0]} index={0} />
       </FloatingEffect>
