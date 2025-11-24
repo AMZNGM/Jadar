@@ -50,7 +50,7 @@ export default function EastSabah() {
       <div className="relative z-50">
         <ProjVideo videoSrc={thisProject.projVid} videoUrl={thisProject.projectUrl} logoName={thisProject.logoName} />
         <EastSabahCarousel />
-        {/* <ProjFooterCards
+        <ProjFooterCards
           look={'dark'}
           bgCards={[
             {
@@ -80,7 +80,7 @@ export default function EastSabah() {
               to: '/alMutlaa',
             },
           ]}
-        /> */}
+        />
       </div>
     </main>
   )
