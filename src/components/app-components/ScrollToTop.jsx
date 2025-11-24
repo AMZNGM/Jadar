@@ -1,32 +1,35 @@
-import { useEffect, useState } from "react";
-import ClickEffect from "@/components/ui/effects/ClickEffect.jsx";
+'use client'
 
-const ScrollToTop = () => {
-  const [visible, setVisible] = useState(false);
+import { useEffect, useState } from 'react'
+import ClickEffect from '@/components/ui/effects/ClickEffect.jsx'
+
+export default function ScrollToTop() {
+  const [visible, setVisible] = useState(false)
 
   useEffect(() => {
     const toggleVisibility = () => {
       if (window.scrollY > 300) {
-        setVisible(true);
+        setVisible(true)
       } else {
-        setVisible(false);
+        setVisible(false)
       }
-    };
+    }
 
-    window.addEventListener("scroll", toggleVisibility);
-    return () => window.removeEventListener("scroll", toggleVisibility);
-  }, []);
+    window.addEventListener('scroll', toggleVisibility)
+    return () => window.removeEventListener('scroll', toggleVisibility)
+  }, [])
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   return (
     visible && (
       <button
         onClick={scrollToTop}
         aria-label="Scroll to top"
-        className="fixed bottom-2 right-2 z-50 opacity-50 hover:opacity-100 duration-300">
+        className="fixed bottom-4 right-4 z-50 opacity-50 hover:opacity-100 duration-300"
+      >
         <ClickEffect className="size-full p-2 shadow-lg bg-bg/50 text-text hover:bg-main duration-300 cursor-pointer">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -34,14 +37,13 @@ const ScrollToTop = () => {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="size-5">
+            className="size-5"
+          >
             <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 18.75 7.5-7.5 7.5 7.5" />
             <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 7.5-7.5 7.5 7.5" />
           </svg>
         </ClickEffect>
       </button>
     )
-  );
-};
-
-export default ScrollToTop;
+  )
+}

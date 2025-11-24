@@ -357,8 +357,8 @@ export default function PrivacyConsentSidebar({ position = 'br' }) {
 
           <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm max-md:text-center flex-1">
-              We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. By clicking "Accept
-              All", you consent to our use of cookies.
+              We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. By clicking Accept
+              All, you consent to our use of cookies.
             </p>
             <div className="flex flex-col sm:flex-row gap-2 text-center">
               <ClickEffect
@@ -440,7 +440,7 @@ export default function PrivacyConsentSidebar({ position = 'br' }) {
             <section className="p-4 text-xs leading-relaxed bg-text/5 opacity-90">
               <p>
                 When you use the Jadar website, certain information may be stored or retrieved in your browser, mainly through cookies. This
-                data can relate to your device, settings, or general usage and helps the site work as intended. It usually doesn't directly
+                data can relate to your device, settings, or general usage and helps the site work as intended. It usually doesnt directly
                 identify you, but it enables a more tailored experience.
               </p>
               <div className="group mt-3 flex items-center gap-1 text-xs hover:text-main">
@@ -451,7 +451,7 @@ export default function PrivacyConsentSidebar({ position = 'br' }) {
                     d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
                   />
                 </svg>
-                <Link to="/cookiePolicy" onClick={handleSaveCustom} className="bg-[#232323] z-10 underline underline-offset-2">
+                <Link href="/cookiePolicy" onClick={handleSaveCustom} className="bg-[#232323] z-10 underline underline-offset-2">
                   More information
                 </Link>
                 <svg

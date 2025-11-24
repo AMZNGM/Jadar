@@ -5,11 +5,12 @@ import { usePathname } from 'next/navigation'
 import { AlertProvider } from '@/components/app-components/alert/AlertContext.jsx'
 import { LanguageProvider } from '@/translations/LanguageContext'
 import Lenis from 'lenis'
-import PrivacyConsentSidebar from '@/components/app-components/PrivacyConsentSidebar.jsx'
 import ErrorBoundary from '@/components/app-components/ErrorBoundary.jsx'
 import GlobalParallax from '@/components/app-components/GlobalParallax'
 import Navbar from '@/components/navbar-components/Navbar.jsx'
 import Footer from '@/components/Footer.jsx'
+import ScrollToTop from '@/components/app-components/ScrollToTop'
+import PrivacyConsentSidebar from '@/components/app-components/PrivacyConsentSidebar.jsx'
 
 export default function AppWrapper({ children }) {
   useEffect(() => {
@@ -81,7 +82,8 @@ export default function AppWrapper({ children }) {
             )}
           </div>
         </AlertProvider>
-        <PrivacyConsentSidebar position="bl" />
+        <ScrollToTop />
+        {/* <PrivacyConsentSidebar position="bl" /> */}
       </LanguageProvider>
     </ErrorBoundary>
   )
