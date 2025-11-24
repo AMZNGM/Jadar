@@ -6,7 +6,6 @@ import { useGSAP } from '@gsap/react'
 import BgVideo from '@/components/ui/BgVideo.jsx'
 import DynCursor from '@/components/ui/effects/DynCursor.jsx'
 import HomeHeroContent from '@/components/hero-components/HomeHeroContent.jsx'
-import HeroHomeCards from '@/components/hero-components/HomeHeroCards.jsx'
 import VideoModal from '@/components/hero-components/HeroVideoModal.jsx'
 import HeroLines from '@/components/hero-components/HeroLines.jsx'
 
