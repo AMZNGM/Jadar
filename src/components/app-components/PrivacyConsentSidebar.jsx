@@ -245,6 +245,20 @@ export default function PrivacyConsentSidebar({ position = 'br' }) {
     return () => window.removeEventListener('keydown', onKey)
   }, [isOpen, setIsOpen])
 
+  const handleSaveCustom = async () => {
+    setIsLoading(true)
+
+    try {
+      await save({ silent: false })
+      setIsOpen(false)
+      setShowBanner(false)
+    } catch (error) {
+      console.error('Failed to save preferences:', error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   const handleAction = async (action) => {
     setIsLoading(true)
 
@@ -260,31 +274,17 @@ export default function PrivacyConsentSidebar({ position = 'br' }) {
         updatedPrefs.performance = true
         updatedPrefs.functional = true
         updatedPrefs.targeting = true
-        setShowBanner(false)
+        handleSaveCustom()
       } else if (action === 'reject') {
         // Disable all optional cookie categories
         updatedPrefs.performance = false
         updatedPrefs.functional = false
         updatedPrefs.targeting = false
-        setShowBanner(false)
+        handleSaveCustom()
       }
 
       // Update the state with new preferences using setPrefs
       setPrefs(updatedPrefs)
-    } catch (error) {
-      console.error('Failed to save preferences:', error)
-    } finally {
-      setIsLoading(false)
-    }
-  }
-
-  const handleSaveCustom = async () => {
-    setIsLoading(true)
-
-    try {
-      await save({ silent: false })
-      setIsOpen(false)
-      setShowBanner(false)
     } catch (error) {
       console.error('Failed to save preferences:', error)
     } finally {
