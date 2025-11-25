@@ -13,7 +13,7 @@ import MainBtn from '@/components/ui/buttons/MainBtn.jsx'
 import Logo from '@/components/ui/logo'
 import BgVideo from '@/components/ui/BgVideo.jsx'
 
-const OurJourney = () => {
+export default function OurJourney() {
   const bgVid = '/videos/bgVideo.mp4'
   const mobileImgsrc = '/images/bgVidCover.webp'
   const { t } = useTranslation()
@@ -27,7 +27,7 @@ const OurJourney = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentLogoIndex((prevIndex) => (prevIndex + 1) % partnerData.length)
-    }, 5000)
+    }, 8000)
     return () => clearInterval(timer)
   })
 
@@ -37,6 +37,8 @@ const OurJourney = () => {
 
   useGSAP(
     () => {
+      if (window.innerWidth < 678) return null
+      if (!horizontalSectionRef.current) return
       const slides = gsap.utils.toArray('.horizontal-slide')
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -107,7 +109,7 @@ const OurJourney = () => {
 
   return (
     <section dir="ltr" id="Our-Work-logos" ref={sectionRef} className="relative w-screen overflow-hidden bg-bg text-text">
-      <div ref={horizontalSectionRef} className="relative w-full min-h-screen flex">
+      <div ref={horizontalSectionRef} className="relative w-full min-h-screen md:flex">
         <div className="horizontal-slide relative w-full h-screen flex shrink-0 justify-center items-center z-50">
           <BgVideo src={bgVid} mobileImgsrc={mobileImgsrc} />
 
@@ -120,7 +122,7 @@ const OurJourney = () => {
                   className={`group size-full absolute inset-0 flex justify-center items-center transition-opacity duration-500
                   ${index === currentLogoIndex ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
                 >
-                  <Logo logoName={partner.logoName} to={partner.website} className={'w-full px-16'} />
+                  <Logo logoName={partner.logoName} to={partner.website} width={500} className={'w-full px-16'} />
                   <span className="absolute left-1/2 bottom-24 -translate-x-1/2 leading-5 uppercase pointer-events-none select-none text-[12rem] max-md:text-[8rem] text-main/10 duration-500 ease-in-out opacity-0 group-hover:opacity-100">
                     {t(`click`)}
                   </span>
@@ -139,7 +141,12 @@ const OurJourney = () => {
                     ${index === currentLogoIndex ? 'opacity-100 bg-bg/15' : 'opacity-50 hover:opacity-100 hover:bg-bg/10'}
                     ${index === partnerData.length - 1 && partnerData.length % 2 !== 0 ? 'col-span-2' : 'col-span-1'}`}
                 >
-                  <Logo logoName={partner.logoName} to={partner.website} className={'w-80 max-md:w-30 brightness-0 pointer-events-none'} />
+                  <Logo
+                    logoName={partner.logoName}
+                    to={partner.website}
+                    width={500}
+                    className={'w-80 max-md:w-30 brightness-0 pointer-events-none'}
+                  />
                 </div>
               ))}
             </div>
@@ -150,7 +157,6 @@ const OurJourney = () => {
           <Image
             src={ArtboardImgs[19]}
             alt="Kuwait Journey background Image"
-            fill
             className="size-full absolute inset-0 object-cover pointer-events-none"
             loading="eager"
           />
@@ -170,5 +176,3 @@ const OurJourney = () => {
     </section>
   )
 }
-
-export default OurJourney

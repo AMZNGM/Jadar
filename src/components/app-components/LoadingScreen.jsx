@@ -88,7 +88,7 @@ export default function LoadingScreen() {
 
     const timeoutId = setTimeout(() => {
       if (!isLoadComplete) finishLoading()
-    }, 8000)
+    }, 500)
 
     return () => {
       clearTimeout(timeoutId)
