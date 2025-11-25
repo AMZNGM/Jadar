@@ -117,6 +117,13 @@ export default function AppWrapper({ children }) {
   }, [])
 
   const pathname = usePathname()
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    })
+  }, [pathname])
+
   const staticRoutes = useMemo(
     () => [
       '/',
