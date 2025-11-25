@@ -23,7 +23,7 @@ export default function ProjectsGallery() {
   const [activeProject, setActiveProject] = useState(0)
 
   useGSAP(() => {
-    if (!sectionRef.current || !leftSideRef.current || !rightSideRef.current) return
+    if (!sectionRef.current || !leftSideRef.current || !rightSideRef.current || window.innerWidth < 768) return
 
     // Pin the left side while right side scrolls
     gsap.to(leftSideRef.current, {
