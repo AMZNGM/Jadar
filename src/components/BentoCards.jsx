@@ -53,7 +53,6 @@ const Card = ({ img, title, description, className }) => {
           trigger: cardRef.current,
           start: '-600% bottom',
           end: 'center 80%',
-          toggleActions: 'play none none reverse',
         },
       }
     )

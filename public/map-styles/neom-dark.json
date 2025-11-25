@@ -1,0 +1,87 @@
+{
+  "version": 8,
+  "name": "MapStyle",
+  "metadata": {
+    "mapbox:autocomposite": false,
+    "mapbox:type": "template"
+  },
+  "sources": {
+    "openmaptiles": {
+      "type": "vector",
+      "url": "https://api.maptiler.com/tiles/v3/tiles.json?key=cZA1QuLRCwOjEaC82vw5"
+    }
+  },
+  "sprite": "https://api.maptiler.com/maps/streets-v2/sprite",
+  "glyphs": "https://api.maptiler.com/fonts/{fontstack}/{range}.pbf?key=cZA1QuLRCwOjEaC82vw5",
+
+  "layers": [
+    {
+      "id": "background",
+      "type": "background",
+      "paint": {
+        "background-color": "#181818"
+      }
+    },
+
+    {
+      "id": "land",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "landcover",
+      "paint": {
+        "fill-color": "#000000"
+      }
+    },
+
+    {
+      "id": "water",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "water",
+      "paint": {
+        "fill-color": "#000000"
+      }
+    },
+
+    {
+      "id": "roads",
+      "type": "line",
+      "source": "openmaptiles",
+      "source-layer": "transportation",
+      "paint": {
+        "line-color": "#d73b1380",
+        "line-width": ["interpolate", ["linear"], ["zoom"], 4, 0.2, 10, 1.5, 15, 3]
+      }
+    },
+
+    {
+      "id": "country-borders",
+      "type": "line",
+      "source": "openmaptiles",
+      "source-layer": "boundary",
+      "filter": ["==", "admin_level", 2],
+      "paint": {
+        "line-color": "#000000",
+        "line-width": 1.5
+      }
+    },
+
+    {
+      "id": "country-labels",
+      "type": "symbol",
+      "source": "openmaptiles",
+      "source-layer": "place",
+      "filter": ["all", ["==", ["get", "class"], "country"], ["has", "name_en"]],
+      "layout": {
+        "text-field": ["coalesce", ["get", "name_en"], ["get", "name"]],
+        "text-font": ["Inter", "light"],
+        "text-size": ["interpolate", ["linear"], ["zoom"], 1, 5, 3, 8],
+        "text-transform": "uppercase",
+        "text-letter-spacing": 0.1
+      },
+      "paint": {
+        "text-color": "#d73b13"
+      }
+    }
+  ]
+}

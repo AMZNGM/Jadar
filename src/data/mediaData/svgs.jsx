@@ -332,3 +332,12 @@ export const MovingBorders = ({ className = '' } = {}) => (
     `}</style>
   </div>
 )
+
+export const FadeBorders = ({ className = '' } = {}) => (
+  <div className={`absolute inset-0 z-10 pointer-events-none max-md:hidden ${className} pointer-events-none`}>
+    <div className="absolute top-0 left-0 w-full h-32 bg-linear-to-b from-black to-transparent via-black/80" />
+    <div className="absolute bottom-0 left-0 w-full h-32 bg-linear-to-t from-black to-transparent via-black/80" />
+    <div className="absolute top-0 left-0 w-32 h-full bg-linear-to-r from-black to-transparent via-black/80" />
+    <div className="absolute top-0 right-0 w-32 h-full bg-linear-to-l from-black to-transparent via-black/80" />
+  </div>
+)

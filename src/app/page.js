@@ -3,7 +3,7 @@ import { ArtboardImgs } from '@/data/mediaData/artBoardImgs'
 import Hero from '@/components/hero-components/Hero.jsx'
 import WhoWeAre from '@/components/WhoWeAre.jsx'
 import BentoCards from '@/components/BentoCards.jsx'
-// import Map from '@/components/Map.jsx'
+import MapSection from '@/components/MapSection.jsx'
 import PartnersBgVid from '@/components/ui/PartnersBgVid'
 import EgyptJourneyIntro from '@/components/EgyptJourneyIntro'
 import OurJourney from '@/components/OurJourney'
@@ -25,7 +25,7 @@ export default function Home() {
         <WhoWeAre />
         <div className="-translate- y-20">
           <BentoCards />
-          {/* <Map /> */}
+          <MapSection />
         </div>
       </div>
 
