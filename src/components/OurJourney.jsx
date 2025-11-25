@@ -44,16 +44,23 @@ export default function OurJourney() {
         scrollTrigger: {
           trigger: horizontalSectionRef.current,
           start: 'top top',
-          end: `+=${slides.length * 1000}px`,
+          end: `+=${slides.length * 1800 + 2000}px`,
           pin: true,
           scrub: 1,
         },
       })
 
-      tl.to(slides, {
-        xPercent: -100 * (slides.length - 1),
-        ease: 'none',
-      }).to({}, { duration: 0.3 })
+      tl.to({}, { duration: 0.3 })
+        .to(
+          slides,
+          {
+            xPercent: -100 * (slides.length - 1),
+            ease: 'none',
+            duration: slides.length - 1,
+          },
+          '>'
+        )
+        .to({}, { duration: 0.3 })
 
       gsap.fromTo(
         '.parallaxSlide',
@@ -65,7 +72,7 @@ export default function OurJourney() {
             trigger: slides,
             start: 'top top',
             end: 'bottom center',
-            scrub: true,
+            scrub: 1,
             containerAnimation: tl,
           },
         }
@@ -114,7 +121,7 @@ export default function OurJourney() {
           <BgVideo src={bgVid} mobileImgsrc={mobileImgsrc} />
 
           <div className="relative size-full flex max-lg:flex-col justify-center items-center">
-            {/* left side */}
+            {/* img side */}
             <div ref={leftSideRef} className="relative size-full flex justify-center items-center">
               {partnerData.map((partner, index) => (
                 <div
@@ -122,15 +129,15 @@ export default function OurJourney() {
                   className={`group size-full absolute inset-0 flex justify-center items-center transition-opacity duration-500
                   ${index === currentLogoIndex ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
                 >
-                  <Logo logoName={partner.logoName} to={partner.website} width={500} className={'w-full px-16'} />
-                  <span className="absolute left-1/2 bottom-24 -translate-x-1/2 leading-5 uppercase pointer-events-none select-none text-[12rem] max-md:text-[8rem] text-main/10 duration-500 ease-in-out opacity-0 group-hover:opacity-100">
+                  <Logo logoName={partner.logoName} to={partner.website} width={500} className={'w-full px-16 max-md:px-4'} />
+                  <span className="absolute left-1/2 bottom-24 -translate-x-1/2 leading-5 uppercase pointer-events-none select-none text-[12rem] max-md:text-[8rem] text-main/10 duration-500 ease-in-out md:opacity-0 group-hover:opacity-100">
                     {t(`click`)}
                   </span>
                 </div>
               ))}
             </div>
 
-            {/* right side */}
+            {/* white side */}
             <div ref={rightSideRef} className="relative size-full grid grid-cols-2 justify-center items-center bg-text">
               <BgNoise />
               {partnerData.map((partner, index) => (
@@ -153,7 +160,7 @@ export default function OurJourney() {
           </div>
         </div>
 
-        <div className="horizontal-slide relative w-full h-screen flex shrink-0 justify-center items-center parallaxSlide">
+        <div className="horizontal-slide parallaxSlide relative w-full h-screen flex shrink-0 justify-center items-center">
           <Image
             src={ArtboardImgs[19]}
             alt="Kuwait Journey background Image"
