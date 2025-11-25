@@ -7,7 +7,7 @@ import BentoCards from '@/components/BentoCards.jsx'
 import PartnersBgVid from '@/components/ui/PartnersBgVid'
 import EgyptJourneyIntro from '@/components/EgyptJourneyIntro'
 import OurJourney from '@/components/OurJourney'
-// import ProjectsGallery from '@/components/ProjectsGallery.jsx'
+import ProjectsGallery from '@/components/ProjectsGallery.jsx'
 
 export default function Home() {
   const bgVid = '/videos/homeHero.mp4'
@@ -35,7 +35,7 @@ export default function Home() {
         </div>
         <EgyptJourneyIntro />
         <OurJourney />
-        {/* <ProjectsGallery /> */}
+        <ProjectsGallery />
       </div>
     </main>
   )
