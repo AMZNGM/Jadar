@@ -39,7 +39,7 @@ export default function PartnersBgVid() {
   }, [sectionRef, bgVidRef])
 
   return (
-    <section ref={sectionRef} className="relative w-screen h-screen bg-bg">
+    <section ref={sectionRef} className="relative w-screen h-screen bg-bg overflow-x-hidden">
       <div ref={bgVidRef} className="relative size-full will-change-transform will-change-opacity origin-center">
         <BgVideo src={bgVid} mobileImgsrc={mobileImgsrc} />
       </div>

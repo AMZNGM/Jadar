@@ -83,7 +83,7 @@ export default function ProjectsGallery() {
         </div>
 
         {/* right side */}
-        <div ref={rightSideRef} className="relative w-[55%] flex flex-col justify-between items-center py-24 px-4">
+        <div ref={rightSideRef} className="relative w-[55%] max-md:w-full flex flex-col justify-between items-center py-24 px-4">
           <div className="flex flex-col text-center font-light uppercase gap-4 mb-4">
             <ShuffleText text={t('kuwaitProjects')} tag={'h2'} className="text-6xl max-md:text-3xl font-medium" />
             <ShuffleText text={t('kuwaitProjectsDesc')} tag={'p'} className="text-sm text-text/80" />
