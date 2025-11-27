@@ -78,11 +78,11 @@ const Card = ({ img, title, description, className }) => {
 
         <div className="flex relative z-10 flex-col justify-between p-3 size-full">
           <div>
-            <h2 className="mb-4 text-6xl font-extralight uppercase cursor-default max-md:text-4xl text-main">{t(title)}</h2>
+            <h2 className="mb-4 text-6xl cursor-default max-md:text-4xl text-main">{t(title)}</h2>
 
             {description && (
               <div className="relative">
-                <div className={`text-base max-md:text-sm text-text font-light duration-300 ${!showFull ? 'line-clamp-4' : ''}`}>
+                <div className={`text-base max-md:text-sm text-text font-light max-w-md duration-300 ${!showFull ? 'line-clamp-4' : ''}`}>
                   <p dangerouslySetInnerHTML={{ __html: t(description) }} />
                 </div>
 
