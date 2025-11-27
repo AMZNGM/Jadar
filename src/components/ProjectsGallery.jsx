@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useRef, useState } from 'react'
 import { gsap } from '@/utils/gsapConfig'
 import { useGSAP } from '@gsap/react'
@@ -9,6 +10,7 @@ import { projectsData } from '@/data/projectsData'
 import ShuffleText from '@/components/ui/text/ShuffleText.jsx'
 import MainBtn from '@/components/ui/buttons/MainBtn.jsx'
 import BgVideo from '@/components/ui/BgVideo.jsx'
+import ClickEffect from './ui/effects/ClickEffect'
 
 export default function ProjectsGallery() {
   const BgVid = '/videos/bgVideo.mp4'
@@ -66,19 +68,23 @@ export default function ProjectsGallery() {
           <Quadtree className={'size-full absolute inset-0'} />
 
           {projects.map((project, index) => (
-            <div
+            <ClickEffect
               key={index}
               onClick={() => setActiveProject(index)}
-              className={`group relative size-full flex items-center justify-center overflow-hidden border-b border-main hover:bg-main/10 cursor-pointer duration-100 ${
+              className={`group relative size-full overflow-hidden border-b border-main hover:bg-main/10 cursor-pointer duration-100 ${
                 index === activeProject ? 'bg-main/25 border-s-4 border-main' : ''
               }`}
             >
-              <ShuffleText
-                text={project.title}
-                tag={'h4'}
-                className={`text-3xl max-md:text-2xl p-4 group-hover:scale-101 duration-300 ${index === activeProject ? 'scale-102' : ''}`}
-              />
-            </div>
+              <Link href={project.to} className="relative size-full flex items-center justify-center">
+                <ShuffleText
+                  text={project.title}
+                  tag={'h4'}
+                  className={`text-3xl max-md:text-2xl p-4 group-hover:scale-101 duration-300 cursor-pointer ${
+                    index === activeProject ? 'scale-102' : ''
+                  }`}
+                />
+              </Link>
+            </ClickEffect>
           ))}
         </div>
 
