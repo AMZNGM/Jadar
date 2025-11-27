@@ -61,7 +61,7 @@
       "source-layer": "boundary",
       "filter": ["==", "admin_level", 2],
       "paint": {
-        "line-color": "#000000",
+        "line-color": "#d73b1380",
         "line-width": 1.5
       }
     },
