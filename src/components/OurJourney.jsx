@@ -164,7 +164,7 @@ export default function OurJourney() {
           <Image
             src={ArtboardImgs[19]}
             alt="Kuwait Journey background Image"
-            className="size-full absolute inset-0 object-cover pointer-events-none"
+            className="size-full absolute inset-0 object-cover pointer-events-none opacity-50"
             loading="eager"
           />
           <div className="size-full flex flex-col justify-end items-center gap-2 -translate-y-60 font-light uppercase z-10">
