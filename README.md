@@ -12,7 +12,7 @@ Web app for Jadar
 
 ## Tech Stack
 
-- Next.js 14 - React 19 - Gsap - Tailwind CSS - MapLibre GL JS - React Map GL - Lenis
+- Next.js 16 - React 19 - Gsap - Tailwind CSS - MapLibre GL JS - React Map GL - Lenis
 
 ## Getting Started
 
