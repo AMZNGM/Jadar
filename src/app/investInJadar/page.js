@@ -8,7 +8,7 @@ import Breadcrumb from '@/components/ui/Breadcrumb.jsx'
 import SectionHeader from '@/components/SectionHeader.jsx'
 import OurProposition from '@/components/OurProposition.jsx'
 import WorkWithUs from '@/components/WorkWithUs.jsx'
-// import Map from '@/components/Map.jsx'
+import MapSection from '@/components/MapSection'
 import FeaturedNews from '@/components/FeaturedNews.jsx'
 
 export default function InvestInJadar() {
@@ -43,7 +43,7 @@ export default function InvestInJadar() {
         <SectionHeader title={t(`openForBusiness`)} para={t(`openForBusinessPara`)} />
         <OurProposition />
         <WorkWithUs />
-        {/* <Map /> */}
+        <MapSection />
         <FeaturedNews />
       </div>
     </main>
