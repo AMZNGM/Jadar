@@ -15,32 +15,36 @@
 
 ## ✨ Core Features
 
--   📍 **Interactive Mapping**: Seamless integration of `MapLibre GL` for location-aware property visualization.
--   🎭 **Slick Animations**: Smooth page transitions and element interactions powered by `GSAP`.
--   🏙️ **Facility Management**: Purpose-built modules for property and facility management solutions.
--   📱 **Fully Adaptive**: Responsive design ensuring a premium experience on mobile, tablet, and desktop.
--   ⚡ **Performant Architecture**: Optimized with `Next.js 16` and server-side optimization.
+- 📍 **Interactive Mapping**: Seamless integration of `MapLibre GL` for location-aware property visualization.
+- 🎭 **Slick Animations**: Smooth page transitions and element interactions powered by `GSAP`.
+- 🏙️ **Facility Management**: Purpose-built modules for property and facility management solutions.
+- 📱 **Fully Adaptive**: Responsive design ensuring a premium experience on mobile, tablet, and desktop.
+- ⚡ **Performant Architecture**: Optimized with `Next.js 16` and server-side optimization.
 
 ---
 
 ## 🛠️ Tech Stack
 
 ### 🚀 Core
--   **Next.js 16** (App Router)
--   **React 19**
--   **TypeScript**
+
+- **Next.js 16** (App Router)
+- **React 19**
+- **TypeScript**
 
 ### 🎨 Rendering & Motion
--   **GSAP** & `@gsap/react` — Professional grade animations.
--   **Lenis** — Modern smooth scrolling.
--   **Lucide React** — Minimalist icons.
+
+- **GSAP** & `@gsap/react` — Professional grade animations.
+- **Lenis** — Modern smooth scrolling.
+- **Lucide React** — Minimalist icons.
 
 ### 🗺️ Geospatial
--   **MapLibre GL JS**
--   **React Map GL**
+
+- **MapLibre GL JS**
+- **React Map GL**
 
 ### 💅 Styling
--   **Tailwind CSS 4.0** (Next-gen utility CSS)
+
+- **Tailwind CSS 4.0** (Next-gen utility CSS)
 
 ---
 
@@ -50,8 +54,8 @@ Follow these steps to set up the project locally.
 
 ### 1. Prerequisites
 
--   **Node.js** (v18.x or higher)
--   **npm** or **yarn**
+- **Node.js** (v18.x or higher)
+- **npm** or **yarn**
 
 ### 2. Setup & Installation
 
@@ -90,6 +94,5 @@ src/
 ---
 
 <div align="center">
-  <p>Built with ❤️ by <a href="https://github.com/AMZNGM" target="_blank">AMZNGM</a></p>
+  <p>by <a href="https://github.com/AMZNGM" target="_blank">AMZNGM</a></p>
 </div>
-
